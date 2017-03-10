@@ -1,14 +1,6 @@
-import React, { Component } from 'react'
-// import { Text, View } from 'react-native'
+import React from 'react'
+import Navigator from './routes/Navigator'
 
-import { HomeScreen } from './screens'
-
-class AppContainer extends Component {
-  render() {
-    return (
-      <HomeScreen />
-    )
-  }
-}
+const AppContainer = () => <Navigator />;
 
 export default AppContainer
