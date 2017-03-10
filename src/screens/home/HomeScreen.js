@@ -3,14 +3,12 @@ import { Text, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import styles from './styles'
-import { Colors } from '../common'
-
 
 class HomeScreen extends Component {
 
   static navigationOptions = {
     tabBar: {
-      icon: () => <Icon name="home" size={25} color={Colors.black} />
+      icon: ({ tintColor }) => <Icon name="home" size={25} color={tintColor} />
     }
   }
 
