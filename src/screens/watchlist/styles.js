@@ -10,5 +10,16 @@ export default StyleSheet.create({
   text: {
     color: Colors.black,
     fontSize: 20,
+  },
+  listItemContainer: {
+    marginVertical: 5
+  },
+  movieMeta: {
+    flex: 1,
+  },
+  movieImage: {
+    width: 92,
+    height: 138,
+    borderRadius: 5
   }
 })

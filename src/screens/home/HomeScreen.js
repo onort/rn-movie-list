@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import React, { Component, PropTypes } from 'react'
+import { Text, View, Button } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { connect } from 'react-redux'
 
 import styles from './styles'
+import { loadList } from '../../actions'
 
 class HomeScreen extends Component {
+
+  static propTypes = {
+    loadList: PropTypes.func.isRequired
+  }
 
   static navigationOptions = {
     tabBar: {
@@ -16,9 +22,15 @@ class HomeScreen extends Component {
     return (
       <View style={styles.homeContainer}>
         <Text style={styles.homeText}>This is HomeScreen</Text>
+        <Button
+          onPress={this.props.loadList}
+          title="Load Movie List"
+          color="#841584"
+          accessibilityLabel="Load Movie List"
+        />
       </View>
     )
   }
 }
 
-export default HomeScreen
+export default connect(null, { loadList })(HomeScreen)

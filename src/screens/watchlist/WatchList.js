@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react'
-import { Text, View } from 'react-native'
+import { ListView, Text, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { connect } from 'react-redux'
 
 import styles from './styles'
+import { loadList } from '../../actions'
+
+import WatchListItem from './WatchListItem'
 
 class WatchList extends Component {
-
-  static propTypes = {
-    movies: PropTypes.array
-  }
 
   static navigationOptions = {
     tabBar: {
@@ -16,27 +16,55 @@ class WatchList extends Component {
     }
   }
 
+  static propTypes = {
+    list: PropTypes.array,
+    loadList: PropTypes.func.isRequired
+  }
+
+  componentWillMount() {
+    // this.props.loadList()
+    this.createDataSource(this.props.list)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps.list)
+  }
+
+  createDataSource(movies) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    })
+    this.dataSource = ds.cloneWithRows(movies)
+  }
+
+  renderRow(movie) {
+    return <WatchListItem movie={movie} />
+  }
+
   render() {
-    const { movies } = this.props
-    if (!movies || !movies.length) return this.noMovies()
-    else if (movies.length) return this.renderMovies(movies)
-  }
-
-  noMovies() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>No movies to render</Text>
-      </View>
-    )
-  }
-
-  renderMovies(movies) {
-    return (
-      <View style={styles.container}>
-        {movies.map(movie => <Text key={movie.id} style={styles.text}>{movie.title}</Text>)}
-      </View>
-    )
+    if (!this.props.list.length) {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.text}>No movies to render</Text>
+        </View>
+      )
+    }
+    else if (this.props.list.length) {
+      return (
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
+      )
+    } else return null
   }
 }
 
-export default WatchList
+function mapStateToProps(state) {
+  return {
+    list: state.list
+  }
+}
+
+export default connect(mapStateToProps, { loadList })(WatchList)
