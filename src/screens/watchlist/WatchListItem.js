@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Image, Text, View } from 'react-native'
 
 import styles from './styles'
+import ItemActions from './ItemActions'
 
 class WatchListItem extends Component {
 
@@ -18,6 +19,12 @@ class WatchListItem extends Component {
           source={{ uri: `${posterUrl}${poster_path}`}}
           style={[styles.movieImage]}
         />
+        <View style={styles.metaContainer}>
+          <View style={styles.movieMeta}>
+            <Text style={[styles.movieTitle, styles.text]}>{title}</Text>
+          </View>
+          <ItemActions />
+        </View>
       </View>
     )
   }

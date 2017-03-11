@@ -7,10 +7,16 @@ import styles from './styles'
 import { loadList } from '../../actions'
 
 import WatchListItem from './WatchListItem'
+import { IconButton } from '../common'
 
 class WatchList extends Component {
 
   static navigationOptions = {
+    title: () => 'Your Watch List',
+    header: () => ({
+      right: <IconButton name="add" size={25} color="#333" />,
+      style: styles.headerStyle
+    }),
     tabBar: {
       icon: ({ tintColor }) => <Icon name="format-list-bulleted" size={25} color={tintColor} />
     }
@@ -22,7 +28,7 @@ class WatchList extends Component {
   }
 
   componentWillMount() {
-    // this.props.loadList()
+    this.props.loadList()
     this.createDataSource(this.props.list)
   }
 
