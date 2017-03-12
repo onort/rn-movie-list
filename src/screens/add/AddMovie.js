@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { TextInput, View } from 'react-native'
+import { connect } from 'react-redux'
 
 import { IconButton } from '../common'
 import styles from './styles'
-import moviesApi from '../../api/moviesApi'
+import { clearSearchResults, searchMovie } from '../../actions'
 
 class AddMovie extends Component {
 
@@ -22,10 +23,13 @@ class AddMovie extends Component {
     })
   }
 
-  async searchMovie() {
-    this.setState({ input: '' })
-    const movies = await moviesApi.searchMovie(this.state.input)
-    console.log('Async movies are', movies)
+  componentWillUnmount() {
+    // need another way to clear search results if search results can link to movie detail screen
+    this.props.clearSearchResults()
+  }
+
+  searchMovie() {
+    this.props.searchMovie(this.state.input)
   }
 
   render() {
@@ -49,4 +53,4 @@ class AddMovie extends Component {
   }
 }
 
-export default AddMovie
+export default connect(null, { clearSearchResults, searchMovie })(AddMovie)

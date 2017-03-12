@@ -2,13 +2,12 @@ import * as types from '../actions/types'
 
 export default (state = [], action) => {
   switch (action.type) {
-    case types.LOAD_LIST:
+    case types.SEARCH_SUCCESS:
       return [
-        ...state,
-        ...action.list
+        ...action.results
       ]
-    case types.DISCARD_MOVIE:
-      return state
+    case types.CLEAR_SEARCH_RESULTS:
+      return []
     default:
       return state
   }

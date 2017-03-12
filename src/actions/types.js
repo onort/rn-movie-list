@@ -1,1 +1,9 @@
+
 export const LOAD_LIST = 'LOAD_LIST'
+// export const SEARCH = 'SEARCH'
+export const CLEAR_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS'
+export const SEARCH_ERROR = 'SEARCH_ERROR'
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
+
+export const DISCARD_MOVIE = 'DISCARD_MOVIE'
+export const MARK_MOVIE_WATCHED = 'MARK_MOVIE_WATCHED'

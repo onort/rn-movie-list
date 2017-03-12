@@ -11,6 +11,11 @@ import { IconButton } from '../common'
 
 class WatchList extends Component {
 
+  constructor(props) {
+    super(props)
+    this.renderRow = this.renderRow.bind(this)
+  }
+
   static navigationOptions = {
     title: () => 'Your Watch List',
     header: ({ navigate }) => ({
@@ -44,7 +49,8 @@ class WatchList extends Component {
   }
 
   renderRow(movie) {
-    return <WatchListItem movie={movie} />
+    const { navigate } = this.props.navigation
+    return <WatchListItem movie={movie} navigate={navigate} />
   }
 
   render() {

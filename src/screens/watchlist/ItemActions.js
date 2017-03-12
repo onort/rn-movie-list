@@ -4,15 +4,15 @@ import { View } from 'react-native'
 import styles from './styles'
 import { Colors, IconButton } from '../common'
 
-const ItemActions = () => {
-  const logPress = (e) => console.log('Pressed Button', e)
+const ItemActions = ({ onDiscard, onWatched }) => {
+  const logPress = () => console.log('Pressed Button')
   return (
     <View style={styles.actionsContainer}>
       <IconButton
         name="done"
         size={25}
         color={Colors.black}
-        onPress={logPress}
+        onPress={onWatched}
         style={styles.actionStyle}
       />
       <IconButton
@@ -26,7 +26,7 @@ const ItemActions = () => {
         name="delete"
         size={25}
         color={Colors.black}
-        onPress={logPress}
+        onPress={onDiscard}
         style={styles.actionStyle}
       />
       <View>
