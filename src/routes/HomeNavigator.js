@@ -1,6 +1,6 @@
 import { TabNavigator } from 'react-navigation'
 
-import { HomeScreen, WatchList } from '../screens'
+import { Discarded, HomeScreen, WatchList } from '../screens'
 import { Colors } from '../screens/common'
 
 export default TabNavigator(
@@ -10,6 +10,9 @@ export default TabNavigator(
   },
   WatchList: {
     screen: WatchList
+  },
+  Discarded: {
+    screen: Discarded
   }
 },
 {

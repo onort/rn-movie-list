@@ -13,8 +13,8 @@ class WatchList extends Component {
 
   static navigationOptions = {
     title: () => 'Your Watch List',
-    header: () => ({
-      right: <IconButton name="add" size={25} color="#333" />,
+    header: ({ navigate }) => ({
+      right: <IconButton name="add" size={25} color="#333" onPress={() => navigate('AddMovie')} />,
       style: styles.headerStyle
     }),
     tabBar: {

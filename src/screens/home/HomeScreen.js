@@ -13,6 +13,7 @@ class HomeScreen extends Component {
   }
 
   static navigationOptions = {
+    title: 'Home',
     tabBar: {
       icon: ({ tintColor }) => <Icon name="home" size={25} color={tintColor} />
     }

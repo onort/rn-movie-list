@@ -8,6 +8,7 @@
 		"postinstall": "rndebugger-open"
 	},
 	"dependencies": {
+		"axios": "^0.15.3",
 		"react": "~15.4.1",
 		"react-native": "0.42.0",
 		"react-native-vector-icons": "^4.0.0",

@@ -52,7 +52,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 
-# my notes
+# my notes & keys
 #
 notes.md
 todos.md
+src/api/config.js
