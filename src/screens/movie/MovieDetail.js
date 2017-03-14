@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import { connect } from 'react-redux'
+
+import { resetSelected } from '../../actions'
 
 import styles from './styles'
 
@@ -9,13 +12,24 @@ class MovieDetail extends Component {
     title: 'Movies Detail',
   }
 
+  componentWillUnmount() {
+    this.props.resetSelected()
+  }
+
   render() {
+    const { title } = this.props.selectedMovie
     return (
       <View>
-        <Text>Movie detail view</Text>
+        <Text>{title}</Text>
       </View>
     )
   }
 }
 
-export default MovieDetail
+function mapStateToProps(state) {
+  return {
+    selectedMovie: state.selectedMovie
+  }
+}
+
+export default connect(mapStateToProps, { resetSelected })(MovieDetail)

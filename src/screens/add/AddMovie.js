@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { IconButton, LoadingScreen } from '../common'
 import styles from './styles'
-import { clearSearchResults, searchMovie } from '../../actions'
+import { clearSearchResults, searchMovie, setSelected } from '../../actions'
 import ResultListItem from './ResultListItem'
 
 class AddMovie extends Component {
@@ -15,6 +15,7 @@ class AddMovie extends Component {
       input: '',
       searchedFor: ''
     }
+    this.handleItemPress = this.handleItemPress.bind(this)
     this.renderRow = this.renderRow.bind(this)
     this.searchMovie = this.searchMovie.bind(this)
   }
@@ -46,9 +47,19 @@ class AddMovie extends Component {
     this.dataSource = ds.cloneWithRows(results)
   }
 
+  handleItemPress(movie) {
+    this.props.setSelected(movie)
+    this.props.navigation.navigate('MovieDetail')
+  }
+
   renderRow(movie) {
-    const { navigate } = this.props.navigation
-    return (<ResultListItem style={styles.resultsText} movie={movie} navigate={navigate} />)
+    return (
+      <ResultListItem
+        style={styles.resultsText}
+        movie={movie}
+        handlePress={this.handleItemPress}
+      />
+    )
   }
 
   searchMovie() {
@@ -109,4 +120,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { clearSearchResults, searchMovie })(AddMovie)
+export default connect(mapStateToProps, { clearSearchResults, searchMovie, setSelected })(AddMovie)
