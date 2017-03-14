@@ -15,7 +15,8 @@ class WatchListItem extends Component {
   }
 
   static propTypes = {
-    movie: PropTypes.object.isRequired
+    movie: PropTypes.object.isRequired,
+    navigate: PropTypes.func.isRequired
   }
 
   onDiscard() {

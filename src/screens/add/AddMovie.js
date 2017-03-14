@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, ListView, Text, TextInput, View } from 'react-native'
+import { Keyboard, ListView, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { IconButton, LoadingScreen } from '../common'
 import styles from './styles'
 import { clearSearchResults, searchMovie } from '../../actions'
+import ResultListItem from './ResultListItem'
 
 class AddMovie extends Component {
 
@@ -14,6 +15,7 @@ class AddMovie extends Component {
       input: '',
       searchedFor: ''
     }
+    this.renderRow = this.renderRow.bind(this)
     this.searchMovie = this.searchMovie.bind(this)
   }
 
@@ -24,14 +26,17 @@ class AddMovie extends Component {
     })
   }
 
-  componentWillUnmount() {
-    // need another way to clear search results if search results can link to movie detail screen
-    this.props.clearSearchResults()
+  compotnentWillMount() {
     this.createDataSource(this.props.searchResults)
   }
 
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps.searchResults)
+  }
+
+  componentWillUnmount() {
+    // need another way to clear search results if search results can link to movie detail screen
+    this.props.clearSearchResults()
   }
 
   createDataSource(results) {
@@ -42,12 +47,14 @@ class AddMovie extends Component {
   }
 
   renderRow(movie) {
-    return (<Text style={styles.resultsText}>{movie.title}</Text>)
+    const { navigate } = this.props.navigation
+    return (<ResultListItem style={styles.resultsText} movie={movie} navigate={navigate} />)
   }
 
   searchMovie() {
     this.props.searchMovie(this.state.input)
     this.setState({ searchedFor: this.state.input, input: '' })
+    Keyboard.dismiss()
   }
 
   renderResults() {
