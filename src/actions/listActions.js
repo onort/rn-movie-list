@@ -1,9 +1,9 @@
 import * as types from './types'
 import movieData from './moviedata'
 
-export const loadList = () => {
+export const fetchList = () => {
   return {
-    type: types.LOAD_LIST,
+    type: types.FETCH_LIST_SUCCESS,
     list: movieData
   }
 }

@@ -4,12 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 
 import styles from './styles'
-import { loadList } from '../../actions'
+import { fetchList } from '../../actions'
 
 class HomeScreen extends Component {
 
   static propTypes = {
-    loadList: PropTypes.func.isRequired
+    fetchList: PropTypes.func.isRequired
   }
 
   static navigationOptions = {
@@ -24,7 +24,7 @@ class HomeScreen extends Component {
       <View style={styles.homeContainer}>
         <Text style={styles.homeText}>This is HomeScreen</Text>
         <Button
-          onPress={this.props.loadList}
+          onPress={this.props.fetchList}
           title="Load Movie List"
           color="#841584"
           accessibilityLabel="Load Movie List"
@@ -34,4 +34,4 @@ class HomeScreen extends Component {
   }
 }
 
-export default connect(null, { loadList })(HomeScreen)
+export default connect(null, { fetchList })(HomeScreen)

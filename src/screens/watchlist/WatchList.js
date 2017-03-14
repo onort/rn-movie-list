@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 
 import styles from './styles'
-import { loadList } from '../../actions'
+import { fetchList } from '../../actions'
 
 import WatchListItem from './WatchListItem'
 import { IconButton } from '../common'
@@ -29,11 +29,11 @@ class WatchList extends Component {
 
   static propTypes = {
     list: PropTypes.array,
-    loadList: PropTypes.func.isRequired
+    fetchList: PropTypes.func.isRequired
   }
 
   componentWillMount() {
-    this.props.loadList()
+    this.props.fetchList()
     this.createDataSource(this.props.list)
   }
 
@@ -79,4 +79,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { loadList })(WatchList)
+export default connect(mapStateToProps, { fetchList })(WatchList)
