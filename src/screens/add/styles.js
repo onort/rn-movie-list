@@ -3,6 +3,9 @@ import { Colors } from '../common'
 
 export default StyleSheet.create({
   container: {
+    flex: 1
+  },
+  searchContainer: {
     flexDirection: 'row',
     marginTop: 10,
     marginHorizontal: 5,
@@ -17,5 +20,13 @@ export default StyleSheet.create({
   },
   searchButton: {
     padding: 5
+  },
+  resultsContainer: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  resultsText: {
+    fontSize: 20,
+    color: Colors.black
   }
 })

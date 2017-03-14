@@ -3,6 +3,7 @@ import moviesApi from '../api/moviesApi'
 
 export const searchMovie = (query) => {
   return async dispatch => {
+    dispatch({ type: types.SEARCH_MOVIE })
     try {
       const results = await moviesApi.searchMovie(query)
       dispatch({ type: types.SEARCH_SUCCESS, results })
