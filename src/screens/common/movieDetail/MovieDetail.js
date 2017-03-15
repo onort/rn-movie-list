@@ -3,7 +3,10 @@ import { Text, View } from 'react-native'
 
 
 const MovieDetail = ({ movie }) => {
-  const { title } = movie
+  let title = ''
+  if (movie.title) title = movie.title
+  else title = 'No Title'
+
   return (
     <View style={{ flex: 1 }}>
       <Text style={{ fontSize: 20, marginTop: 50 }}>{title}</Text>
