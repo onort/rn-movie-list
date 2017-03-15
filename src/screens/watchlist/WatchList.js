@@ -4,15 +4,18 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 
 import styles from './styles'
-import { fetchList } from '../../actions'
+import { discardMovie, fetchList, markWatched, setSelected } from '../../actions'
 
-import WatchListItem from './WatchListItem'
-import { IconButton } from '../common'
+import ItemActions from './ItemActions'
+import { IconButton, ListItem } from '../common'
 
 class WatchList extends Component {
 
   constructor(props) {
     super(props)
+    this.handleItemPress = this.handleItemPress.bind(this)
+    this.onDiscard = this.onDiscard.bind(this)
+    this.onWatched = this.onWatched.bind(this)
     this.renderRow = this.renderRow.bind(this)
   }
 
@@ -48,9 +51,28 @@ class WatchList extends Component {
     this.dataSource = ds.cloneWithRows(movies)
   }
 
+  handleItemPress(movie) {
+    this.props.setSelected(movie)
+    this.props.navigation.navigate('MovieDetail')
+  }
+
+  onDiscard(movie) {
+    this.props.discardMovie(movie)
+  }
+
+  onWatched(movie) {
+    this.props.markWatched(movie)
+  }
+
   renderRow(movie) {
-    const { navigate } = this.props.navigation
-    return <WatchListItem movie={movie} navigate={navigate} />
+    return (
+      <ListItem movie={movie} handlePress={this.handleItemPress}>
+        <ItemActions
+          onDiscard={() => this.onDiscard(movie)}
+          onWatched={() => this.onWatched(movie)}
+        />
+      </ListItem>
+    )
   }
 
   render() {
@@ -79,4 +101,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchList })(WatchList)
+export default connect(mapStateToProps, { discardMovie, fetchList, markWatched, setSelected })(WatchList)

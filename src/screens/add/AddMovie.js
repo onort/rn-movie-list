@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { Keyboard, ListView, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { IconButton, LoadingScreen } from '../common'
+import { IconButton, ListItem, LoadingScreen } from '../common'
 import styles from './styles'
 import { clearSearchResults, searchMovie, setSelected } from '../../actions'
-import ResultListItem from './ResultListItem'
 
 class AddMovie extends Component {
 
@@ -54,8 +53,7 @@ class AddMovie extends Component {
 
   renderRow(movie) {
     return (
-      <ResultListItem
-        style={styles.resultsText}
+      <ListItem
         movie={movie}
         handlePress={this.handleItemPress}
       />
