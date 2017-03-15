@@ -5,10 +5,26 @@ import { connect } from 'react-redux'
 import { resetSelected } from '../../actions'
 import { MovieDetail } from '../common'
 
+import moviesApi from '../../api/moviesApi' // for testing
+
 class ListMovieDetail extends Component {
 
   static navigationOptions = {
     title: 'List Movie Detail',
+  }
+
+  async componentWillMount() {
+    const { id } = this.props.selectedMovie
+    if (id) {
+      console.log('componentWillMount fires moviesApi methods')
+      // Need error handling here.
+      let [movieData, castData] = await Promise.all([
+        moviesApi.fetchMovieDetails(id),
+        moviesApi.fetchMovieCredits(id)
+      ])
+      console.log('MovieData', movieData)
+      console.log('castData', castData)
+    }
   }
 
   componentWillUnmount() {
