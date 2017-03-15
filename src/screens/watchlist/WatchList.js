@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import styles from './styles'
 import { discardMovie, fetchList, markWatched, setSelected } from '../../actions'
 
-import ItemActions from './ItemActions'
+import ItemActions from './components/ItemActions'
 import { IconButton, ListItem } from '../common'
 
 class WatchList extends Component {
@@ -53,7 +53,7 @@ class WatchList extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('MovieDetail')
+    this.props.navigation.navigate('ListMovieDetail')
   }
 
   onDiscard(movie) {
@@ -66,7 +66,7 @@ class WatchList extends Component {
 
   renderRow(movie) {
     return (
-      <ListItem movie={movie} handlePress={this.handleItemPress}>
+      <ListItem movie={movie} handlePress={() => this.handleItemPress(movie)}>
         <ItemActions
           onDiscard={() => this.onDiscard(movie)}
           onWatched={() => this.onWatched(movie)}

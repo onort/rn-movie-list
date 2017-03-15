@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { resetSelected } from '../../actions'
+import { MovieDetail } from '../common'
 
-import styles from './styles'
-
-class MovieDetail extends Component {
+class ListMovieDetail extends Component {
 
   static navigationOptions = {
-    title: 'Movies Detail',
+    title: 'List Movie Detail',
   }
 
   componentWillUnmount() {
@@ -17,11 +16,10 @@ class MovieDetail extends Component {
   }
 
   render() {
-    const { title } = this.props.selectedMovie
     return (
-      <View>
-        <Text>{title}</Text>
-      </View>
+    <View style={{ flex: 1 }}>
+      <MovieDetail movie={this.props.selectedMovie} />
+    </View>
     )
   }
 }
@@ -32,4 +30,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { resetSelected })(MovieDetail)
+export default connect(mapStateToProps, { resetSelected })(ListMovieDetail)

@@ -1,8 +1,8 @@
 import React from 'react'
 import { View } from 'react-native'
 
-import styles from './styles'
-import { Colors, IconButton } from '../common'
+import styles from '../styles'
+import { Colors, IconButton } from '../../common'
 
 const ItemActions = ({ onDiscard, onWatched }) => {
   const logPress = () => console.log('Pressed Button')

@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as config from './config'
 
 class moviesApi {
-
+  // add baseurl to config and append needed endpoints for methods
   static async searchMovie(query) {
     const _baseUrl = 'https://api.themoviedb.org/3/search/movie'
     const params = {

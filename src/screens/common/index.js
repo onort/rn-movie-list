@@ -7,5 +7,5 @@ export {
   Colors,
   IconButton,
   ListItem,
-  LoadingScreen
+  LoadingScreen,
 }

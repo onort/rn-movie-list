@@ -48,14 +48,14 @@ class AddMovie extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('MovieDetail')
+    this.props.navigation.navigate('SearchMovieDetail')
   }
 
   renderRow(movie) {
     return (
       <ListItem
         movie={movie}
-        handlePress={this.handleItemPress}
+        handlePress={() => this.handleItemPress(movie)}
       />
     )
   }
