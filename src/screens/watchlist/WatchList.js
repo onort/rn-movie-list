@@ -4,7 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 
 import styles from './styles'
-import { discardMovie, fetchList, markWatched, setSelected } from '../../actions'
+import { 
+  discardMovie,
+  fetchList,
+  markWatched,
+  setSelected
+} from '../../actions'
 
 import ItemActions from './components/ItemActions'
 import { IconButton, ListItem } from '../common'

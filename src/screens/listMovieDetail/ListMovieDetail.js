@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { resetSelected } from '../../actions'
-import { MovieDetail } from '../common'
-
-import moviesApi from '../../api/moviesApi' // for testing
+import { getMovieDetails, resetSelected } from '../../actions'
+import { LoadingScreen, MovieDetail } from '../common'
 
 class ListMovieDetail extends Component {
 
@@ -13,17 +11,10 @@ class ListMovieDetail extends Component {
     title: 'List Movie Detail',
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     const { id } = this.props.selectedMovie
     if (id) {
-      console.log('componentWillMount fires moviesApi methods')
-      // Need error handling here.
-      let [movieData, castData] = await Promise.all([
-        moviesApi.fetchMovieDetails(id),
-        moviesApi.fetchMovieCredits(id)
-      ])
-      console.log('MovieData', movieData)
-      console.log('castData', castData)
+      this.props.getMovieDetails(id)
     }
   }
 
@@ -34,7 +25,10 @@ class ListMovieDetail extends Component {
   render() {
     return (
     <View style={{ flex: 1 }}>
-      <MovieDetail movie={this.props.selectedMovie} />
+      {this.props.loading ?
+        <LoadingScreen /> :
+        <MovieDetail movie={this.props.selectedMovie} />
+      }
     </View>
     )
   }
@@ -42,8 +36,9 @@ class ListMovieDetail extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading,
     selectedMovie: state.selectedMovie
   }
 }
 
-export default connect(mapStateToProps, { resetSelected })(ListMovieDetail)
+export default connect(mapStateToProps, { getMovieDetails, resetSelected })(ListMovieDetail)

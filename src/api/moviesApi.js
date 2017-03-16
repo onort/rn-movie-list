@@ -22,14 +22,12 @@ class moviesApi {
   }
 
   static async fetchMovieDetails(id) {
-    console.log('Fetching movie details')
     const _baseUrl = `https://api.themoviedb.org/3/movie/${id}`
     const params = {
       api_key: config.TMDbApiKey,
     }
     try {
       const { data } = await axios.get(_baseUrl, { params })
-      console.log('Got movie details', data)
       return data
     } catch (e) {
       console.log('Error on fetchMovieDetails', e)
@@ -37,15 +35,13 @@ class moviesApi {
   }
 
   static async fetchMovieCredits(id) {
-    console.log('Fetching cast details')
     const _baseUrl = `https://api.themoviedb.org/3/movie/${id}/credits`
     const params = {
       api_key: config.TMDbApiKey,
     }
     try {
       const { data } = await axios.get(_baseUrl, { params })
-      console.log('Got movie details', data.cast)
-      return data.cast
+      return data
     } catch (e) {
       console.log('Error on fetchMovieCredits'. e)
     }

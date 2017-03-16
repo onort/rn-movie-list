@@ -1,6 +1,6 @@
 import * as types from '../actions/types'
 
-const INITIAL_STATE = { id: '', movie: {}, cast: [] }
+const INITIAL_STATE = { id: '', details: {}, credits: [] }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {

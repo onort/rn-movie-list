@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { resetSelected } from '../../actions'
-import { MovieDetail } from '../common'
+import { getMovieDetails, resetSelected } from '../../actions'
+import { LoadingScreen, MovieDetail } from '../common'
 
 class SearchMovieDetail extends Component {
 
   static navigationOptions = {
     title: 'Search Movie Detail',
+  }
+
+  componentWillMount() {
+    const { id } = this.props.selectedMovie
+    if (id) {
+      this.props.getMovieDetails(id)
+    }
   }
 
   componentWillUnmount() {
@@ -18,7 +25,10 @@ class SearchMovieDetail extends Component {
   render() {
     return (
     <View style={{ flex: 1 }}>
-      <MovieDetail movie={this.props.selectedMovie} />
+      {this.props.loading ?
+        <LoadingScreen /> :
+        <MovieDetail movie={this.props.selectedMovie} />
+      }
     </View>
     )
   }
@@ -26,8 +36,9 @@ class SearchMovieDetail extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.loading,
     selectedMovie: state.selectedMovie
   }
 }
 
-export default connect(mapStateToProps, { resetSelected })(SearchMovieDetail)
+export default connect(mapStateToProps, { getMovieDetails, resetSelected })(SearchMovieDetail)
