@@ -8,6 +8,8 @@ export default (state = INITIAL_STATE, action) => {
       return Object.assign({}, state, { id: action.movie.id })
     case types.RESET_SELECTED_MOVIE:
       return INITIAL_STATE
+    case types.FETCH_MOVIE_DETAILS_SUCCESS:
+      return Object.assign({}, state, { details: action.details, credits: action.credits })
     default:
       return state
   }
