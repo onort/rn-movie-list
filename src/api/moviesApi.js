@@ -1,12 +1,13 @@
 import axios from 'axios'
 import * as config from './config'
 
+axios.defaults.baseURL = 'https://api.themoviedb.org/3'
+
 class moviesApi {
   // add baseurl to config and append needed endpoints for methods
   // to much code repeat, refactor!
-  // need a check here for api data
+  // need a check here for api data  
   static async searchMovie(query) {
-    const _baseUrl = 'https://api.themoviedb.org/3/search/movie'
     const params = {
       api_key: config.TMDbApiKey,
       language: 'en',
@@ -14,7 +15,7 @@ class moviesApi {
     }
 
     try {
-      const { data } = await axios.get(_baseUrl, { params })
+      const { data } = await axios.get('/search/movie', { params })
       return data.results
     } catch (e) {
       console.log(e)
@@ -22,12 +23,11 @@ class moviesApi {
   }
 
   static async fetchMovieDetails(id) {
-    const _baseUrl = `https://api.themoviedb.org/3/movie/${id}`
     const params = {
       api_key: config.TMDbApiKey,
     }
     try {
-      const { data } = await axios.get(_baseUrl, { params })
+      const { data } = await axios.get(`/movie/${id}`, { params })
       return data
     } catch (e) {
       console.log('Error on fetchMovieDetails', e)
@@ -35,18 +35,16 @@ class moviesApi {
   }
 
   static async fetchMovieCredits(id) {
-    const _baseUrl = `https://api.themoviedb.org/3/movie/${id}/credits`
     const params = {
       api_key: config.TMDbApiKey,
     }
     try {
-      const { data } = await axios.get(_baseUrl, { params })
+      const { data } = await axios.get(`/movie/${id}/credits`, { params })
       return data
     } catch (e) {
       console.log('Error on fetchMovieCredits'. e)
     }
   }
-
 }
 
 export default moviesApi

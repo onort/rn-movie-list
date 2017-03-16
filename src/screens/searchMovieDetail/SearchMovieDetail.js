@@ -4,11 +4,12 @@ import { connect } from 'react-redux'
 
 import { getMovieDetails, resetSelected } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
+import SearchDetailActions from './SearchDetailActions'
 
 class SearchMovieDetail extends Component {
 
   static navigationOptions = {
-    title: 'Search Movie Detail',
+    title: ({ state }) => state.params.title
   }
 
   componentWillMount() {
@@ -22,12 +23,19 @@ class SearchMovieDetail extends Component {
     this.props.resetSelected()
   }
 
+  onAction() {
+    console.log('Button pressed!')
+  }
+
   render() {
+    console.log('SearchDetail logs props', this.props)
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
-        <MovieDetail movie={this.props.selectedMovie} />
+        <MovieDetail movie={this.props.selectedMovie}>
+          <SearchDetailActions onPress={this.onAction} />
+        </MovieDetail>
       }
     </View>
     )

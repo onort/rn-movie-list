@@ -48,7 +48,7 @@ class AddMovie extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('SearchMovieDetail')
+    this.props.navigation.navigate('SearchMovieDetail', { title: movie.title })
   }
 
   renderRow(movie) {
