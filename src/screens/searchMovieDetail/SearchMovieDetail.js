@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { getMovieDetails, resetSelected } from '../../actions'
+import { fetchList, getMovieDetails, resetSelected } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
 
@@ -35,13 +35,25 @@ class SearchMovieDetail extends Component {
     localApi.getWatchlist()
   }
 
-  handleAdd() {
+  async handleAdd() {
     console.log('Saving data')
-    localApi.saveWatchlist([this.props.selectedMovie])
+    const { list, navigation, selectedMovie } = this.props
+    const inList = list.filter(movie => movie.id === selectedMovie.id)
+    if (!inList.length) {
+      const watchlist = list.concat(selectedMovie)
+      await localApi.saveWatchlist(watchlist)
+        .then(() => {
+          this.props.fetchList()
+          navigation.navigate('Home') // navigate to watchlist after you refactor router
+        })
+        .catch((err) => console.log('Error', err))
+    } else {
+      // TODO: alert user
+      console.log('Movie Already in list')
+    }
   }
 
   render() {
-    console.log('SearchDetail logs props', this.props)
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
@@ -57,9 +69,10 @@ class SearchMovieDetail extends Component {
 
 function mapStateToProps(state) {
   return {
+    list: state.list,
     loading: state.loading,
     selectedMovie: state.selectedMovie
   }
 }
 
-export default connect(mapStateToProps, { getMovieDetails, resetSelected })(SearchMovieDetail)
+export default connect(mapStateToProps, { fetchList, getMovieDetails, resetSelected })(SearchMovieDetail)
