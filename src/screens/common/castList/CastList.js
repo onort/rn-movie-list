@@ -10,7 +10,7 @@ const CastList = ({ cast }) => {
       <View style={styles.castContainer}>
         <ScrollView horizontal>
           {cast.map(person => (
-            <View key={person.id} style={styles.personContainer}>
+            <View key={person.cast_id} style={styles.personContainer}>
               <Text>{person.name}</Text>
             </View>
           ))}

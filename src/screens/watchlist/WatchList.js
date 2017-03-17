@@ -58,7 +58,7 @@ class WatchList extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('ListMovieDetail', { title: movie.title })
+    this.props.navigation.navigate('ListMovieDetail', { title: movie.details.title })
   }
 
   onDiscard(movie) {

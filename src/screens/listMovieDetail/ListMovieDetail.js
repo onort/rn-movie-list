@@ -19,13 +19,6 @@ class ListMovieDetail extends Component {
     title: ({ state }) => state.params.title
   }
 
-  componentWillMount() {
-    const { id } = this.props.selectedMovie
-    if (id) {
-      this.props.getMovieDetails(id)
-    }
-  }
-
   componentWillUnmount() {
     this.props.resetSelected()
   }
