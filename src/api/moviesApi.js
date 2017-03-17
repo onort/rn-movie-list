@@ -40,7 +40,8 @@ class moviesApi {
     }
     try {
       const { data } = await axios.get(`/movie/${id}/credits`, { params })
-      return data
+      const credits = { cast: data.cast.slice(0,10), crew: data.crew.slice(0, 10) }
+      return credits
     } catch (e) {
       console.log('Error on fetchMovieCredits'. e)
     }

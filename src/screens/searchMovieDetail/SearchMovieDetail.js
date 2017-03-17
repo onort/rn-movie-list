@@ -6,7 +6,14 @@ import { getMovieDetails, resetSelected } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
 
+import localApi from '../../api/localStorage'
+
 class SearchMovieDetail extends Component {
+
+  constructor(props) {
+    super(props)
+    this.handleAdd = this.handleAdd.bind(this)
+  }
 
   static navigationOptions = {
     title: ({ state }) => state.params.title
@@ -24,7 +31,13 @@ class SearchMovieDetail extends Component {
   }
 
   onAction() {
-    console.log('Button pressed!')
+    console.log('Getting data')
+    localApi.getWatchlist()
+  }
+
+  handleAdd() {
+    console.log('Saving data')
+    localApi.saveWatchlist([this.props.selectedMovie])
   }
 
   render() {
@@ -34,7 +47,7 @@ class SearchMovieDetail extends Component {
       {this.props.loading ?
         <LoadingScreen /> :
         <MovieDetail movie={this.props.selectedMovie}>
-          <SearchDetailActions onPress={this.onAction} />
+          <SearchDetailActions onPress={this.onAction} onAdd={this.handleAdd} />
         </MovieDetail>
       }
     </View>

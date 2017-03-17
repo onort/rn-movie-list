@@ -71,7 +71,7 @@ class WatchList extends Component {
 
   renderRow(movie) {
     return (
-      <ListItem movie={movie} handlePress={() => this.handleItemPress(movie)}>
+      <ListItem movie={movie.details} handlePress={() => this.handleItemPress(movie)}>
         <ItemActions
           onDiscard={() => this.onDiscard(movie)}
           onWatched={() => this.onWatched(movie)}

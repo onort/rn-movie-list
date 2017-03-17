@@ -7,8 +7,8 @@ export const searchMovie = (query) => {
     try {
       const results = await moviesApi.searchMovie(query)
       dispatch({ type: types.SEARCH_SUCCESS, results })
-    } catch (e) {
-      dispatch({ type: types.SEARCH_ERROR, error: e })
+    } catch (error) {
+      dispatch({ type: types.SEARCH_ERROR, error })
     }
   }
 }
