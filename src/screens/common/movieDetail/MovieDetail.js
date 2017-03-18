@@ -13,6 +13,18 @@ const MovieDetail = ({ children, movie }) => {
   // const renderDirector = () => director.map(person => <Text key={person.id}>{person.name}</Text>)
   // const renderScreenplay = () => screenplay.map(person => <Text key={person.id}>{person.name}</Text> )
 
+  // const renderCrew = () => {
+  //   function filterByJob(job) {
+  //     return crew.filter(person => person.job.toLowerCase() === job)
+  //   }
+  //   const directors = filterByJob('director')
+  //   const writers = filterByJob('writer')
+  //   const screenplay = filterByJob('screenplay')
+  //   return (
+
+  //   )
+  // }
+
   return (
     <View style={{ flex: 1 }}>
       { movie.details && movie.credits.cast &&

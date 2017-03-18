@@ -27,7 +27,7 @@ class WatchList extends Component {
   static navigationOptions = {
     title: () => 'Your Watch List',
     header: ({ navigate }) => ({
-      right: <IconButton name="add" size={25} color="#333" onPress={() => navigate('AddMovie')} />,
+      right: <IconButton name="add" size={25} color="#333" onPress={() => navigate('SearchMovie')} />,
       style: styles.headerStyle
     }),
     tabBar: {

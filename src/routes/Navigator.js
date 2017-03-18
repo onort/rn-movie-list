@@ -1,11 +1,11 @@
 import { StackNavigator } from 'react-navigation'
 import HomeNavigator from './HomeNavigator'
-import { AddMovie, ListMovieDetail, SearchMovieDetail } from '../screens'
+import { SearchMovie, ListMovieDetail, SearchMovieDetail } from '../screens'
 
 export default StackNavigator(
   {
     Home: { screen: HomeNavigator },
-    AddMovie: { screen: AddMovie },
+    SearchMovie: { screen: SearchMovie },
     ListMovieDetail: { screen: ListMovieDetail },
     SearchMovieDetail: { screen: SearchMovieDetail },
   },

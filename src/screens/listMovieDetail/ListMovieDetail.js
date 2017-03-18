@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchList, getMovieDetails, resetSelected } from '../../actions'
+import { fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
 import ListDetailActions from './ListDetailActions'
 
@@ -32,13 +32,13 @@ class ListMovieDetail extends Component {
     // TODO: prompt a confirm
     const { list, navigation, selectedMovie } = this.props
     const newList = list.filter(movie => movie.id !== selectedMovie.id)
-    await localApi.saveWatchlist(newList)
+    await this.props.saveList(newList)
       .then(() => {
-        // TODO: show toastr? !! Show it on watchlist? or global toastr?
         this.props.fetchList()
         navigation.goBack()
       })
       .catch((err) => console.log('Error on handleDelete', err))
+    // TODO: show toastr? !! Show it on watchlist? or global toastr?
   }
 
   render() {
@@ -63,4 +63,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchList, getMovieDetails, resetSelected })(ListMovieDetail)
+export default connect(mapStateToProps, { fetchList, getMovieDetails, resetSelected, saveList })(ListMovieDetail)

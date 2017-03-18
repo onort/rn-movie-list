@@ -3,9 +3,15 @@ import { View } from 'react-native'
 
 import { IconButton } from '../common'
 
-const SearchDetailActions = ({ onPress, onAdd }) => {
+const SearchDetailActions = ({ onAdd, onCancel }) => {
   return (
     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+      <IconButton
+        name="arrow-back"
+        size={30}
+        color="#333"
+        onPress={onCancel}
+      />
       <IconButton
         name="playlist-add"
         size={30}
@@ -13,10 +19,10 @@ const SearchDetailActions = ({ onPress, onAdd }) => {
         onPress={onAdd}
       />
       <IconButton
-        name="close"
+        name="play-arrow"
         size={30}
         color="#333"
-        onPress={onPress}
+        onPress={onAdd}
       />
     </View>
   )

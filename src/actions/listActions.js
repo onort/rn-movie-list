@@ -12,3 +12,15 @@ export const fetchList = () => {
     }
   }
 }
+
+export const saveList = (list) => {
+  return async dispatch => {
+    dispatch({ type: types.SAVE_LIST, list })
+    try {
+      await localApi.saveWatchlist(list)
+      dispatch({ type: types.SAVE_LIST_SUCCESS })
+    } catch (error) {
+      dispatch({ type: types.SAVE_LIST_ERROR, error })
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchList, getMovieDetails, resetSelected } from '../../actions'
+import { fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
 
@@ -13,6 +13,7 @@ class SearchMovieDetail extends Component {
   constructor(props) {
     super(props)
     this.handleAdd = this.handleAdd.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
   }
 
   static navigationOptions = {
@@ -41,7 +42,7 @@ class SearchMovieDetail extends Component {
     const inList = list.filter(movie => movie.id === selectedMovie.id)
     if (!inList.length) {
       const watchlist = list.concat(selectedMovie)
-      await localApi.saveWatchlist(watchlist)
+      await this.props.saveList(watchlist)
         .then(() => {
           this.props.fetchList()
           navigation.navigate('Home') // navigate to watchlist after you refactor router
@@ -53,13 +54,17 @@ class SearchMovieDetail extends Component {
     }
   }
 
+  handleCancel() {
+    this.props.navigation.goBack()
+  }
+
   render() {
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
         <MovieDetail movie={this.props.selectedMovie}>
-          <SearchDetailActions onPress={this.onAction} onAdd={this.handleAdd} />
+          <SearchDetailActions onCancel={this.handleCancel} onAdd={this.handleAdd} />
         </MovieDetail>
       }
     </View>
@@ -75,4 +80,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchList, getMovieDetails, resetSelected })(SearchMovieDetail)
+export default connect(mapStateToProps, { fetchList, getMovieDetails, resetSelected, saveList })(SearchMovieDetail)

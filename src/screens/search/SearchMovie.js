@@ -6,7 +6,7 @@ import { IconButton, ListItem, LoadingScreen } from '../common'
 import styles from './styles'
 import { clearSearchResults, searchMovie, setSelected } from '../../actions'
 
-class AddMovie extends Component {
+class SearchMovie extends Component {
 
    constructor(props) {
     super(props)
@@ -118,4 +118,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { clearSearchResults, searchMovie, setSelected })(AddMovie)
+export default connect(mapStateToProps, { clearSearchResults, searchMovie, setSelected })(SearchMovie)

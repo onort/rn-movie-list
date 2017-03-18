@@ -4,22 +4,22 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import styles from './styles'
 
-class Discarded extends Component {
+class Watched extends Component {
 
   static navigationOptions = {
-    title: 'Discarded Movies',
+    title: 'Watched Movies',
     tabBar: {
-      icon: ({ tintColor }) => <Icon name="delete" size={25} color={tintColor} />
+      icon: ({ tintColor }) => <Icon name="playlist-add-check" size={25} color={tintColor} />
     }
   }
 
   render() {
     return (
       <View>
-        <Text>Discarded Movies</Text>
+        <Text>Watched Movies</Text>
       </View>
     )
   }
 }
 
-export default Discarded
+export default Watched
