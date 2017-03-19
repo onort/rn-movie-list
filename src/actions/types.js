@@ -14,7 +14,12 @@ export const SAVE_WATCHED = 'SAVE_WATCHED'
 export const SAVE_WATCHED_SUCCESS = 'SAVE_WATCHED_SUCCESS'
 export const SAVE_WATCHED_ERROR = 'SAVE_WATCHED_ERROR'
 
-// export const MARK_MOVIE_WATCHED = 'MARK_MOVIE_WATCHED'
+export const CLEAR = 'CLEAR'
+export const CLEAR_SUCCESS = 'CLEAR_SUCCESS'
+export const CLEAR_ERROR = 'CLEAR_ERROR'
+
+export const WATCHLIST = 'watchlist'
+export const WATCHED = 'watched'
 
 export const SEARCH_MOVIE = 'SEARCH_MOVIE'
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'

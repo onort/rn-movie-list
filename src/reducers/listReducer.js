@@ -6,7 +6,8 @@ export default (state = [], action) => {
       return [
         ...action.list
       ]
-    case types.DISCARD_MOVIE:
+    case types.CLEAR_SUCCESS:
+      if (action.listName === types.WATCHLIST) return []
       return state
     default:
       return state

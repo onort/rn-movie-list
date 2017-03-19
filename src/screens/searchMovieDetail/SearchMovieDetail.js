@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
+import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
 
@@ -38,14 +38,16 @@ class SearchMovieDetail extends Component {
 
   async handleAdd() {
     console.log('Saving data')
-    const { list, navigation, selectedMovie, watched } = this.props
+    const { clearSearchResults, fetchList, list, navigation, resetSelected, saveList, selectedMovie, watched } = this.props
     const inList = list.filter(movie => movie.id === selectedMovie.id)
     const inWatched = watched.filter(movie => movie.id === selectedMovie.id)
     if (!inList.length && !inWatched.length) {
       const watchlist = list.concat(selectedMovie)
-      await this.props.saveList(watchlist)
+      await saveList(watchlist)
         .then(() => {
-          this.props.fetchList()
+          fetchList()
+          resetSelected()
+          clearSearchResults()
           navigation.navigate('Home') // navigate to watchlist after you refactor router
         })
         .catch((err) => console.log('Error', err))
@@ -82,4 +84,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchList, getMovieDetails, resetSelected, saveList })(SearchMovieDetail)
+export default connect(mapStateToProps, { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList })(SearchMovieDetail)

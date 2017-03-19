@@ -6,8 +6,6 @@ import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, save
 import { LoadingScreen, MovieDetail } from '../common'
 import ListDetailActions from './ListDetailActions'
 
-import localApi from '../../api/localStorage'
-
 class ListMovieDetail extends Component {
 
   constructor(props) {
@@ -53,6 +51,7 @@ class ListMovieDetail extends Component {
       saveWatched,
       watched } = this.props
     const newList = list.filter(item => item.id !== movie.id)
+    movie.watched_on = new Date().getTime()
     const newWatched = watched.concat(movie)
     Promise.all([await saveWatched(newWatched), await saveList(newList)])
       .then(() => {

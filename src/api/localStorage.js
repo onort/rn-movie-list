@@ -2,6 +2,8 @@ import { AsyncStorage } from 'react-native'
 
 class localStorageApi {
 
+  // TODO: too much code duplication, refactor. _save, _get, _clear, ?_merge methods
+
   static async getWatchlist() {
     try {
       const watchlist = await AsyncStorage.getItem('@MovieList:watchlist')
@@ -21,6 +23,15 @@ class localStorageApi {
       console.log('Data saved!')
     } catch (e) {
       console.log('Erro on getFromLocal', e)
+    }
+  }
+
+  static async clear(listName) {
+    try {
+      await AsyncStorage.removeItem(`@MovieList:${listName}`)
+      console.log(`${listName} cleared`)
+    } catch (e) {
+      console.log('Error on clear', e)
     }
   }
 
@@ -45,6 +56,7 @@ class localStorageApi {
       console.log('Error on saveWatched', e)
     }
   }
+
 }
 
 export default localStorageApi

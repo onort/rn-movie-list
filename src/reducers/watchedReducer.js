@@ -6,6 +6,9 @@ export default (state = [], action) => {
       return [
         ...action.watched
       ]
+    case types.CLEAR_SUCCESS:
+      if (action.listName === types.WATCHED) return []
+      return state
     default:
       return state
   }

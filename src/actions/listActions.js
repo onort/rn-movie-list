@@ -48,3 +48,15 @@ export const saveWatched = (watched) => {
     }
   }
 }
+
+export const clear = (listName) => {
+  return async dispatch => {
+    dispatch({ type: types.CLEAR })
+    try {
+      await localApi.clear(listName)
+      dispatch({ type: types.CLEAR_SUCCESS, listName })
+    } catch (error) {
+      dispatch({ type: types.CLEAR_ERROR, error })
+    }
+  }
+}
