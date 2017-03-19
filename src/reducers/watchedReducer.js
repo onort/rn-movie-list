@@ -1,11 +1,10 @@
 import * as types from '../actions/types'
 
 export default (state = [], action) => {
-  switch (action.type) {
-    case types.DISCARD_MOVIE:
+  switch (action.type ) {
+    case types.FETCH_WATCHED_SUCCESS:
       return [
-        ...state,
-        action.movie
+        ...action.watched
       ]
     default:
       return state

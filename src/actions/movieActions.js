@@ -8,13 +8,6 @@ export const discardMovie = (movie) => {
   }
 }
 
-export const markWatched = (movie) => {
-  return {
-    type: types.MARK_MOVIE_WATCHED,
-    movie
-  }
-}
-
 // Selected
 
 export const setSelected = (movie) => {

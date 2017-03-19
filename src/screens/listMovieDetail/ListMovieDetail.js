@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
+import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
 import ListDetailActions from './ListDetailActions'
 
@@ -13,6 +13,7 @@ class ListMovieDetail extends Component {
   constructor(props) {
     super(props)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleWatched = this.handleWatched.bind(this)
   }
 
   static navigationOptions = {
@@ -41,13 +42,39 @@ class ListMovieDetail extends Component {
     // TODO: show toastr? !! Show it on watchlist? or global toastr?
   }
 
+  async handleWatched() {
+    const { 
+      fetchList,
+      fetchWatched,
+      list,
+      navigation,
+      selectedMovie: movie,
+      saveList,
+      saveWatched,
+      watched } = this.props
+    const newList = list.filter(item => item.id !== movie.id)
+    const newWatched = watched.concat(movie)
+    Promise.all([await saveWatched(newWatched), await saveList(newList)])
+      .then(() => {
+        fetchList()
+        fetchWatched()
+        navigation.goBack()
+      })
+      .catch(err => console.log('Error on handleWatched', err))
+    // show toastr
+  }
+
   render() {
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
         <MovieDetail movie={this.props.selectedMovie}>
-          <ListDetailActions onPress={this.onAction} onDelete={this.handleDelete} />
+          <ListDetailActions
+            onPress={this.onAction}
+            onDelete={this.handleDelete}
+            onWatched={this.handleWatched}
+          />
         </MovieDetail>
       }
     </View>
@@ -59,8 +86,9 @@ function mapStateToProps(state) {
   return {
     list: state.list,
     loading: state.loading,
-    selectedMovie: state.selectedMovie
+    selectedMovie: state.selectedMovie,
+    watched: state.watched
   }
 }
 
-export default connect(mapStateToProps, { fetchList, getMovieDetails, resetSelected, saveList })(ListMovieDetail)
+export default connect(mapStateToProps, { fetchList, fetchWatched, getMovieDetails, resetSelected, saveList, saveWatched })(ListMovieDetail)

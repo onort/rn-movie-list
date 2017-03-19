@@ -38,9 +38,10 @@ class SearchMovieDetail extends Component {
 
   async handleAdd() {
     console.log('Saving data')
-    const { list, navigation, selectedMovie } = this.props
+    const { list, navigation, selectedMovie, watched } = this.props
     const inList = list.filter(movie => movie.id === selectedMovie.id)
-    if (!inList.length) {
+    const inWatched = watched.filter(movie => movie.id === selectedMovie.id)
+    if (!inList.length && !inWatched.length) {
       const watchlist = list.concat(selectedMovie)
       await this.props.saveList(watchlist)
         .then(() => {
@@ -50,7 +51,7 @@ class SearchMovieDetail extends Component {
         .catch((err) => console.log('Error', err))
     } else {
       // TODO: alert user
-      console.log('Movie Already in list')
+      console.log('Movie Already in list/watched')
     }
   }
 
@@ -76,7 +77,8 @@ function mapStateToProps(state) {
   return {
     list: state.list,
     loading: state.loading,
-    selectedMovie: state.selectedMovie
+    selectedMovie: state.selectedMovie,
+    watched: state.watched
   }
 }
 

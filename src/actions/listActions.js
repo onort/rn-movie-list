@@ -24,3 +24,27 @@ export const saveList = (list) => {
     }
   }
 }
+
+export const fetchWatched = () => {
+  return async dispatch => {
+    dispatch({ type: types.FETCH_WATCHED })
+    try {
+      const watched = await localApi.getWatched()
+      dispatch({ type: types.FETCH_WATCHED_SUCCESS, watched })
+    } catch (error) {
+      dispatch({ type: types.FETCH_WATCHED_ERROR, error })
+    }
+  }
+}
+
+export const saveWatched = (watched) => {
+  return async dispatch => {
+    dispatch({ type: types.SAVE_WATCHED, watched })
+    try {
+      await localApi.saveWatched(watched)
+      dispatch({ type: types.SAVE_WATCHED_SUCCESS })
+    } catch (error) {
+      dispatch({ type: types.SAVE_WATCHED_ERROR, error })
+    }
+  }
+}
