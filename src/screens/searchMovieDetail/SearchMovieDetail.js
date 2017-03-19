@@ -14,6 +14,7 @@ class SearchMovieDetail extends Component {
     super(props)
     this.handleAdd = this.handleAdd.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.handleTrailer = this.handleTrailer.bind(this)
   }
 
   static navigationOptions = {
@@ -61,13 +62,21 @@ class SearchMovieDetail extends Component {
     this.props.navigation.goBack()
   }
 
+  handleTrailer() {
+    this.props.navigation.navigate('Trailer')
+  }
+
   render() {
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
         <MovieDetail movie={this.props.selectedMovie}>
-          <SearchDetailActions onCancel={this.handleCancel} onAdd={this.handleAdd} />
+          <SearchDetailActions
+            onAdd={this.handleAdd}
+            onCancel={this.handleCancel}
+            onTrailer={this.handleTrailer}
+          />
         </MovieDetail>
       }
     </View>

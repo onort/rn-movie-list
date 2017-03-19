@@ -11,6 +11,7 @@ class ListMovieDetail extends Component {
   constructor(props) {
     super(props)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleTrailer = this.handleTrailer.bind(this)
     this.handleWatched = this.handleWatched.bind(this)
   }
 
@@ -63,6 +64,10 @@ class ListMovieDetail extends Component {
     // show toastr
   }
 
+  handleTrailer() {
+    this.props.navigation.navigate('Trailer')
+  }
+
   render() {
     return (
     <View style={{ flex: 1 }}>
@@ -70,8 +75,8 @@ class ListMovieDetail extends Component {
         <LoadingScreen /> :
         <MovieDetail movie={this.props.selectedMovie}>
           <ListDetailActions
-            onPress={this.onAction}
             onDelete={this.handleDelete}
+            onTrailer={this.handleTrailer}
             onWatched={this.handleWatched}
           />
         </MovieDetail>

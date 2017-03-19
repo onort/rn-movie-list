@@ -36,6 +36,11 @@ class HomeScreen extends Component {
           color="#841584"
           accessibilityLabel="Clear Watched Movies"
         />
+        <Button
+          onPress={() => this.props.navigation.navigate('Trailer')}
+          title="Watch A Video"
+          color="#bb0000"
+        />
       </View>
     )
   }

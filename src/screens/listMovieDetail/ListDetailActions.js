@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 import { IconButton } from '../common'
 
-const ListDetailActions = ({ onDelete, onPress, onWatched }) => {
+const ListDetailActions = ({ onDelete, onTrailer, onWatched }) => {
   return (
     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', borderColor: 'red', borderWidth: 1 }}>
       <IconButton
@@ -16,7 +16,7 @@ const ListDetailActions = ({ onDelete, onPress, onWatched }) => {
         name="play-arrow"
         size={30}
         color="#333"
-        onPress={onPress}
+        onPress={onTrailer}
       />
       <IconButton
         name="delete"

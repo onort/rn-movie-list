@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 import { IconButton } from '../common'
 
-const SearchDetailActions = ({ onAdd, onCancel }) => {
+const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
   return (
     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
       <IconButton
@@ -22,7 +22,7 @@ const SearchDetailActions = ({ onAdd, onCancel }) => {
         name="play-arrow"
         size={30}
         color="#333"
-        onPress={onAdd}
+        onPress={onTrailer}
       />
     </View>
   )
