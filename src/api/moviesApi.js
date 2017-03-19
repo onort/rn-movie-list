@@ -46,6 +46,19 @@ class moviesApi {
       console.log('Error on fetchMovieCredits'. e)
     }
   }
+
+  static async fetchMovieVids(id) {
+    const params = {
+      api_key: config.TMDbApiKey
+    }
+
+    try {
+      const { data } = await axios.get(`/movie/${id}/videos`, { params })
+      return data.results
+    } catch (e) {
+      console.log('Error on fetchMovieVids', e)
+    }
+  }
 }
 
 export default moviesApi

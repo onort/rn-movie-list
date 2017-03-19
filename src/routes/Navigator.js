@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation'
 import HomeNavigator from './HomeNavigator'
-import { SearchMovie, ListMovieDetail, SearchMovieDetail } from '../screens'
+import { SearchMovie, ListMovieDetail, SearchMovieDetail, Trailer } from '../screens'
 
 export default StackNavigator(
   {
@@ -8,6 +8,7 @@ export default StackNavigator(
     SearchMovie: { screen: SearchMovie },
     ListMovieDetail: { screen: ListMovieDetail },
     SearchMovieDetail: { screen: SearchMovieDetail },
+    Trailer: { screen: Trailer }
   },
   { mode: 'modal' }
 )

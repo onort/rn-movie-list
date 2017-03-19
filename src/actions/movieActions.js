@@ -27,11 +27,12 @@ export const getMovieDetails = (id) => {
   return async dispatch => {
     dispatch({ type: types.FETCH_MOVIE_DETAILS })
     try {
-      const [details, credits] = await Promise.all([
+      const [details, credits, videos] = await Promise.all([
         moviesApi.fetchMovieDetails(id),
-        moviesApi.fetchMovieCredits(id)
+        moviesApi.fetchMovieCredits(id),
+        moviesApi.fetchMovieVids(id)
       ])
-      dispatch({ type: types.FETCH_MOVIE_DETAILS_SUCCESS, details, credits })
+      dispatch({ type: types.FETCH_MOVIE_DETAILS_SUCCESS, details, credits, videos })
     } catch (e) {
       dispatch({ type: types.FETCH_MOVIE_DETAILS_ERROR, error: e })
     }
