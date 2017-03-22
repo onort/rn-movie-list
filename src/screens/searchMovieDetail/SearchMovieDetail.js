@@ -3,10 +3,9 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
+
 import { LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
-
-import localApi from '../../api/localStorage'
 
 class SearchMovieDetail extends Component {
 
@@ -30,11 +29,6 @@ class SearchMovieDetail extends Component {
 
   componentWillUnmount() {
     this.props.resetSelected()
-  }
-
-  onAction() {
-    console.log('Getting data')
-    localApi.getWatchlist()
   }
 
   async handleAdd() {

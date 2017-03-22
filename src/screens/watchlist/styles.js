@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors } from '../common'
+import { colors, fontSize } from '../../theme'
 
 export default StyleSheet.create({
   headerStyle: {
@@ -11,8 +11,8 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    color: Colors.black,
-    fontSize: 20,
+    color: colors.black,
+    fontSize: fontSize.default,
   },
   listItemContainer: {
     margin: 5,
@@ -27,18 +27,18 @@ export default StyleSheet.create({
     flex: 1,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: Colors.white
+    backgroundColor: colors.white
   },
   movieMeta: {
     flex: 1,
   },
   movieTitle: {
-    fontSize: 18,
+    fontSize: fontSize.default,
   },
   actionsContainer: {
     // flex: 1,
     // justifyContent: 'flex-end',
-    backgroundColor: Colors.white,
+    backgroundColor: colors.white,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },

@@ -1,6 +1,8 @@
 import React from 'react'
 import { View } from 'react-native'
 
+import { colors } from '../../theme'
+
 import { IconButton } from '../common'
 
 const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
@@ -9,19 +11,19 @@ const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
       <IconButton
         name="arrow-back"
         size={30}
-        color="#333"
+        color={colors.black}
         onPress={onCancel}
       />
       <IconButton
         name="playlist-add"
         size={30}
-        color="#333"
+        color={colors.black}
         onPress={onAdd}
       />
       <IconButton
         name="play-arrow"
         size={30}
-        color="#333"
+        color={colors.black}
         onPress={onTrailer}
       />
     </View>

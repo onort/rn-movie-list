@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors } from '../common'
+import { colors, fontSize} from '../../theme'
 
 export default StyleSheet.create({
   homeContainer: {
@@ -8,7 +8,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   homeText: {
-    color: Colors.black,
-    fontSize: 20,
+    color: colors.black,
+    fontSize: fontSize.default,
   }
 })

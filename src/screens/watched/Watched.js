@@ -3,8 +3,9 @@ import { ListView, Text, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 
-import styles from './styles'
 import { fetchWatched } from '../../actions'
+import styles from './styles'
+
 import { ListItem } from '../common'
 
 class Watched extends Component {

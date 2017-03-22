@@ -1,7 +1,8 @@
 import { TabNavigator } from 'react-navigation'
 
-import { HomeScreen, Watched, WatchList } from '../screens'
-import { Colors } from '../screens/common'
+import { colors } from '../theme'
+
+import { HomeScreen, Watched, WatchList, SearchMovie } from '../screens'
 
 export default TabNavigator(
 {
@@ -13,6 +14,9 @@ export default TabNavigator(
   },
   Watched: {
     screen: Watched
+  },
+  Add: {
+    screen: SearchMovie
   }
 },
 {
@@ -21,12 +25,12 @@ export default TabNavigator(
   tabBarOptions: {
     showIcon: true,
     showLabel: false,
-    pressColor: Colors.green,
-    activeTintColor: Colors.green,
-    inactiveTintColor: Colors.grey,
-    indicatorStyle: { backgroundColor: Colors.green },
+    pressColor: colors.green,
+    activeTintColor: colors.green,
+    inactiveTintColor: colors.grey,
+    indicatorStyle: { backgroundColor: colors.green },
     style: {
-      backgroundColor: Colors.white
+      backgroundColor: colors.white
     }
   }
 })

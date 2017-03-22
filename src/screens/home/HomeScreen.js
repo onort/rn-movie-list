@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { Text, View, Button } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import styles from './styles'
 import { clear, fetchList } from '../../actions'
 import * as types from '../../actions/types'
+import styles from './styles'
 
 class HomeScreen extends Component {
 

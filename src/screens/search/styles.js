@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors } from '../common'
+import { colors, fontSize } from '../../theme'
 
 export default StyleSheet.create({
   container: {
@@ -9,11 +9,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     marginHorizontal: 5,
-    backgroundColor: Colors.white
+    backgroundColor: colors.white
   },
   inputField: {
-    color: Colors.black,
-    fontSize: 20,
+    color: colors.black,
+    fontSize: fontSize.default,
     height: 32,
     padding: 3,
     flex: 1,
@@ -26,7 +26,7 @@ export default StyleSheet.create({
     flexDirection: 'column'
   },
   resultsText: {
-    fontSize: 20,
-    color: Colors.black
+    fontSize: fontSize.default,
+    color: colors.black
   }
 })

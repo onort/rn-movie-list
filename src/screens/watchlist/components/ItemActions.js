@@ -1,8 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
 
+import { colors } from '../../../theme'
 import styles from '../styles'
-import { Colors, IconButton } from '../../common'
+
+import { IconButton } from '../../common'
 
 const ItemActions = ({ onDiscard, onWatched }) => {
   const logPress = () => console.log('Pressed Button')
@@ -11,21 +13,21 @@ const ItemActions = ({ onDiscard, onWatched }) => {
       <IconButton
         name="done"
         size={25}
-        color={Colors.black}
+        color={colors.black}
         onPress={onWatched}
         style={styles.actionStyle}
       />
       <IconButton
         name="star-border"
         size={25}
-        color={Colors.black}
+        color={colors.black}
         onPress={logPress}
         style={styles.actionStyle} 
       />
       <IconButton
         name="delete"
         size={25}
-        color={Colors.black}
+        color={colors.black}
         onPress={onDiscard}
         style={styles.actionStyle}
       />
@@ -33,7 +35,7 @@ const ItemActions = ({ onDiscard, onWatched }) => {
         <IconButton
           name="play-arrow"
           size={25}
-          color={Colors.black}
+          color={colors.black}
           onPress={logPress}
           style={styles.actionStyle} />
       </View>

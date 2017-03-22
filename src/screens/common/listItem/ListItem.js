@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
-import Colors from '../colors'
+import { colors, fontSize } from '../../../theme'
 
 const ListItem = ({ children, movie, handlePress }) => {
   const { title, poster_path } = movie
@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: Colors.white
+    backgroundColor: colors.white
   },
   movieMeta: {
     flex: 1,
   },
   movieTitle: {
-    fontSize: 18,
-    color: Colors.black,
+    fontSize: fontSize.default,
+    color: colors.black,
   }
 
 })

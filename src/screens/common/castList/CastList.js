@@ -1,6 +1,8 @@
 import React from 'react'
 import { ScrollView, View, Text, StyleSheet } from 'react-native'
 
+import { colors, fontSize } from '../../../theme'
+
 const CastList = ({ cast }) => {
   return (
     <View style={styles.mainContainer}>
@@ -23,28 +25,28 @@ const CastList = ({ cast }) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    borderColor: 'black',
+    borderColor: colors.black,
     borderWidth: 2
   },
   titleContainer: {
     height: 30,
-    borderColor: 'black',
+    borderColor: colors.black,
     borderWidth: 2
   },
   title: {
-    fontSize: 24
+    fontSize: fontSize.large
   },
   castContainer: {
     flex: 1,
-    backgroundColor: '#cecece',
-    borderColor: 'black',
+    backgroundColor: colors.grey,
+    borderColor: colors.black,
     borderWidth: 2
   },
   personContainer: {
     height: 80,
     width: 80,
     margin: 5,
-    borderColor: 'black',
+    borderColor: colors.black,
     borderWidth: 2,
     borderRadius: 6
   }

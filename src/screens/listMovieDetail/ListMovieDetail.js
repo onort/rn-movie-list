@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
 import { LoadingScreen, MovieDetail } from '../common'
+
 import ListDetailActions from './ListDetailActions'
 
 class ListMovieDetail extends Component {

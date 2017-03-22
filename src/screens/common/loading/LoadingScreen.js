@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ActivityIndicator } from 'react-native'
+import { ActivityIndicator, View } from 'react-native'
 
 import styles from './styles'
 

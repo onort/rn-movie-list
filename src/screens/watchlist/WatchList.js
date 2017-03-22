@@ -1,18 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 import { ListView, Text, View } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import styles from './styles'
 import { 
   discardMovie,
   fetchList,
   markWatched,
   setSelected
 } from '../../actions'
+import { colors } from '../../theme'
+import styles from './styles'
 
-import ItemActions from './components/ItemActions'
 import { IconButton, ListItem } from '../common'
+import ItemActions from './components/ItemActions'
 
 class WatchList extends Component {
 
@@ -27,7 +28,7 @@ class WatchList extends Component {
   static navigationOptions = {
     title: () => 'Your Watch List',
     header: ({ navigate }) => ({
-      right: <IconButton name="add" size={25} color="#333" onPress={() => navigate('SearchMovie')} />,
+      right: <IconButton name="add" size={25} color={colors.black} onPress={() => navigate('SearchMovie')} />,
       style: styles.headerStyle
     }),
     tabBar: {

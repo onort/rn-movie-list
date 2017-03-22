@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { Keyboard, ListView, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { IconButton, ListItem, LoadingScreen } from '../common'
-import styles from './styles'
 import { clearSearchResults, searchMovie, setSelected } from '../../actions'
+import { colors } from '../../theme'
+import styles from './styles'
+
+import { IconButton, ListItem, LoadingScreen } from '../common'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 class SearchMovie extends Component {
 
@@ -22,8 +25,11 @@ class SearchMovie extends Component {
   static navigationOptions = {
     title: 'Add Movie',
     header: ({ goBack }) => ({
-      left: <IconButton name="close" size={25} color="#333" onPress={() => goBack()} />
-    })
+      left: <IconButton name="close" size={25} color={colors.black} onPress={() => goBack()} />
+    }),
+    tabBar: {
+      icon: ({ tintColor }) => <Icon name="add" size={25} color={tintColor} />
+    }
   }
 
   compotnentWillMount() {
@@ -37,6 +43,7 @@ class SearchMovie extends Component {
   componentWillUnmount() {
     // need another way to clear search results if search results can link to movie detail screen
     this.props.clearSearchResults()
+    this.setState({ searchedFor: '' })
   }
 
   createDataSource(results) {
@@ -94,11 +101,12 @@ class SearchMovie extends Component {
             value={this.state.input}
             style={styles.inputField}
             placeholder="Search for a movie..."
+            autoFocus={this.state.searchedFor.length ? false : true}
           />
           <IconButton
             name="search"
             size={25}
-            color="#333"
+            color={colors.black}
             onPress={this.searchMovie}
             style={styles.searchButton}
           />
