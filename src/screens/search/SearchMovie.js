@@ -6,8 +6,9 @@ import { clearSearchResults, searchMovie, setSelected } from '../../actions'
 import { colors } from '../../theme'
 import styles from './styles'
 
-import { IconButton, ListItem, LoadingScreen } from '../common'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { IconButton, ListItem, LoadingScreen } from '../common'
+import ResultItem from './components/ResultItem'
 
 class SearchMovie extends Component {
 
@@ -60,7 +61,7 @@ class SearchMovie extends Component {
 
   renderRow(movie) {
     return (
-      <ListItem
+      <ResultItem
         movie={movie}
         handlePress={() => this.handleItemPress(movie)}
       />
@@ -101,12 +102,16 @@ class SearchMovie extends Component {
             value={this.state.input}
             style={styles.inputField}
             placeholder="Search for a movie..."
+            placeholderTextColor={colors.grey}
             autoFocus={this.state.searchedFor.length ? false : true}
+            maxLength={100}
+            returnKeyType="search"
+            onSubmitEditing={this.searchMovie}
           />
           <IconButton
             name="search"
-            size={25}
-            color={colors.black}
+            size={30}
+            color={colors.grey}
             onPress={this.searchMovie}
             style={styles.searchButton}
           />

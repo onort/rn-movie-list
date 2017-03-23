@@ -9,21 +9,27 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     marginHorizontal: 5,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    elevation: 4
   },
   inputField: {
     color: colors.black,
     fontSize: fontSize.default,
-    height: 32,
-    padding: 3,
+    height: 42,
+    padding: 10,
     flex: 1,
+    borderWidth: 0,
   },
   searchButton: {
-    padding: 5
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderLeftColor: colors.grey,
+    borderLeftWidth: 1,
   },
   resultsContainer: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginTop: 10,
   },
   resultsText: {
     fontSize: fontSize.default,
