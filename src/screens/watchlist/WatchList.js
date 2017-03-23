@@ -13,7 +13,8 @@ import { colors } from '../../theme'
 import styles from './styles'
 
 import { IconButton, ListItem } from '../common'
-import ItemActions from './components/ItemActions'
+import ItemInfo from './components/ItemInfo'
+// import ItemActions from './components/ItemActions'
 
 class WatchList extends Component {
 
@@ -73,10 +74,7 @@ class WatchList extends Component {
   renderRow(movie) {
     return (
       <ListItem movie={movie.details} handlePress={() => this.handleItemPress(movie)}>
-        <ItemActions
-          onDiscard={() => this.onDiscard(movie)}
-          onWatched={() => this.onWatched(movie)}
-        />
+        <ItemInfo movie={movie.details} handlePress={() => this.handleItemPress(movie)} />
       </ListItem>
     )
   }

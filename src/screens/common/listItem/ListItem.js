@@ -1,53 +1,34 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, TouchableOpacity, View } from 'react-native'
 
-import { colors, fontSize } from '../../../theme'
+import styles from './styles'
 
 const ListItem = ({ children, movie, handlePress }) => {
-  const { title, poster_path } = movie
+  const { poster_path, backdrop_path } = movie
   const posterUrl = 'http://image.tmdb.org/t/p/w92/'
+  const backdropUrl = 'http://image.tmdb.org/t/p/w300/'
   return (
-    <View style={styles.listItemContainer}>
+    <View style={styles.root}>
       <Image
-        source={{ uri: `${posterUrl}${poster_path}`}}
-        style={[styles.movieImage]}
+        source={{ uri: `${backdropUrl}${backdrop_path}` }}
+        style={styles.backdrop}
       />
-      <View style={styles.metaContainer}>
-        <View style={styles.movieMeta}>
-          <Text style={styles.movieTitle} onPress={handlePress}>
-            {title}
-          </Text>
+      <View style={styles.container}>
+        <View style={styles.posterContainer}>
+          <TouchableOpacity onPress={handlePress}>
+          <Image
+            source={{ uri: `${posterUrl}${poster_path}`}}
+            style={styles.poster}
+            onPress={handlePress}
+          />
+          </TouchableOpacity>
         </View>
-        { children }
+        <View style={styles.infoContainer}>
+          {children}
+        </View>
       </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  listItemContainer: {
-    margin: 5,
-    flexDirection: 'row'
-  },
-  movieImage: {
-    width: 92,
-    height: 138,
-    borderRadius: 5,
-  },
-  metaContainer: {
-    flex: 1,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    backgroundColor: colors.white
-  },
-  movieMeta: {
-    flex: 1,
-  },
-  movieTitle: {
-    fontSize: fontSize.default,
-    color: colors.black,
-  }
-
-})
 
 export default ListItem
