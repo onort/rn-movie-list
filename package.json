@@ -7,6 +7,9 @@
 		"test": "jest",
 		"postinstall": "rndebugger-open"
 	},
+	"rnpm": {
+		"assets": ["./assets/fonts"]
+	},
 	"dependencies": {
 		"axios": "^0.15.3",
 		"react": "~15.4.1",

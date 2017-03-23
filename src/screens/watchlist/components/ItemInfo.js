@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { colors, fontSize } from '../../../theme'
+import { colors, font, fontSize } from '../../../theme'
 
 const ItemInfo = ({ movie, handlePress }) => {
   const { title, vote_average } = movie
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: fontSize.default
+    fontSize: fontSize.default,
+    fontFamily: font.title,
   },
   time: {
     color: colors.white,

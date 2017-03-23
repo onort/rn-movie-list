@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colors, fontSize} from '../../theme'
+import { colors, font, fontSize} from '../../theme'
 
 export default StyleSheet.create({
   homeContainer: {
@@ -10,5 +10,6 @@ export default StyleSheet.create({
   homeText: {
     color: colors.black,
     fontSize: fontSize.default,
+    fontFamily: font.ubuntu,
   }
 })

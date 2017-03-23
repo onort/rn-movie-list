@@ -7,8 +7,25 @@ export const colors = {
 
 export const fontSize = {
   small: 14,
-  default: 18,
+  default: 16,
   large: 24
+}
+
+export const font = {
+  ubuntu: 'Ubuntu-Medium',
+  ubuntuBold: 'Ubuntu-Bold',
+  openSans: 'OpenSans-Regular',
+  openSansBold: 'OpenSans-Bold',
+  droidSerif: 'DroidSerif',
+  droidSerifBold: 'DroidSerif-Bold',
+  montserratBold: 'Montserrat-Bold',
+  montMed: 'Montserrat-Medium',
+  montReg: 'Montserrat-Regular',
+  montSemi: 'Montserrat-SemiBold',
+  slabReg: 'RobotoSlab-Regular',
+  slabBold: 'RobotoSlab-Bold',
+
+  title: 'Montserrat-Medium',
 }
 
 // Font Family
