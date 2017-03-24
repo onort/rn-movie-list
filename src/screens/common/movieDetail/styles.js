@@ -11,11 +11,15 @@ export default StyleSheet.create({
     opacity: 0.8,
     backgroundColor: colors.black,
     resizeMode: 'cover',
+    // zIndex: 1
   },
   header: {
     flex: 1,
     flexDirection: 'row',
     paddingHorizontal: 10,
+    // backgroundColor: colors.white,
+    // elevation: 1,
+    // zIndex: 9,
     // marginBottom: 40,
     // borderColor: colors.green,
     // borderWidth: 1,
@@ -25,6 +29,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    // zIndex: 9
   },
   poster: {
     width: 100,
@@ -32,6 +37,7 @@ export default StyleSheet.create({
     position: 'absolute',
     top: -80,
     borderRadius: 5,
+    // zIndex: 9
   },
   titleContainer: {
     flex: 2,
@@ -49,6 +55,7 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 10,
     backgroundColor: colors.white,
+    elevation: 1,
   },
   overview: {
     fontSize: fontSize.default,

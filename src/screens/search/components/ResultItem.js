@@ -8,14 +8,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const ResultItem = ({ movie, handlePress }) => {
   const { title, poster_path, release_date, vote_average } = movie
-  const posterUrl = 'http://image.tmdb.org/t/p/w92/'
+  const imageUrl = poster_path ? 'http://image.tmdb.org/t/p/w92/' + poster_path : 'http://placehold.it/90x60'
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.resultContainer}>
         <View style={styles.posterContainer}>
           <Image
             style={styles.poster}
-            source={{ uri: posterUrl + poster_path }}
+            source={{ uri: imageUrl }}
           />
         </View>
         <View style={styles.titleContainer}>
