@@ -51,6 +51,11 @@ export default StyleSheet.create({
     fontSize: fontSize.default,
     color: colors.grey,
   },
+  sectionHeading: {
+    fontSize: fontSize.medium,
+    fontFamily: font.title,
+    color: colors.black
+  },
   overviewContainer: {
     paddingHorizontal: 30,
     paddingVertical: 10,

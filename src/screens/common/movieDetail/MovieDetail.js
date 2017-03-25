@@ -4,10 +4,13 @@ import { Image, ScrollView, Text, View } from 'react-native'
 import { colors, fontSize } from '../../../theme'
 import styles from './styles'
 
-import CastList from '../castList/CastList'
+import CastList from './components/CastList'
+import Crew from './components/Crew'
+import Genres from './components/Genres'
+import MovieMeta from './components/MovieMeta'
 
 const MovieDetail = ({ children, movie }) => {
-  const { backdrop_path, overview, poster_path, tagline, title, vote_average } = movie.details
+  const { backdrop_path, genres, overview, poster_path, tagline, title, vote_average } = movie.details
   const { cast,crew } = movie.credits
   const backdropUrl = 'http://image.tmdb.org/t/p/w300/'
   const posterUrl = 'http://image.tmdb.org/t/p/w154/'
@@ -32,10 +35,19 @@ const MovieDetail = ({ children, movie }) => {
               {tagline && <Text style={styles.tagline}>{tagline}</Text>}
             </View>
           </View>
-          <View style={{ flex: 3 }}>
-            <Text style={{ fontSize: fontSize.default }}>Score: {vote_average}</Text>
-            <Text style={{ fontSize: fontSize.default, color: 'red' }}>{crew[0].job}: {crew[0].name}</Text>
-            <Text style={{ fontSize: fontSize.default, color: 'green' }}>{crew[1].job}: {crew[1].name}</Text>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={{ flex: 1 }}>
+              <MovieMeta details={movie.details} />
+            </View>
+            <View style={{ flex: 2 }}>
+              <Crew crew={crew} />
+            </View>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Genres genres={genres} />
+          </View>
+          <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
+            <Text style={styles.sectionHeading}>Summary:</Text>
           </View>
           <View style={styles.overviewContainer}>
             <Text style={styles.overview}>{overview}</Text>

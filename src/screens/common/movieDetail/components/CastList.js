@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, ScrollView, View, Text, StyleSheet } from 'react-native'
 
-import { colors, font, fontSize } from '../../../theme'
+import { colors, font, fontSize } from '../../../../theme'
 
 const CastList = ({ cast }) => {
   return (
@@ -10,7 +10,10 @@ const CastList = ({ cast }) => {
         <Text style={styles.title}>Cast:</Text>
       </View>
       <View style={styles.castContainer}>
-        <ScrollView horizontal>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
           {cast.map(Person)}
         </ScrollView>
       </View>

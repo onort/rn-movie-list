@@ -1,11 +1,11 @@
-import CastList from './castList/CastList'
+// import CastList from './castList/CastList'
 import IconButton from './iconButton/IconButton'
 import ListItem from './listItem/ListItem'
 import LoadingScreen from './loading/LoadingScreen'
 import MovieDetail from './movieDetail/MovieDetail'
 
 export {
-  CastList,
+  // CastList,
   IconButton,
   ListItem,
   LoadingScreen,

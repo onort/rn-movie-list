@@ -44,6 +44,7 @@ class SearchMovie extends Component {
   componentWillUnmount() {
     // need another way to clear search results if search results can link to movie detail screen
     this.props.clearSearchResults()
+    Keyboard.dismiss()
     this.setState({ searchedFor: '' })
   }
 

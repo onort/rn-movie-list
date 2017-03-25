@@ -41,6 +41,10 @@ export const font = {
   montSemi: 'Montserrat-SemiBold',
   slabReg: 'RobotoSlab-Regular',
   slabBold: 'RobotoSlab-Bold',
+  lato: 'Lato-Regular',
+  roboReg: 'Roboto-Regular',
+  roboMed: 'Roboto-Medium',
+  roboCon: 'RobotoCondensed-Regular',
 
   title: 'Montserrat-Medium',
 }
