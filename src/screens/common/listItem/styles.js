@@ -4,7 +4,7 @@ import { StyleSheet} from 'react-native'
 export default StyleSheet.create({
   root: {
     flex: 1,
-    height: 140, // lower to 120
+    height: 120, // lower to 120
     marginTop: 5,
   },
   backdrop: {
@@ -12,9 +12,9 @@ export default StyleSheet.create({
     resizeMode: 'cover',
     width: null,
     height: null,
-    opacity: 0.8,
+    opacity: 1,
     backgroundColor: 'transparent',
-    position: 'relative'
+    position: 'relative',
   },
   container: {
     flex: 1,
@@ -23,6 +23,8 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     opacity: 1,
+    elevation: 2,
+    backgroundColor: 'rgba(255, 255, 255, .1)'
   },
   posterContainer: {
     flex: 2,
@@ -32,12 +34,12 @@ export default StyleSheet.create({
   },
   poster: {
     marginTop: 8,
-    width: 70,
-    height: 106,
+    width: 60,
+    height: 90,
     borderRadius: 3,
   },
   infoContainer: {
     flex: 5,
-    height: 140
+    height: 120
   }
 })

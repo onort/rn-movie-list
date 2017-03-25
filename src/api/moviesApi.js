@@ -40,6 +40,7 @@ class moviesApi {
     }
     try {
       const { data } = await axios.get(`/movie/${id}/credits`, { params })
+      // need a data validation here, can have cast and no crew etc.
       const credits = { cast: data.cast.slice(0,10), crew: data.crew.slice(0, 10) }
       return credits
     } catch (e) {

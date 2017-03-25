@@ -9,6 +9,8 @@ import Crew from './components/Crew'
 import Genres from './components/Genres'
 import MovieMeta from './components/MovieMeta'
 
+import ActionSample from './ActionsSample'
+
 const MovieDetail = ({ children, movie }) => {
   const { backdrop_path, genres, overview, poster_path, tagline, title, vote_average } = movie.details
   const { cast,crew } = movie.credits
@@ -17,7 +19,7 @@ const MovieDetail = ({ children, movie }) => {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={styles.scrollContainer}>
-        { movie.details && movie.credits.cast &&
+        { movie.details &&
         <View style={{ flex: 1 }}>
           <Image
             source={{ uri: backdropUrl + backdrop_path}}
@@ -35,32 +37,38 @@ const MovieDetail = ({ children, movie }) => {
               {tagline && <Text style={styles.tagline}>{tagline}</Text>}
             </View>
           </View>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View>
+            <ActionSample />
+          </View>
+          <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
             <View style={{ flex: 1 }}>
               <MovieMeta details={movie.details} />
             </View>
+            {crew &&
             <View style={{ flex: 2 }}>
               <Crew crew={crew} />
             </View>
+            }
           </View>
+          { genres &&
           <View style={{ flex: 1 }}>
             <Genres genres={genres} />
           </View>
+          }
           <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
             <Text style={styles.sectionHeading}>Summary:</Text>
           </View>
           <View style={styles.overviewContainer}>
             <Text style={styles.overview}>{overview}</Text>
           </View>
+          { cast &&
           <View style={{ flex: 1 }}>
             <CastList cast={cast.slice(0, 11)} />
           </View>
+          }
         </View>
         }
       </ScrollView>
-      <View style={styles.actionsContainer}>
-        {children}
-      </View>
     </View>
   )
 }

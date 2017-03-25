@@ -31,7 +31,6 @@ const styles = {
     // borderColor: 'red',
     backgroundColor: colors.white,
     elevation: 1,
-    marginVertical: 10,
   },
   crew: {
     flex: 1,
