@@ -56,18 +56,6 @@ export default StyleSheet.create({
     fontFamily: font.title,
     color: colors.black
   },
-  overviewContainer: {
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    backgroundColor: colors.white,
-    elevation: 1,
-  },
-  overview: {
-    fontSize: fontSize.default,
-    color: colors.black,
-    fontFamily: font.montReg,
-    lineHeight: 28,
-  },
   actionsContainer: {
     height: 60,
   }

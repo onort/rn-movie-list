@@ -8,6 +8,7 @@ import CastList from './components/CastList'
 import Crew from './components/Crew'
 import Genres from './components/Genres'
 import MovieMeta from './components/MovieMeta'
+import Overview from './components/Overview'
 
 const MovieDetail = ({ children, movie }) => {
   const { backdrop_path, genres, overview, poster_path, tagline, title } = movie.details
@@ -52,23 +53,11 @@ const MovieDetail = ({ children, movie }) => {
             }
           </View>
           { genres &&
-          <View style={{ flex: 1 }}>
             <Genres genres={genres} />
-          </View>
           }
-          <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
-            <Text style={styles.sectionHeading}>Summary:</Text>
-          </View>
-          <View style={styles.overviewContainer}>
-            { overview ?
-              <Text style={styles.overview}>{overview}</Text> :
-              <Text style={styles.overview}>There is no summary for this movie. :(</Text>
-            }
-          </View>
+          <Overview overview={overview} />
           { cast &&
-          <View style={{ flex: 1 }}>
             <CastList cast={cast.slice(0, 11)} />
-          </View>
           }
         </View>
         }

@@ -35,7 +35,7 @@ const ResultItem = ({ movie, handlePress }) => {
 
 const styles = StyleSheet.create({
   resultContainer: {
-    flex: 1,
+    // flex: 1,
     height: 100,
     flexDirection: 'row',
     paddingVertical: 10,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   vote: {
-    flex: 1,
+    // flex: 1, // otherwise vote will be cliped if title is a multiliner (e.g indiana jones)
     flexDirection: 'row',
   },
   icon: {
