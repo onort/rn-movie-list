@@ -38,7 +38,7 @@ const MovieDetail = ({ children, movie }) => {
             </View>
           </View>
           <View>
-            <ActionSample />
+            { children }
           </View>
           <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
             <View style={{ flex: 1 }}>

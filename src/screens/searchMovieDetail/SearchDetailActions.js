@@ -1,33 +1,65 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { colors } from '../../theme'
 
-import { IconButton } from '../common'
-
 const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
   return (
-    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-      <IconButton
-        name="arrow-back"
-        size={30}
-        color={colors.black}
-        onPress={onCancel}
-      />
-      <IconButton
-        name="playlist-add"
-        size={30}
-        color={colors.black}
-        onPress={onAdd}
-      />
-      <IconButton
-        name="play-arrow"
-        size={30}
-        color={colors.black}
-        onPress={onTrailer}
-      />
+    <View style={styles.container}>
+      <View style={styles.actionContainer}>
+        <TouchableOpacity onPress={onAdd}>
+          <View style={styles.actionContainer}>
+            <Icon name="add" color={colors.gray50} size={30} />
+            <Text style={styles.text}>Add To Watchlist</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={[styles.actionContainer, styles.border]}>
+        <TouchableOpacity onPress={onTrailer}>
+          <View style={styles.actionContainer}>
+            <Icon name="play-circle-outline" color={colors.gray50} size={30} />
+            <Text style={styles.text}>Watch Trailer</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.actionContainer}>
+        <TouchableOpacity onPress={onCancel}>
+          <View style={styles.actionContainer}>
+            <Icon name="close" color={colors.gray50} size={30} />
+            <Text style={styles.text}>Cancel</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   )
+}
+
+const styles = {
+  container: {
+    marginTop: 20,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+    backgroundColor: 'white',
+  },
+  actionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  border: {
+    borderLeftColor: colors.gray15,
+    borderLeftWidth: 1,
+    borderRightColor: colors.gray15,
+    borderRightWidth: 1,
+  },
+  text: {
+    marginTop: 10,
+    paddingHorizontal: 10,
+  }
 }
 
 export default SearchDetailActions
