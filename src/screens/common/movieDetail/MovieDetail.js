@@ -9,32 +9,33 @@ import Crew from './components/Crew'
 import Genres from './components/Genres'
 import MovieMeta from './components/MovieMeta'
 
-import ActionSample from './ActionsSample'
-
 const MovieDetail = ({ children, movie }) => {
-  const { backdrop_path, genres, overview, poster_path, tagline, title, vote_average } = movie.details
+  const { backdrop_path, genres, overview, poster_path, tagline, title } = movie.details
   const { cast,crew } = movie.credits
-  const backdropUrl = 'http://image.tmdb.org/t/p/w300/'
-  const posterUrl = 'http://image.tmdb.org/t/p/w154/'
+  const backdropUrl =
+    backdrop_path ?
+      'http://image.tmdb.org/t/p/w300' + backdrop_path :
+      'http://placehold.it/300x169';
+  const posterUrl = poster_path ? 'http://image.tmdb.org/t/p/w92' + poster_path : 'http://placehold.it/154x231'
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={styles.scrollContainer}>
         { movie.details &&
         <View style={{ flex: 1 }}>
           <Image
-            source={{ uri: backdropUrl + backdrop_path}}
+            source={{ uri: backdropUrl }}
             style={styles.backdrop}
           />
           <View style={styles.header}>
             <View style={styles.posterContainer}>
               <Image
-                source={{ uri: posterUrl + poster_path }}
+                source={{ uri: posterUrl }}
                 style={styles.poster}
               />
             </View>
             <View style={styles.titleContainer}>
               <Text style={styles.title}>{title}</Text>
-              {tagline && <Text style={styles.tagline}>{tagline}</Text>}
+              {tagline ? <Text style={styles.tagline}>{tagline}</Text> : null}
             </View>
           </View>
           <View>
@@ -59,7 +60,10 @@ const MovieDetail = ({ children, movie }) => {
             <Text style={styles.sectionHeading}>Summary:</Text>
           </View>
           <View style={styles.overviewContainer}>
-            <Text style={styles.overview}>{overview}</Text>
+            { overview ?
+              <Text style={styles.overview}>{overview}</Text> :
+              <Text style={styles.overview}>There is no summary for this movie. :(</Text>
+            }
           </View>
           { cast &&
           <View style={{ flex: 1 }}>

@@ -14,7 +14,6 @@ import styles from './styles'
 
 import { IconButton, ListItem } from '../common'
 import ItemInfo from './components/ItemInfo'
-// import ItemActions from './components/ItemActions'
 
 class WatchList extends Component {
 

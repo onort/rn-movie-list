@@ -4,7 +4,6 @@ import { Text, View } from 'react-native'
 import { colors, font, fontSize } from '../../../../theme'
 
 const Genres = ({ genres }) => {
-  console.log(genres)
   return (
     <View style={styles.genresContainer}>
       {genres.map(Badge)}

@@ -39,9 +39,12 @@ class moviesApi {
       api_key: config.TMDbApiKey,
     }
     try {
+      let credits = { cast: [], crew: [] }
       const { data } = await axios.get(`/movie/${id}/credits`, { params })
-      // need a data validation here, can have cast and no crew etc.
-      const credits = { cast: data.cast.slice(0,10), crew: data.crew.slice(0, 10) }
+      // remove limits?
+      if (data.cast) credits.cast = data.cast.slice(0,10)
+      if (data.crew) credits.crew = data.crew.slice(0,10)
+      // credits = { cast: data.cast.slice(0,10), crew: data.crew.slice(0, 10) }
       return credits
     } catch (e) {
       console.log('Error on fetchMovieCredits'. e)
