@@ -7,7 +7,7 @@ const CastList = ({ cast }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Cast:</Text>
+        <Text style={styles.title}>Cast</Text>
       </View>
       <View style={styles.castContainer}>
         <ScrollView

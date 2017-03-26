@@ -46,16 +46,12 @@ const MovieDetail = ({ children, movie }) => {
             <View style={{ flex: 1 }}>
               <MovieMeta details={movie.details} />
             </View>
-            {crew &&
             <View style={{ flex: 2 }}>
-              <Crew crew={crew} />
+              <Overview overview={overview} />
             </View>
-            }
           </View>
-          { genres &&
-            <Genres genres={genres} />
-          }
-          <Overview overview={overview} />
+          <Genres genres={genres} />
+          <Crew crew={crew} />
           { cast &&
             <CastList cast={cast.slice(0, 11)} />
           }
@@ -72,3 +68,9 @@ MovieDetail.propTypes = {
 }
 
 export default MovieDetail
+
+/*{crew &&
+            <View style={{ flex: 2 }}>
+              <Crew crew={crew} />
+            </View>
+            }*/

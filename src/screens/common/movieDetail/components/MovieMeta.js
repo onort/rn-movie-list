@@ -47,7 +47,7 @@ const MovieMeta = ({ details }) => {
 
 const styles = {
   container: {
-    flex: 1,
+    // flex: 1,
     marginRight: 10,
     justifyContent: 'center',
     alignItems: 'center',

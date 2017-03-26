@@ -6,10 +6,8 @@ import { colors, font, fontSize } from '../../../../theme'
 const Overview = ({ overview }) => {
   return (
     <View>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Summary:</Text>
-      </View>
       <View style={styles.overviewContainer}>
+        <Text style={styles.title}>Summary</Text>
         { overview ?
           <Text style={styles.overview}>{overview}</Text> :
           <Text style={styles.overview}>There is no summary for this movie. :(</Text>
@@ -30,8 +28,9 @@ const styles = StyleSheet.create({
     color: colors.black
   },
   overviewContainer: {
-    paddingHorizontal: 30,
-    paddingVertical: 20,
+    minHeight: 173,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     backgroundColor: colors.white,
     elevation: 1,
   },
