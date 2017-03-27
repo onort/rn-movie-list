@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
-import { LoadingScreen, MovieDetail } from '../common'
+import { BackButton, LoadingScreen, MovieDetail } from '../common'
 
 import ListDetailActions from './ListDetailActions'
 
@@ -17,21 +17,14 @@ class ListMovieDetail extends Component {
   }
 
   static navigationOptions = {
-    header: ({ state }) => ({
-      // title: state.params.title,
-      // right: <View><Text>Hello</Text></View>,
+    header: ({ goBack }) => ({
       style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
-      tintColor: '#fff'
-      // visible: false
+      left: <BackButton onBack={() => goBack()} />
     })
   }
 
   componentWillUnmount() {
     this.props.resetSelected()
-  }
-
-  onAction() {
-    console.log('Button Pressed in ListDetailActions')
   }
 
   async handleDelete() {

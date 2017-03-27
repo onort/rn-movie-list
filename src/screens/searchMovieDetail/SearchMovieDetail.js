@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation'
 
 import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
 
-import { LoadingScreen, MovieDetail } from '../common'
+import { BackButton, LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
 
 class SearchMovieDetail extends Component {
@@ -18,10 +18,9 @@ class SearchMovieDetail extends Component {
   }
 
   static navigationOptions = {
-    // title: ({ state }) => state.params.title
-    header: () => ({
+    header: ({ goBack }) => ({
       style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
-      tintColor: '#fff'
+      left: <BackButton onBack={() => goBack()} />
     })
   }
 

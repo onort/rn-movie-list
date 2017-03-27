@@ -15,7 +15,6 @@ export default StackNavigator(
     },
   },
   {
-    mode: 'modal',
     headerMode: 'screen'
   }
 )

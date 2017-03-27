@@ -37,7 +37,7 @@ const ListDetailActions = ({ onDelete, onTrailer, onWatched }) => {
 
 const styles = {
   container: {
-    marginTop: 20,
+    marginTop: -75,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',

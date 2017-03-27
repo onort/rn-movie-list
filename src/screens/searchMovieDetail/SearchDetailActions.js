@@ -37,7 +37,7 @@ const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
 
 const styles = {
   container: {
-    marginTop: 20,
+    marginTop: -75,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
