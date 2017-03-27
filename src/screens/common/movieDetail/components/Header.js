@@ -65,6 +65,7 @@ const styles = {
   titleContainer: {
     flex: 2,
     justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
   titleItem: {
     flex: 1,

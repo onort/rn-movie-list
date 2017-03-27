@@ -2,9 +2,6 @@ import { StyleSheet } from 'react-native'
 import { colors, fontSize } from '../../theme'
 
 export default StyleSheet.create({
-  headerStyle: {
-    paddingHorizontal: 20
-  },
   container: {
     flex: 1,
     justifyContent: 'center',

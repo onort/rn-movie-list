@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
-import { Image, ScrollView, Text, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 
 import styles from './styles'
 
 import { CastList, Crew, Genres, Header, MovieMeta, Overview } from './components'
 
 const MovieDetail = ({ children, movie }) => {
-  const { backdrop_path, genres, overview, poster_path, tagline, title } = movie.details
+  const { genres, overview } = movie.details
   const { cast,crew } = movie.credits
 
   return (

@@ -25,7 +25,9 @@ const Badge = (genre) => (
 const styles = {
   container: {
     flexDirection: 'row',
-    padding: 10,
+    // padding: 10,
+    // borderColor: 'red',
+    // borderWidth: 1,
   },
   genresContainer: {
     flex: 1,
@@ -34,8 +36,6 @@ const styles = {
     // elevation: 1,
     // height: null,
     flexWrap: 'wrap',
-    // borderColor: 'red',
-    // borderWidth: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
 
@@ -21,7 +22,11 @@ class SearchMovieDetail extends Component {
     header: ({ goBack }) => ({
       style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
       left: <BackButton onBack={() => goBack()} />
-    })
+    }),
+    tabBar: {
+      // icon: ({ tintColor }) => <Icon name="add" size={25} color={tintColor} />,
+      visible: false,
+    }
   }
 
   componentWillMount() {

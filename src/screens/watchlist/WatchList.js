@@ -9,10 +9,9 @@ import {
   markWatched,
   setSelected
 } from '../../actions'
-import { colors } from '../../theme'
 import styles from './styles'
 
-import { IconButton, ListItem } from '../common'
+import { ListItem } from '../common'
 import ItemInfo from './components/ItemInfo'
 
 class WatchList extends Component {
@@ -28,8 +27,6 @@ class WatchList extends Component {
   static navigationOptions = {
     title: () => 'Your Watch List',
     header: ({ navigate }) => ({
-      // right: <IconButton name="add" size={25} color={colors.black} onPress={() => navigate('SearchMovie')} />,
-      // style: styles.headerStyle,
       visible: false
     }),
     tabBar: {

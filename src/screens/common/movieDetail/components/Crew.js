@@ -30,6 +30,7 @@ const styles = {
   crewContainer:{
     flex: 1,
     backgroundColor: colors.white,
+    marginTop: 10,
     elevation: 1,
   },
   crew: {

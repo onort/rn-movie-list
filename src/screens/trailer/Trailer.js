@@ -13,7 +13,10 @@ class Trailer extends Component {
     header: ({ goBack }) => ({
       style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
       left: <BackButton onBack={() => goBack()} />
-    })
+    }),
+    tabBar: {
+      visible: false
+    }
   }
 
   render() {

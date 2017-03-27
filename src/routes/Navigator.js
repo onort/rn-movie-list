@@ -20,10 +20,10 @@ export default TabNavigator(
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
-      pressColor: colors.green,
-      activeTintColor: colors.green,
-      inactiveTintColor: colors.grey,
-      indicatorStyle: { backgroundColor: colors.green },
+      pressColor: colors.black,
+      activeTintColor: colors.black,
+      inactiveTintColor: colors.gray50,
+      indicatorStyle: { backgroundColor: colors.black },
       style: {
         backgroundColor: colors.white
       }

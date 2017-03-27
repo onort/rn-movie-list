@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
 import { BackButton, LoadingScreen, MovieDetail } from '../common'
@@ -20,7 +21,11 @@ class ListMovieDetail extends Component {
     header: ({ goBack }) => ({
       style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
       left: <BackButton onBack={() => goBack()} />
-    })
+    }),
+    tabBar: {
+      visible: false,
+      // icon: ({ tintColor }) => <Icon name="format-list-bulleted" size={25} color={tintColor} />
+    }
   }
 
   componentWillUnmount() {

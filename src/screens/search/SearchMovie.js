@@ -7,7 +7,7 @@ import { colors } from '../../theme'
 import styles from './styles'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { IconButton, ListItem, LoadingScreen } from '../common'
+import { IconButton, LoadingScreen } from '../common'
 import ResultItem from './components/ResultItem'
 
 class SearchMovie extends Component {
