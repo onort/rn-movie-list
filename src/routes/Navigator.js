@@ -1,14 +1,32 @@
-import { StackNavigator } from 'react-navigation'
-import HomeNavigator from './HomeNavigator'
-import { SearchMovie, ListMovieDetail, SearchMovieDetail, Trailer } from '../screens'
+import { TabNavigator } from 'react-navigation'
 
-export default StackNavigator(
+import { colors } from '../theme'
+
+import SearchNav from './SearchNav'
+import WatchlistNav from './WatchlistNav'
+import { HomeScreen, Watched } from '../screens'
+
+
+export default TabNavigator(
   {
-    Home: { screen: HomeNavigator },
-    SearchMovie: { screen: SearchMovie },
-    ListMovieDetail: { screen: ListMovieDetail },
-    SearchMovieDetail: { screen: SearchMovieDetail },
-    Trailer: { screen: Trailer }
+    Home: { screen: HomeScreen },
+    Watchlist: { screen: WatchlistNav },
+    Watched: { screen: Watched },
+    SearchMovie: { screen: SearchNav },
   },
-  { mode: 'modal' }
+  {
+    animationEnabled: true,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      showIcon: true,
+      showLabel: false,
+      pressColor: colors.green,
+      activeTintColor: colors.green,
+      inactiveTintColor: colors.grey,
+      indicatorStyle: { backgroundColor: colors.green },
+      style: {
+        backgroundColor: colors.white
+      }
+    }
+  }
 )

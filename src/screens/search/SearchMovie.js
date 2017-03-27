@@ -24,9 +24,8 @@ class SearchMovie extends Component {
   }
 
   static navigationOptions = {
-    title: 'Add Movie',
     header: ({ goBack }) => ({
-      left: <IconButton name="close" size={25} color={colors.black} onPress={() => goBack()} />
+      visible: false
     }),
     tabBar: {
       icon: ({ tintColor }) => <Icon name="add" size={25} color={tintColor} />
@@ -70,9 +69,12 @@ class SearchMovie extends Component {
   }
 
   searchMovie() {
-    this.props.searchMovie(this.state.input)
-    this.setState({ searchedFor: this.state.input, input: '' })
-    Keyboard.dismiss()
+    if (this.state.input.length > 0) {
+      this.props.searchMovie(this.state.input)
+      this.setState({ searchedFor: this.state.input, input: '' })
+      Keyboard.dismiss()
+    }
+    // else show toastr?
   }
 
   renderResults() {

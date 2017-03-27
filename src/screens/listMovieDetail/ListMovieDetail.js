@@ -18,8 +18,10 @@ class ListMovieDetail extends Component {
 
   static navigationOptions = {
     header: ({ state }) => ({
-      title: state.params.title,
-      right: <View><Text>Hello</Text></View>,
+      // title: state.params.title,
+      // right: <View><Text>Hello</Text></View>,
+      style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
+      tintColor: '#fff'
       // visible: false
     })
   }

@@ -87,7 +87,7 @@ const styles = {
     paddingVertical: 5,
   },
   detailText: {
-    fontSize: fontSize.small,
+    fontSize: fontSize.xsmall,
     color: colors.gray50,
   }
 }

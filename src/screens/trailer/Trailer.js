@@ -6,6 +6,14 @@ import { connect } from 'react-redux'
 // import { YouTubeApiKey } from '../../api/config'
 
 class Trailer extends Component {
+
+  static navigationOptions = {
+    header: () => ({
+      style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
+      tintColor: '#fff'
+    })
+  }
+
   render() {
     let videoId
     if (!this.props.movie.videos[0]) videoId = '80X0pbCV_t4'

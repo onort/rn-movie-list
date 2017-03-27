@@ -28,8 +28,9 @@ class WatchList extends Component {
   static navigationOptions = {
     title: () => 'Your Watch List',
     header: ({ navigate }) => ({
-      right: <IconButton name="add" size={25} color={colors.black} onPress={() => navigate('SearchMovie')} />,
-      style: styles.headerStyle
+      // right: <IconButton name="add" size={25} color={colors.black} onPress={() => navigate('SearchMovie')} />,
+      // style: styles.headerStyle,
+      visible: false
     }),
     tabBar: {
       icon: ({ tintColor }) => <Icon name="format-list-bulleted" size={25} color={tintColor} />
@@ -59,7 +60,7 @@ class WatchList extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('ListMovieDetail', { title: movie.details.title })
+    this.props.navigation.navigate('MovieDetail', { title: movie.details.title })
   }
 
   onDiscard(movie) {

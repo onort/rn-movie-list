@@ -42,7 +42,7 @@ const MovieDetail = ({ children, movie }) => {
           <View>
             { children }
           </View>
-          <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
+          <View style={{ flex: 1, flexDirection: 'row', marginVertical: 10 }}>
             <View style={{ flex: 1 }}>
               <MovieMeta details={movie.details} />
             </View>

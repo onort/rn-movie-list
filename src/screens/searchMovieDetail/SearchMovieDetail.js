@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 
 import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
 
@@ -17,7 +18,11 @@ class SearchMovieDetail extends Component {
   }
 
   static navigationOptions = {
-    title: ({ state }) => state.params.title
+    // title: ({ state }) => state.params.title
+    header: () => ({
+      style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
+      tintColor: '#fff'
+    })
   }
 
   componentWillMount() {
@@ -36,6 +41,10 @@ class SearchMovieDetail extends Component {
     const { clearSearchResults, fetchList, list, navigation, resetSelected, saveList, selectedMovie, watched } = this.props
     const inList = list.filter(movie => movie.id === selectedMovie.id)
     const inWatched = watched.filter(movie => movie.id === selectedMovie.id)
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [ NavigationActions.navigate({ routeName: 'SearchMovie' }) ]
+    })
     if (!inList.length && !inWatched.length) {
       const watchlist = list.concat(selectedMovie)
       await saveList(watchlist)
@@ -43,7 +52,8 @@ class SearchMovieDetail extends Component {
           fetchList()
           resetSelected()
           clearSearchResults()
-          navigation.navigate('Home') // navigate to watchlist after you refactor router
+          navigation.dispatch(resetAction) // reset searchNav stack
+          navigation.navigate('Watchlist')
         })
         .catch((err) => console.log('Error', err))
     } else {
