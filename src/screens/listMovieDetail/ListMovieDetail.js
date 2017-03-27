@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
@@ -17,7 +17,11 @@ class ListMovieDetail extends Component {
   }
 
   static navigationOptions = {
-    title: ({ state }) => state.params.title
+    header: ({ state }) => ({
+      title: state.params.title,
+      right: <View><Text>Hello</Text></View>,
+      // visible: false
+    })
   }
 
   componentWillUnmount() {

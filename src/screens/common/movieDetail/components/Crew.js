@@ -6,9 +6,11 @@ import { colors, fontSize } from '../../../../theme'
 const Crew = ({ crew }) => {
   return (
     <View style={styles.crewContainer}>
+      { crew &&
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {crew.map(Person)}
       </ScrollView>
+      }
     </View>
   )
 }

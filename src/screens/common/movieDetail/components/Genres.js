@@ -7,9 +7,11 @@ import { colors, font, fontSize } from '../../../../theme'
 const Genres = ({ genres }) => {
   return (
     <View style={styles.container}>
+      { genres &&
       <View style={styles.genresContainer}>
         {genres.map(Badge)}
       </View>
+      }
     </View>
   )
 }

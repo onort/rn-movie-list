@@ -12,4 +12,3 @@ export default StackNavigator(
   },
   { mode: 'modal' }
 )
-
