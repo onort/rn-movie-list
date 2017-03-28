@@ -7,7 +7,7 @@ const Header = ({ details }) => {
     const { backdrop_path, poster_path, tagline, title } = details
     const backdropUrl =
       backdrop_path ?
-        'http://image.tmdb.org/t/p/w300' + backdrop_path :
+        'http://image.tmdb.org/t/p/w780' + backdrop_path :
         'http://placehold.it/300x169';
     const posterUrl = poster_path ? 'http://image.tmdb.org/t/p/w92' + poster_path : 'http://placehold.it/154x231'
   return (

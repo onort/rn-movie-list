@@ -27,14 +27,14 @@ const MovieMeta = ({ details }) => {
       </View>
       <View style={styles.detailContainer}>
         <View style={styles.detail}>
-          <Icon name="today" color={colors.gray50} size={20} style={{ marginRight: 5 }} />
+          <Icon name="today" color={colors.gray60} size={15} style={{ marginRight: 5 }} />
           { release_date ?
             <Text style={styles.detailText}>{release}</Text> :
             <Text style={styles.detailText}>no data</Text>
           }
         </View>
         <View style={styles.detail}>
-          <Icon name="access-time" color={colors.gray50} size={20} style={{ marginRight: 5 }} />
+          <Icon name="access-time" color={colors.gray60} size={15} style={{ marginRight: 5 }} />
         { runtime ?
           <Text style={styles.detailText}>{runtime} mins</Text> :
           <Text style={styles.detailText}>no data</Text>

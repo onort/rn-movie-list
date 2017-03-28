@@ -59,6 +59,7 @@ const styles = {
   text: {
     marginTop: 10,
     paddingHorizontal: 10,
+    textAlign: 'center',
   }
 }
 

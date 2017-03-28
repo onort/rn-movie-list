@@ -46,7 +46,7 @@ const styles = {
   },
   actionContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     paddingVertical: 10,
   },

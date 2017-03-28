@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { WebView } from 'react-native'
 import { connect } from 'react-redux'
 
-import { BackButton } from '../common'
+import { CloseButton } from '../common'
 
 // import YouTube from 'react-native-youtube'
 // import { YouTubeApiKey } from '../../api/config'
@@ -12,7 +12,8 @@ class Trailer extends Component {
   static navigationOptions = {
     header: ({ goBack }) => ({
       style: { backgroundColor: 'transparent', position: 'absolute', top: 0, left: 0, right: 0, },
-      left: <BackButton onBack={() => goBack()} />
+      right: <CloseButton onBack={() => goBack()} />,
+      left: null,
     }),
     tabBar: {
       visible: false

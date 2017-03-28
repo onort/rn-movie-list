@@ -70,6 +70,10 @@ class ListMovieDetail extends Component {
   }
 
   handleTrailer() {
+    if (!this.props.selectedMovie.videos.length) {
+      alert(`No trailer info for the movie "${this.props.selectedMovie.details.title}"`)
+      return
+    }
     this.props.navigation.navigate('Trailer')
   }
 
