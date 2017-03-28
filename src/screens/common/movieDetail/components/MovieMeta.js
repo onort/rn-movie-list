@@ -6,15 +6,6 @@ import moment from 'moment'
 import { colors, font, fontSize } from '../../../../theme'
 import { colorize } from '../../../../utils'
 
-// function colorize(rating) {
-//   if (typeof rating !== 'number') rating = Number(rating)
-//   if (rating > 7.0) return '#1cad20'
-//   else if (rating > 6.5) return  '#4aad1c'
-//   else if (rating > 6.0) return  '#86ad1c'
-//   else if (rating > 5.5) return '#e0d61d'
-//   else return '#ad1313'
-// }
-
 const MovieMeta = ({ details }) => {
   const { release_date, runtime, vote_average, vote_count } = details
   const release = moment(release_date).format('DD MMM YYYY')
@@ -22,7 +13,7 @@ const MovieMeta = ({ details }) => {
     <View style={styles.container}>
       <View style={styles.scoreContainer}>
         <View style={[styles.scoreBadge, { backgroundColor: colorize(vote_average)}]}>
-          <Text style={styles.score}>{vote_average || '?'}</Text>
+          <Text style={styles.score}>{vote_average.toFixed(1) || '?'}</Text>
         </View>
         <Text style={styles.count}>{vote_count} votes</Text>
       </View>

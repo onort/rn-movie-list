@@ -25,8 +25,7 @@ class WatchList extends Component {
   }
 
   static navigationOptions = {
-    title: () => 'Your Watch List',
-    header: ({ navigate }) => ({
+    header: () => ({
       visible: false
     }),
     tabBar: {

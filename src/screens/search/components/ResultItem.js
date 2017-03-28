@@ -1,9 +1,9 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 
-import { colors, fontSize } from '../../../theme'
-
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import { colors, font, fontSize } from '../../../theme'
+import { colorize } from '../../../utils'
+// import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
 const ResultItem = ({ movie, handlePress }) => {
@@ -23,8 +23,9 @@ const ResultItem = ({ movie, handlePress }) => {
           <Text style={styles.release}>{release_date.slice(0,4)}</Text>
           { vote_average > 0 &&
           <View style={styles.vote}>
-            <Icon name="star" color={colors.black} size={fontSize.small + 2} style={styles.icon} />
-            <Text>{vote_average}</Text>
+            <View style={[styles.scoreBadge, { backgroundColor: colorize(vote_average) }]}>
+              <Text style={styles.score}>{(vote_average).toFixed(1) || '?'}</Text>
+            </View>
           </View>
           }
         </View>
@@ -35,16 +36,13 @@ const ResultItem = ({ movie, handlePress }) => {
 
 const styles = StyleSheet.create({
   resultContainer: {
-    // flex: 1,
     height: 100,
     flexDirection: 'row',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    padding: 8,
     backgroundColor: colors.white,
     marginBottom: 5,
     elevation: 2,
-    // borderColor: 'blue',
-    // borderWidth: 1
+
   },
   posterContainer: {
     flex: 1,
@@ -60,7 +58,6 @@ const styles = StyleSheet.create({
     borderLeftColor: colors.grey,
     borderLeftWidth: 1,
     paddingHorizontal: 20,
-    // paddingVertical: 10,
   },
   title: {
     color: colors.black,
@@ -70,15 +67,20 @@ const styles = StyleSheet.create({
     fontSize: fontSize.small,
     flexGrow: 1,
   },
-  vote: {
-    // flex: 1, // otherwise vote will be cliped if title is a multiliner (e.g indiana jones)
-    flexDirection: 'row',
+  scoreBadge: {
+    paddingVertical: 3,
+    paddingHorizontal: 6,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxWidth: 30,
+    maxHeight: 25,
   },
-  icon: {
-    position: 'relative',
-    top: 1,
-    marginRight: 5
-  }
+  score: {
+    color: colors.white,
+    fontSize: fontSize.xsmall,
+    fontFamily: font.openSansBold,
+  },
 })
 
 export default ResultItem

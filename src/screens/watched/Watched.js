@@ -3,7 +3,7 @@ import { ListView, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { fetchWatched } from '../../actions'
+import { fetchWatched, setSelected } from '../../actions'
 import { colors, fontSize } from '../../theme'
 
 import { ListItem } from '../common'
@@ -11,8 +11,16 @@ import ItemInfo from './components/ItemInfo'
 
 class Watched extends Component {
 
+  constructor(props) {
+    super(props)
+    this.handleItemPress = this.handleItemPress.bind(this)
+    this.renderRow = this.renderRow.bind(this)
+  }
+
   static navigationOptions = {
-    title: 'Watched Movies',
+    header: () => ({
+      visible: false
+    }),
     tabBar: {
       icon: ({ tintColor }) => <Icon name="playlist-add-check" size={25} color={tintColor} />
     }
@@ -27,6 +35,16 @@ class Watched extends Component {
     this.createDataSource(nextProps.watched)
   }
 
+  handleItemPress(movie) {
+    console.log('Pressed handleItemPress')
+    this.props.setSelected(movie)
+    this.props.navigation.navigate('WatchedMovieDetail')
+  }
+
+  handlePres(movie) {
+    console.log(movie)
+  }
+
   createDataSource(watched) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -36,8 +54,8 @@ class Watched extends Component {
 
   renderRow(movie) {
     return (
-      <ListItem movie={movie.details}>
-        <ItemInfo movie={movie} handlePress={() => console.log('Pressed')} />
+      <ListItem movie={movie.details} handlePress={() => this.handleItemPress(movie)}>
+        <ItemInfo movie={movie} handlePress={() => this.handleItemPress(movie)} />
       </ListItem>
     )
   }
@@ -84,4 +102,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchWatched })(Watched)
+export default connect(mapStateToProps, { fetchWatched, setSelected })(Watched)

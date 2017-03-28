@@ -14,7 +14,11 @@ class HomeScreen extends Component {
   }
 
   static navigationOptions = {
-    title: 'Home',
+    header: () => {
+      const right = <Icon name="info-outline" size={30} color="#333" />
+      const style = { paddingHorizontal: 30 }
+      return { right, style }
+    },
     tabBar: {
       icon: ({ tintColor }) => <Icon name="home" size={25} color={tintColor} />
     }

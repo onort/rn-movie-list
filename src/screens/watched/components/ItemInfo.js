@@ -16,7 +16,7 @@ const ItemInfo = ({ movie, handlePress }) => {
         </View>
         <View style={styles.timeContainer}>
           <View style={[styles.scoreBadge, { backgroundColor: colorize(vote_average) }]}>
-            <Text style={styles.score}>{vote_average || '?'}</Text>
+            <Text style={styles.score}>{(vote_average).toFixed(1) || '?'}</Text>
           </View>
           { movie.watched_on ?
             <Text style={styles.time}>Watched {moment(movie.watched_on).fromNow()}</Text> :
