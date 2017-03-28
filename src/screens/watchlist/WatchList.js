@@ -71,7 +71,7 @@ class WatchList extends Component {
   renderRow(movie) {
     return (
       <ListItem movie={movie.details} handlePress={() => this.handleItemPress(movie)}>
-        <ItemInfo movie={movie.details} handlePress={() => this.handleItemPress(movie)} />
+        <ItemInfo movie={movie} handlePress={() => this.handleItemPress(movie)} />
       </ListItem>
     )
   }
@@ -80,17 +80,19 @@ class WatchList extends Component {
     if (!this.props.list.length) {
       return (
         <View style={styles.container}>
-          <Text style={styles.text}>No movies to render</Text>
+          <Text style={styles.text}>You have no movies in your watchlist.</Text>
         </View>
       )
     }
     else if (this.props.list.length) {
       return (
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
-        />
+        <View style={styles.container}>
+          <ListView
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+          />
+        </View>
       )
     } else return null
   }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { ListView, Text, View } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { fetchWatched } from '../../actions'
-import styles from './styles'
+import { colors, fontSize } from '../../theme'
 
 import { ListItem } from '../common'
+import ItemInfo from './components/ItemInfo'
 
 class Watched extends Component {
 
@@ -34,7 +35,11 @@ class Watched extends Component {
   }
 
   renderRow(movie) {
-    return <ListItem movie={movie.details} />
+    return (
+      <ListItem movie={movie.details}>
+        <ItemInfo movie={movie} handlePress={() => console.log('Pressed')} />
+      </ListItem>
+    )
   }
 
   render() {
@@ -47,14 +52,30 @@ class Watched extends Component {
     }
     else if (this.props.watched.length) {
       return (
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
-        />
+         <View style={styles.container}>
+          <ListView
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+          />
+        </View>
       )
     } else return null
   }
+}
+
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: colors.gray90,
+  },
+  text: {
+    color: colors.white,
+    fontSize: fontSize.medium,
+    textAlign: 'center',
+    paddingVertical: 100,
+    paddingHorizontal: 20,
+  },
 }
 
 function mapStateToProps(state) {

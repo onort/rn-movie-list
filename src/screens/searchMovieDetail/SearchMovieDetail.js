@@ -50,7 +50,8 @@ class SearchMovieDetail extends Component {
       actions: [ NavigationActions.navigate({ routeName: 'SearchMovie' }) ]
     })
     if (!inList.length && !inWatched.length) {
-      const watchlist = list.concat(selectedMovie)
+      const newMovie = {...selectedMovie, date_added: new Date().getTime()}
+      const watchlist = list.concat(newMovie)
       await saveList(watchlist)
         .then(() => {
           fetchList()

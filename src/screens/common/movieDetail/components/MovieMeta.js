@@ -4,15 +4,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import moment from 'moment'
 
 import { colors, font, fontSize } from '../../../../theme'
+import { colorize } from '../../../../utils'
 
-function colorize(rating) {
-  if (typeof rating !== 'number') rating = Number(rating)
-  if (rating > 7.0) return '#1cad20'
-  else if (rating > 6.5) return  '#4aad1c'
-  else if (rating > 6.0) return  '#86ad1c'
-  else if (rating > 5.5) return '#e0d61d'
-  else return '#ad1313'
-}
+// function colorize(rating) {
+//   if (typeof rating !== 'number') rating = Number(rating)
+//   if (rating > 7.0) return '#1cad20'
+//   else if (rating > 6.5) return  '#4aad1c'
+//   else if (rating > 6.0) return  '#86ad1c'
+//   else if (rating > 5.5) return '#e0d61d'
+//   else return '#ad1313'
+// }
 
 const MovieMeta = ({ details }) => {
   const { release_date, runtime, vote_average, vote_count } = details
