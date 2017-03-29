@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: 100,
     flexDirection: 'row',
     padding: 8,
-    backgroundColor: colors.white,
+    backgroundColor: colors.gray90,
     marginBottom: 5,
     elevation: 2,
 
@@ -55,17 +55,21 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 3,
-    borderLeftColor: colors.grey,
+    borderLeftColor: colors.gray70,
     borderLeftWidth: 1,
     paddingHorizontal: 20,
   },
   title: {
-    color: colors.black,
+    color: colors.white,
     fontSize: fontSize.default
   },
   release: {
     fontSize: fontSize.small,
     flexGrow: 1,
+    color: colors.gray40,
+  },
+  vote: {
+    flexDirection: 'row'
   },
   scoreBadge: {
     paddingVertical: 3,
@@ -73,7 +77,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    maxWidth: 30,
     maxHeight: 25,
   },
   score: {

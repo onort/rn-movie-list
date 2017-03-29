@@ -104,8 +104,10 @@ class SearchMovie extends Component {
             onChangeText={input => this.setState({ input })}
             value={this.state.input}
             style={styles.inputField}
+            underlineColorAndroid={colors.gray40}
+            selectionColor={colors.gray40}
             placeholder="Search for a movie..."
-            placeholderTextColor={colors.grey}
+            placeholderTextColor={colors.gray40}
             autoFocus={this.state.searchedFor.length ? false : true}
             maxLength={100}
             returnKeyType="search"
@@ -114,7 +116,7 @@ class SearchMovie extends Component {
           <IconButton
             name="search"
             size={30}
-            color={colors.grey}
+            color={colors.gray10}
             onPress={this.searchMovie}
             style={styles.searchButton}
           />

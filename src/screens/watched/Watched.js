@@ -22,7 +22,7 @@ class Watched extends Component {
       visible: false
     }),
     tabBar: {
-      icon: ({ tintColor }) => <Icon name="playlist-add-check" size={25} color={tintColor} />
+      icon: ({ tintColor }) => <Icon name="done-all" size={25} color={tintColor} />
     }
   }
 

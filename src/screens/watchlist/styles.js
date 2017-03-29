@@ -4,7 +4,7 @@ import { colors, fontSize } from '../../theme'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.gray90
+    backgroundColor: colors.gray90,
   },
   text: {
     color: colors.white,

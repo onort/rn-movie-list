@@ -13,7 +13,7 @@ const MovieMeta = ({ details }) => {
     <View style={styles.container}>
       <View style={styles.scoreContainer}>
         <View style={[styles.scoreBadge, { backgroundColor: colorize(vote_average)}]}>
-          <Text style={styles.score}>{vote_average.toFixed(1) || '?'}</Text>
+          <Text style={styles.score}>{ vote_average ? (vote_average).toFixed(1) : '?'}</Text>
         </View>
         <Text style={styles.count}>{vote_count} votes</Text>
       </View>

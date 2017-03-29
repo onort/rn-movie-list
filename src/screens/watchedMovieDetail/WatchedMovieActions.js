@@ -10,16 +10,16 @@ const WatchedMovieActions = () => {
       <View style={styles.actionContainer}>
         <TouchableOpacity>
           <View style={styles.actionContainer}>
-            <Icon name="done" color={colors.gray50} size={30} />
-            <Text style={styles.text}>Mark Watched</Text>
+            <Icon name="star" color={colors.gray50} size={30} />
+            <Text style={styles.text}>Rate</Text>
           </View>
         </TouchableOpacity>
       </View>
       <View style={[styles.actionContainer, styles.border]}>
         <TouchableOpacity>
           <View style={styles.actionContainer}>
-            <Icon name="play-circle-outline" color={colors.gray50} size={30} />
-            <Text style={styles.text}>Watch Trailer</Text>
+            <Icon name="share" color={colors.gray50} size={30} />
+            <Text style={styles.text}>Share</Text>
           </View>
         </TouchableOpacity>
       </View>

@@ -22,12 +22,14 @@ export default TabNavigator(
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
-      pressColor: colors.black,
-      activeTintColor: colors.black,
-      inactiveTintColor: colors.gray50,
-      indicatorStyle: { backgroundColor: colors.black },
+      pressColor: colors.gray20,
+      activeTintColor: colors.gray15,
+      inactiveTintColor: colors.gray35,
+      indicatorStyle: { backgroundColor: colors.gray15 },
       style: {
-        backgroundColor: colors.white
+        backgroundColor: colors.gray80,
+        borderTopColor: colors.gray70,
+        borderWidth: 1,
       }
     }
   }

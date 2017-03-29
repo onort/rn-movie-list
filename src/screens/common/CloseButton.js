@@ -10,7 +10,7 @@ const CloseButton = ({ onBack }) => {
       <Icon
         name="close"
         color={colors.white}
-        size={40}
+        size={30}
         style={styles} />
     </TouchableOpacity>
   )

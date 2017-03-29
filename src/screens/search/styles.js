@@ -3,17 +3,18 @@ import { colors, fontSize } from '../../theme'
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.gray80,
   },
   searchContainer: {
     flexDirection: 'row',
     marginTop: 10,
     marginHorizontal: 5,
-    backgroundColor: colors.white,
+    backgroundColor: colors.gray10,
     elevation: 4
   },
   inputField: {
-    color: colors.black,
+    color: colors.gray70,
     fontSize: fontSize.default,
     height: 42,
     padding: 10,
@@ -23,8 +24,9 @@ export default StyleSheet.create({
   searchButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderLeftColor: colors.grey,
+    borderLeftColor: colors.gray50,
     borderLeftWidth: 1,
+    backgroundColor: colors.gray80,
   },
   resultsContainer: {
     flex: 1,
@@ -33,6 +35,8 @@ export default StyleSheet.create({
   },
   resultsText: {
     fontSize: fontSize.default,
-    color: colors.black
+    color: colors.gray10,
+    padding: 20,
+    textAlign: 'center',
   }
 })
