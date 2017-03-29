@@ -5,8 +5,8 @@ export default StyleSheet.create({
   scrollContainer: {
     flex: 1,
     flexGrow: 1,
+    backgroundColor: colors.gray15,
   },
-  
   sectionHeading: {
     fontSize: fontSize.medium,
     fontFamily: font.title,

@@ -81,7 +81,7 @@ const styles = {
   },
   tagline: {
     fontSize: fontSize.default,
-    color: colors.gray60,
+    color: colors.gray70,
   },
 }
 

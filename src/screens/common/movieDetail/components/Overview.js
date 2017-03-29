@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize.medium,
     fontFamily: font.title,
-    color: colors.black
+    color: colors.gray70,
   },
   overviewContainer: {
     minHeight: 173,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   overview: {
     fontSize: fontSize.small,
-    color: colors.black,
+    color: colors.gray70,
     fontFamily: font.roboReg,
     lineHeight: 24,
   },

@@ -24,7 +24,7 @@ export default StyleSheet.create({
     left: 0,
     opacity: 1,
     elevation: 2,
-    backgroundColor: 'rgba(0, 0, 0, .8)'
+    backgroundColor: 'rgba(0, 0, 0, .7)'
   },
   posterContainer: {
     flex: 1,

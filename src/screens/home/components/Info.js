@@ -3,14 +3,14 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { colors, font, fontSize } from '../../../theme'
 
-const Info = () => {
+const Info = ({ onAdd, onWatchlist, toWatch, watched }) => {
   return (
     <View style={styles.container}>
-        <ListInfo title="Movies to watch" count={11} />
-        <ListInfo title="Watched this month" count={15} />
+        <ListInfo title="Movies to watch" count={toWatch} />
+        <ListInfo title="Watched this month" count={watched} />
       <View style={[styles.item, styles.buttonGroup]}>
-        <BigButton title="Watchlist" color={colors.gray60} handlePress={() => console.log('Pressed!')} />
-        <BigButton title="Add" color={colors.gray60} handlePress={() => console.log('Pressed!')} />
+        <BigButton title="Watchlist" color={colors.gray60} handlePress={onWatchlist} />
+        <BigButton title="Add" color={colors.gray60} handlePress={onAdd} />
       </View>
     </View>
   )

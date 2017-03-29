@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     marginHorizontal: 5,
-    backgroundColor: colors.gray10,
+    backgroundColor: colors.gray05,
     elevation: 4
   },
   inputField: {
@@ -26,7 +26,7 @@ export default StyleSheet.create({
     paddingVertical: 10,
     borderLeftColor: colors.gray50,
     borderLeftWidth: 1,
-    backgroundColor: colors.gray80,
+    backgroundColor: colors.gray70,
   },
   resultsContainer: {
     flex: 1,

@@ -22,10 +22,10 @@ export default TabNavigator(
     swipeEnabled: false,
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      activeTintColor: colors.gray15,
+      activeTintColor: colors.gray05,
       inactiveTintColor: colors.gray35,
-      indicatorStyle: { backgroundColor: colors.gray15 },
-      pressColor: colors.gray20,
+      indicatorStyle: { backgroundColor: colors.gray05 },
+      pressColor: colors.gray15,
       showIcon: true,
       showLabel: false,
       style: {

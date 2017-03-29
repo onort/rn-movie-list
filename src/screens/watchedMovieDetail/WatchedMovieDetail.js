@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
+import moment from 'moment'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
-import { BackButton, LoadingScreen, MovieDetail } from '../common'
-
 import Actions from './WatchedMovieActions'
+import { colors, fontSize } from '../../theme'
+
+import { BackButton, LoadingScreen, MovieDetail } from '../common'
 
 class WatchedMovieDetail extends Component {
 
@@ -24,16 +27,41 @@ class WatchedMovieDetail extends Component {
   }
 
   render() {
+    const movie = this.props.selectedMovie
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
-        <MovieDetail movie={this.props.selectedMovie}>
+        <MovieDetail movie={movie}>
           <Actions />
+          <View style={styles.timeContainer}>
+            <Icon name="done-all" color={colors.gray70} size={25} style={styles.icon} />
+            <Text style={styles.timeText}>{moment(movie.watched_on).format('DD MMMM YYYY')}</Text>
+          </View>
         </MovieDetail>
       }
     </View>
     )
+  }
+}
+
+const styles = {
+  timeContainer: {
+    marginTop: 10,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    // borderColor: 'red',
+    // borderWidth: 1,
+  },
+  icon: {
+
+  },
+  timeText: {
+    marginLeft: 10,
+    color: colors.gray70,
+    fontSize: fontSize.default,
   }
 }
 

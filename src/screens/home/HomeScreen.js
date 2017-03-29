@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, Text, View, Button } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { setSelected } from '../../actions'
 import * as types from '../../actions/types'
-import styles from './styles'
+import { colors, font, fontSize } from '../../theme'
 
 import { PosterRoll } from '../common'
 import Info from './components/Info'
@@ -14,7 +14,9 @@ class HomeScreen extends Component {
 
   constructor(props) {
     super(props)
+    this.handleAddPress = this.handleAddPress.bind(this)
     this.handlePosterPress = this.handlePosterPress.bind(this)
+    this.handleWatchlistPress = this.handleWatchlistPress.bind(this)
   }
 
   // PropTypes
@@ -31,31 +33,45 @@ class HomeScreen extends Component {
   handlePosterPress(movie) {
     this.props.setSelected(movie)
     this.props.navigation.navigate('HomeMovieDetail')
-    console.log('Poster clicked!', movie)
+  }
+
+  handleWatchlistPress() {
+    this.props.navigation.navigate('Watchlist')
+  }
+
+  handleAddPress() {
+    this.props.navigation.navigate('SearchMovie')
   }
 
   render() {
+    const { list, watched } = this.props
     return (
       <ScrollView style={styles.container}>
         <View style={{ alignItems: 'flex-end', paddingHorizontal: 40, paddingVertical: 20 }}>
-          <Icon
-            name="info-outline"
-            color="#fff"
-            size={30}
-          />
+          <TouchableOpacity>
+            <Icon
+              name="info-outline"
+              color="#fff"
+              size={30}
+            />
+          </TouchableOpacity>
         </View>
         <View>
-          <Info />
+          <Info
+            onWatchlist={this.handleWatchlistPress}
+            onAdd={this.handleAddPress}
+            toWatch={list.length}
+            watched={watched.length}
+          />
         </View>
         <View style={{ flex: 1, marginVertical: 5 }}>
           <Text style={styles.sectionHeading}>Discover</Text>
-          <PosterRoll movies={this.props.list} handlePress={this.handlePosterPress} />
+          <PosterRoll movies={list} handlePress={this.handlePosterPress} />
         </View>
         <View style={{ flex: 1, marginVertical: 5 }}>
           <Text style={styles.sectionHeading}>In Theaters</Text>
-          <PosterRoll movies={this.props.watched} handlePress={this.handlePosterPress} />
+          <PosterRoll movies={watched} handlePress={this.handlePosterPress} />
         </View>
-        <Text style={styles.homeText}>This is HomeScreen</Text>
         <Button
           onPress={() => this.props.clear(types.WATCHLIST)}
           title="Clear Movie List"
@@ -77,6 +93,28 @@ class HomeScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.gray90,
+    // justifyContent: 'center',
+    // alignItems: 'center'
+  },
+  homeText: {
+    color: colors.black,
+    fontSize: fontSize.default,
+    fontFamily: font.ubuntu,
+  },
+  sectionHeading: {
+    // paddingVertical: 20,
+    // paddingHorizontal: 10,
+    padding: 10,
+    color: colors.white,
+    fontSize: fontSize.medium,
+    fontFamily: font.openSansBold,
+  }
+})
 
 function mapStateToProps(state) {
   return {
