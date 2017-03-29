@@ -4,6 +4,7 @@ import IconButton from './iconButton/IconButton'
 import ListItem from './listItem/ListItem'
 import LoadingScreen from './loading/LoadingScreen'
 import MovieDetail from './movieDetail/MovieDetail'
+import PosterRoll from './posterRoll/PosterRoll'
 
 export {
   BackButton,
@@ -11,5 +12,6 @@ export {
   IconButton,
   ListItem,
   LoadingScreen,
-  MovieDetail
+  MovieDetail,
+  PosterRoll,
 }

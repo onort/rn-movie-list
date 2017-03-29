@@ -1,32 +1,60 @@
 import React, { Component, PropTypes } from 'react'
-import { Text, View, Button } from 'react-native'
+import { ScrollView, Text, View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { clear, fetchList } from '../../actions'
+import { setSelected } from '../../actions'
 import * as types from '../../actions/types'
 import styles from './styles'
 
+import { PosterRoll } from '../common'
+import Info from './components/Info'
+
 class HomeScreen extends Component {
 
-  static propTypes = {
-    fetchList: PropTypes.func.isRequired
+  constructor(props) {
+    super(props)
+    this.handlePosterPress = this.handlePosterPress.bind(this)
   }
 
+  // PropTypes
+
   static navigationOptions = {
-    header: () => {
-      const right = <Icon name="info-outline" size={30} color="#333" />
-      const style = { paddingHorizontal: 30 }
-      return { right, style }
-    },
+    header: () => ({ 
+      visible: false,
+    }),
     tabBar: {
       icon: ({ tintColor }) => <Icon name="home" size={25} color={tintColor} />
     }
   }
 
+  handlePosterPress(movie) {
+    this.props.setSelected(movie)
+    this.props.navigation.navigate('HomeMovieDetail')
+    console.log('Poster clicked!', movie)
+  }
+
   render() {
     return (
-      <View style={styles.homeContainer}>
+      <ScrollView style={styles.container}>
+        <View style={{ alignItems: 'flex-end', paddingHorizontal: 40, paddingVertical: 20 }}>
+          <Icon
+            name="info-outline"
+            color="#fff"
+            size={30}
+          />
+        </View>
+        <View>
+          <Info />
+        </View>
+        <View style={{ flex: 1, marginVertical: 5 }}>
+          <Text style={styles.sectionHeading}>Discover</Text>
+          <PosterRoll movies={this.props.list} handlePress={this.handlePosterPress} />
+        </View>
+        <View style={{ flex: 1, marginVertical: 5 }}>
+          <Text style={styles.sectionHeading}>In Theaters</Text>
+          <PosterRoll movies={this.props.watched} handlePress={this.handlePosterPress} />
+        </View>
         <Text style={styles.homeText}>This is HomeScreen</Text>
         <Button
           onPress={() => this.props.clear(types.WATCHLIST)}
@@ -45,9 +73,16 @@ class HomeScreen extends Component {
           title="Watch A Video"
           color="#bb0000"
         />
-      </View>
+      </ScrollView>
     )
   }
 }
 
-export default connect(null, { clear, fetchList })(HomeScreen)
+function mapStateToProps(state) {
+  return {
+    list: state.list,
+    watched: state.watched,
+  }
+}
+
+export default connect(mapStateToProps, { setSelected })(HomeScreen)

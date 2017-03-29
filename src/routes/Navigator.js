@@ -18,14 +18,16 @@ export default TabNavigator(
   },
   {
     animationEnabled: true,
+    // lazyLoad: true,
+    swipeEnabled: false,
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      showIcon: true,
-      showLabel: false,
-      pressColor: colors.gray20,
       activeTintColor: colors.gray15,
       inactiveTintColor: colors.gray35,
       indicatorStyle: { backgroundColor: colors.gray15 },
+      pressColor: colors.gray20,
+      showIcon: true,
+      showLabel: false,
       style: {
         backgroundColor: colors.gray80,
         borderTopColor: colors.gray70,

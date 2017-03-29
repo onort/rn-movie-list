@@ -10,10 +10,7 @@ const CastList = ({ cast }) => {
         <Text style={styles.title}>Cast</Text>
       </View>
       <View style={styles.castContainer}>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {cast.map(Person)}
         </ScrollView>
       </View>
