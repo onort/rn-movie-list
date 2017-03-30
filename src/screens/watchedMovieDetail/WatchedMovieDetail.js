@@ -4,13 +4,20 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
+import { fetchWatched, resetSelected, saveWatched } from '../../actions'
 import Actions from './WatchedMovieActions'
 import { colors, fontSize } from '../../theme'
 
 import { BackButton, LoadingScreen, MovieDetail } from '../common'
 
 class WatchedMovieDetail extends Component {
+
+  constructor(props) {
+    super(props)
+    this.handleDelete = this.handleDelete.bind(this)
+    this.handleRate = this.handleRate.bind(this)
+    this.handleShare = this.handleShare.bind(this)
+  }
 
   static navigationOptions = {
     header: ({ goBack }) => ({
@@ -26,6 +33,28 @@ class WatchedMovieDetail extends Component {
     this.props.resetSelected()
   }
 
+  async handleDelete() {
+    console.log('Deleting movie')
+    // Confirm
+    const { navigation, selectedMovie, watched } = this.props
+    const newWatched = watched.filter(movie => movie.id !== selectedMovie.id)
+    await this.props.saveWatched(newWatched)
+      .then(() => {
+        this.props.fetchWatched()
+        navigation.goBack()
+      })
+      .catch(err => console.log('Error on handleDelete / WatchedMovieDetail component', err))
+    // Toastr
+  }
+
+  handleRate(movie) {
+    console.log('Delete clicked!', movie)
+  }
+
+  handleShare(movie) {
+    console.log('Delete clicked!', movie)
+  }
+
   render() {
     const movie = this.props.selectedMovie
     return (
@@ -33,7 +62,11 @@ class WatchedMovieDetail extends Component {
       {this.props.loading ?
         <LoadingScreen /> :
         <MovieDetail movie={movie}>
-          <Actions />
+          <Actions
+            handleDelete={this.handleDelete}
+            handleRate={() => this.handleRate(movie)}
+            handleShare={() => this.handleShare(movie)}
+          />
           <View style={styles.timeContainer}>
             <Icon name="done-all" color={colors.gray70} size={25} style={styles.icon} />
             <Text style={styles.timeText}>{moment(movie.watched_on).format('DD MMMM YYYY')}</Text>
@@ -67,11 +100,10 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
-    list: state.list,
     loading: state.loading,
     selectedMovie: state.selectedMovie,
     watched: state.watched
   }
 }
 
-export default connect(mapStateToProps, { fetchList, fetchWatched, getMovieDetails, resetSelected, saveList, saveWatched })(WatchedMovieDetail)
+export default connect(mapStateToProps, { fetchWatched, resetSelected, saveWatched })(WatchedMovieDetail)

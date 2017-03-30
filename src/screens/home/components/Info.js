@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   countContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     // borderColor: 'yellow',
     // borderWidth: 1,
   },

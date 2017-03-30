@@ -18,21 +18,17 @@ const Overview = ({ overview }) => {
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    paddingVertical: 10,
-    paddingHorizontal: 5,
+  overviewContainer: {
+    minHeight: 173,
+    padding: 20,
+    paddingTop: 10,
+    backgroundColor: colors.white,
+    elevation: 1,
   },
   title: {
     fontSize: fontSize.medium,
     fontFamily: font.title,
     color: colors.gray70,
-  },
-  overviewContainer: {
-    minHeight: 173,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    backgroundColor: colors.white,
-    elevation: 1,
   },
   overview: {
     fontSize: fontSize.small,

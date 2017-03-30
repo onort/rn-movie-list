@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { colors } from '../../theme'
 
-const WatchedMovieActions = () => {
+const WatchedMovieActions = ({ handleDelete, handleRate, handleShare }) => {
   return (
     <View style={styles.container}>
       <View style={styles.actionContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleRate}>
           <View style={styles.actionContainer}>
             <Icon name="star" color={colors.gray50} size={30} />
             <Text style={styles.text}>Rate</Text>
@@ -16,7 +16,7 @@ const WatchedMovieActions = () => {
         </TouchableOpacity>
       </View>
       <View style={[styles.actionContainer, styles.border]}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleShare}>
           <View style={styles.actionContainer}>
             <Icon name="share" color={colors.gray50} size={30} />
             <Text style={styles.text}>Share</Text>
@@ -24,7 +24,7 @@ const WatchedMovieActions = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.actionContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleDelete}>
           <View style={styles.actionContainer}>
             <Icon name="delete" color={colors.gray50} size={30} />
             <Text style={styles.text}>Remove</Text>
