@@ -30,11 +30,26 @@ export const getMovieDetails = (id) => {
       const [details, credits, videos] = await Promise.all([
         moviesApi.fetchMovieDetails(id),
         moviesApi.fetchMovieCredits(id),
-        moviesApi.fetchMovieVids(id)
+        moviesApi.fetchMovieVids(id),
       ])
       dispatch({ type: types.FETCH_MOVIE_DETAILS_SUCCESS, details, credits, videos })
     } catch (e) {
       dispatch({ type: types.FETCH_MOVIE_DETAILS_ERROR, error: e })
+    }
+  }
+}
+
+export const getPopularAndNowPlaying = () => {
+  return async dispatch => {
+    dispatch({ type: types.FETCH_MOVIES_FOR_HOME })
+    try {
+      const [ popular, now ] = await Promise.all([
+        moviesApi.fetchPopular(),
+        moviesApi.fetchNowPlaying(),
+      ])
+      dispatch({ type: types.FETCH_MOVIES_FOR_HOME_SUCCESS, popular, now })
+    } catch (error) {
+      dispatch({ type: types.FETCH_MOVIES_FOR_HOME_ERROR, error})
     }
   }
 }

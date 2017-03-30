@@ -63,6 +63,32 @@ class moviesApi {
       console.log('Error on fetchMovieVids', e)
     }
   }
+
+  static async fetchPopular() {
+    const params = {
+      api_key: config.TMDbApiKey
+    }
+    try {
+      const { data } = await axios.get('/movie/popular', { params })
+      console.log('FetchPopular results', data.results)
+      return data.results
+    } catch (e) {
+      console.error('Error on fetchPopular', e)
+    }
+  }
+
+  static async fetchNowPlaying() {
+    const params = {
+      api_key: config.TMDbApiKey
+    }
+    try {
+      const { data } = await axios.get('/movie/now_playing', { params })
+      console.log('Fetch Now Playing results', data.results)
+      return data.results
+    } catch (e) {
+      console.error('Error on fetchNowPlaying', e)
+    }
+  }
 }
 
 export default moviesApi

@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Button } from 're
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { setSelected } from '../../actions'
+import { getPopularAndNowPlaying, setSelected } from '../../actions'
 import * as types from '../../actions/types'
 import { colors, font, fontSize } from '../../theme'
 
@@ -30,6 +30,11 @@ class HomeScreen extends Component {
     }
   }
 
+  componentWillMount() {
+    const { popular, now } = this.props.home
+    if (!popular.length && !now.length) this.props.getPopularAndNowPlaying()
+  }
+
   handlePosterPress(movie) {
     this.props.setSelected(movie)
     this.props.navigation.navigate('HomeMovieDetail')
@@ -44,7 +49,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { list, watched } = this.props
+    const { home, list, watched } = this.props
     return (
       <ScrollView style={styles.container}>
         <View style={{ alignItems: 'flex-end', paddingHorizontal: 40, paddingVertical: 20 }}>
@@ -65,12 +70,12 @@ class HomeScreen extends Component {
           />
         </View>
         <View style={{ flex: 1, marginVertical: 5 }}>
-          <Text style={styles.sectionHeading}>Discover</Text>
-          <PosterRoll movies={list} handlePress={this.handlePosterPress} />
+          <Text style={styles.sectionHeading}>In Theaters</Text>
+          <PosterRoll movies={home.now} handlePress={this.handlePosterPress} />
         </View>
         <View style={{ flex: 1, marginVertical: 5 }}>
-          <Text style={styles.sectionHeading}>In Theaters</Text>
-          <PosterRoll movies={watched} handlePress={this.handlePosterPress} />
+          <Text style={styles.sectionHeading}>Popular</Text>
+          <PosterRoll movies={home.popular} handlePress={this.handlePosterPress} />
         </View>
         <Button
           onPress={() => this.props.clear(types.WATCHLIST)}
@@ -118,9 +123,10 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
+    home: state.home,
     list: state.list,
     watched: state.watched,
   }
 }
 
-export default connect(mapStateToProps, { setSelected })(HomeScreen)
+export default connect(mapStateToProps, { getPopularAndNowPlaying, setSelected })(HomeScreen)

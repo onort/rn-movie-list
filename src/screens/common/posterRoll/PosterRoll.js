@@ -12,7 +12,7 @@ const PosterRoll = ({ movies, handlePress }) => {
 }
 
 const Movie = (movie, handlePress) => {
-  const { id, poster_path, title } = movie.details
+  const { id, poster_path, title } = movie
   const posterUrl = poster_path ? 'http://image.tmdb.org/t/p/w154' + poster_path : 'http://placehold.it/154x231'
   return (
     <View key={id} style={styles.movieContainer}>
