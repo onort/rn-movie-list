@@ -3,26 +3,30 @@ import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+// import Share, {ShareSheet, Button} from 'react-native-share'
 
 import { fetchWatched, resetSelected, saveWatched } from '../../actions'
 import Actions from './WatchedMovieActions'
 import { colors, fontSize } from '../../theme'
 
-import { BackButton, LoadingScreen, MovieDetail, RatingModal } from '../common'
+import { BackButton, LoadingScreen, MovieDetail, RatingModal, ShareModal } from '../common'
 
 class WatchedMovieDetail extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      modalVisible: false,
+      ratingModalOpen: false,
       rated: -1,
+      socialModalOpen: false,
     }
     this.handleDelete = this.handleDelete.bind(this)
-    this.handleModalClose = this.handleModalClose.bind(this)
+    this.handleRateModalClose = this.handleRateModalClose.bind(this)
     this.handleRate = this.handleRate.bind(this)
     this.handleShare = this.handleShare.bind(this)
+    this.handleShareCancel = this.handleShareCancel.bind(this)
     this.openRateModal = this.openRateModal.bind(this)
+    this.openSocialModal = this.openSocialModal.bind(this)
   }
 
   static navigationOptions = {
@@ -60,7 +64,7 @@ class WatchedMovieDetail extends Component {
   }
 
   openRateModal() {
-    this.setState({ modalVisible: true })
+    this.setState({ ratingModalOpen: true })
   }
 
   async handleRate(rating) {
@@ -74,19 +78,29 @@ class WatchedMovieDetail extends Component {
     await this.props.saveWatched(updatedWatched)
       .then(() => this.props.fetchWatched())
       .catch(err => console.error('Error on handleRate', err))
-    setTimeout(this.handleModalClose, 2000)
+    setTimeout(this.handleRateModalClose, 2000)
   }
 
-  handleShare(movie) {
-    console.log('Share clicked!', movie)
+  handleRateModalClose() {
+    this.setState({ ratingModalOpen: false })
   }
 
-  handleModalClose() {
-    this.setState({ modalVisible: false })
+  openSocialModal() {
+    this.setState({ socialModalOpen: true })
+  }
+
+  handleShareCancel() {
+    this.setState({ socialModalOpen: false })
+  }
+
+  handleShare() {
+    console.log('Share clicked!')
+    this.openSocialModal()
   }
 
   render() {
     const movie = this.props.selectedMovie
+    const { rated, ratingModalOpen, socialModalOpen } = this.state
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
@@ -95,8 +109,8 @@ class WatchedMovieDetail extends Component {
           <Actions
             handleDelete={this.handleDelete}
             handleRate={this.openRateModal}
-            handleShare={() => this.handleShare(movie)}
-            rated={this.state.rated}
+            handleShare={this.handleShare}
+            rated={rated}
           />
           <View style={styles.timeContainer}>
             <Icon name="done-all" color={colors.gray70} size={25} style={styles.icon} />
@@ -104,10 +118,14 @@ class WatchedMovieDetail extends Component {
           </View>
           <RatingModal
             handleRate={this.handleRate}
-            rated={this.state.rated}
-            onClose={this.handleModalClose}
+            rated={rated}
+            onClose={this.handleRateModalClose}
             title={movie.details.title}
-            visible={this.state.modalVisible}
+            visible={ratingModalOpen}
+          />
+          <ShareModal
+            visible={socialModalOpen}
+            cancelShare={this.handleShareCancel}
           />
         </MovieDetail>
       }
