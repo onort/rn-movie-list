@@ -5,6 +5,7 @@ import ListItem from './listItem/ListItem'
 import LoadingScreen from './loading/LoadingScreen'
 import MovieDetail from './movieDetail/MovieDetail'
 import PosterRoll from './posterRoll/PosterRoll'
+import RatingModal from './ratingModal/RatingModal'
 
 export {
   BackButton,
@@ -14,4 +15,5 @@ export {
   LoadingScreen,
   MovieDetail,
   PosterRoll,
+  RatingModal,
 }

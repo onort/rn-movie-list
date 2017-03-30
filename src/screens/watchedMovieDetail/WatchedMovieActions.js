@@ -2,17 +2,24 @@ import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { colors } from '../../theme'
+import { colors, fontSize, font } from '../../theme'
+import { colorize } from '../../utils'
 
-const WatchedMovieActions = ({ handleDelete, handleRate, handleShare }) => {
+const WatchedMovieActions = ({ handleDelete, handleRate, handleShare, rated }) => {
   return (
     <View style={styles.container}>
       <View style={styles.actionContainer}>
         <TouchableOpacity onPress={handleRate}>
+          { rated < 0 ?
           <View style={styles.actionContainer}>
             <Icon name="star" color={colors.gray50} size={30} />
             <Text style={styles.text}>Rate</Text>
+          </View> :
+          <View style={styles.actionContainer}>
+            <Text style={[styles.rating, {color: colorize(rated)}]}>{rated}</Text>
+            <Text style={styles.text}>Your Rating</Text>
           </View>
+          }
         </TouchableOpacity>
       </View>
       <View style={[styles.actionContainer, styles.border]}>
@@ -60,6 +67,11 @@ const styles = {
     marginTop: 10,
     paddingHorizontal: 10,
     textAlign: 'center',
+  },
+  rating: {
+    color: colors.gray50,
+    fontSize: fontSize.large,
+    fontFamily: font.openSansBold,
   }
 }
 

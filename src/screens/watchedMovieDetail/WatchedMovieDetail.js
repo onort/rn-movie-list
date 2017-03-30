@@ -8,15 +8,21 @@ import { fetchWatched, resetSelected, saveWatched } from '../../actions'
 import Actions from './WatchedMovieActions'
 import { colors, fontSize } from '../../theme'
 
-import { BackButton, LoadingScreen, MovieDetail } from '../common'
+import { BackButton, LoadingScreen, MovieDetail, RatingModal } from '../common'
 
 class WatchedMovieDetail extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      modalVisible: false,
+      rated: -1,
+    }
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleModalClose = this.handleModalClose.bind(this)
     this.handleRate = this.handleRate.bind(this)
     this.handleShare = this.handleShare.bind(this)
+    this.openRateModal = this.openRateModal.bind(this)
   }
 
   static navigationOptions = {
@@ -26,6 +32,12 @@ class WatchedMovieDetail extends Component {
     }),
     tabBar: {
       visible: false,
+    }
+  }
+
+  componentWillMount() {
+    if (this.props.selectedMovie.user_rating) {
+      this.setState({ rated: this.props.selectedMovie.user_rating })
     }
   }
 
@@ -43,16 +55,34 @@ class WatchedMovieDetail extends Component {
         this.props.fetchWatched()
         navigation.goBack()
       })
-      .catch(err => console.log('Error on handleDelete / WatchedMovieDetail component', err))
+      .catch(err => console.error('Error on handleDelete / WatchedMovieDetail component', err))
     // Toastr
   }
 
-  handleRate(movie) {
-    console.log('Delete clicked!', movie)
+  openRateModal() {
+    this.setState({ modalVisible: true })
+  }
+
+  async handleRate(rating) {
+    this.setState({ rated: rating })
+    const { selectedMovie: ratedMovie, watched } = this.props
+    ratedMovie.user_rating = rating
+    const updatedWatched = watched.map(movie => {
+      if (movie.id === ratedMovie.id) return ratedMovie
+      return movie
+    })
+    await this.props.saveWatched(updatedWatched)
+      .then(() => this.props.fetchWatched())
+      .catch(err => console.error('Error on handleRate', err))
+    setTimeout(this.handleModalClose, 2000)
   }
 
   handleShare(movie) {
-    console.log('Delete clicked!', movie)
+    console.log('Share clicked!', movie)
+  }
+
+  handleModalClose() {
+    this.setState({ modalVisible: false })
   }
 
   render() {
@@ -64,13 +94,21 @@ class WatchedMovieDetail extends Component {
         <MovieDetail movie={movie}>
           <Actions
             handleDelete={this.handleDelete}
-            handleRate={() => this.handleRate(movie)}
+            handleRate={this.openRateModal}
             handleShare={() => this.handleShare(movie)}
+            rated={this.state.rated}
           />
           <View style={styles.timeContainer}>
             <Icon name="done-all" color={colors.gray70} size={25} style={styles.icon} />
             <Text style={styles.timeText}>{moment(movie.watched_on).format('DD MMMM YYYY')}</Text>
           </View>
+          <RatingModal
+            handleRate={this.handleRate}
+            rated={this.state.rated}
+            onClose={this.handleModalClose}
+            title={movie.details.title}
+            visible={this.state.modalVisible}
+          />
         </MovieDetail>
       }
     </View>
@@ -85,8 +123,6 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    // borderColor: 'red',
-    // borderWidth: 1,
   },
   icon: {
 
