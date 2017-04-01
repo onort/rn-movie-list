@@ -36,7 +36,6 @@ class Watched extends Component {
   }
 
   handleItemPress(movie) {
-    console.log('Pressed handleItemPress')
     this.props.setSelected(movie)
     this.props.navigation.navigate('WatchedMovieDetail')
   }

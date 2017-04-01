@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+// import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList } from '../../actions'
+import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList, setSelected } from '../../actions'
+import { resetRouteName } from '../../utils'
 
 import { BackButton, LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
@@ -15,6 +16,7 @@ class SearchMovieDetail extends Component {
     super(props)
     this.handleAdd = this.handleAdd.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.handleSimilarPress = this.handleSimilarPress.bind(this)
     this.handleTrailer = this.handleTrailer.bind(this)
   }
 
@@ -41,13 +43,12 @@ class SearchMovieDetail extends Component {
   }
 
   async handleAdd() {
-    console.log('Saving data')
     const { clearSearchResults, fetchList, list, navigation, resetSelected, saveList, selectedMovie, watched } = this.props
     const inList = list.filter(movie => movie.id === selectedMovie.id)
     const inWatched = watched.filter(movie => movie.id === selectedMovie.id)
     const resetAction = NavigationActions.reset({
       index: 0,
-      actions: [ NavigationActions.navigate({ routeName: 'SearchMovie' }) ]
+      actions: [ NavigationActions.navigate({ routeName: resetRouteName(navigation.state.routeName) }) ]
     })
     if (!inList.length && !inWatched.length) {
       const newMovie = {...selectedMovie, date_added: new Date().getTime()}
@@ -57,7 +58,7 @@ class SearchMovieDetail extends Component {
           fetchList()
           resetSelected()
           clearSearchResults()
-          navigation.dispatch(resetAction) // reset searchNav stack
+          navigation.dispatch(resetAction)
           navigation.navigate('Watchlist')
         })
         .catch((err) => console.log('Error', err))
@@ -79,12 +80,17 @@ class SearchMovieDetail extends Component {
     this.props.navigation.navigate('Trailer')
   }
 
+  handleSimilarPress(movie) {
+    this.props.setSelected(movie)
+    this.props.getMovieDetails(movie.id)
+  }
+
   render() {
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
-        <MovieDetail movie={this.props.selectedMovie}>
+        <MovieDetail movie={this.props.selectedMovie} handleSimilarPress={this.handleSimilarPress}>
           <SearchDetailActions
             onAdd={this.handleAdd}
             onCancel={this.handleCancel}
@@ -106,4 +112,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList })(SearchMovieDetail)
+export default connect(mapStateToProps, { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList, setSelected })(SearchMovieDetail)

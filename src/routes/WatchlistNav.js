@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation'
 
-import { ListMovieDetail, Trailer, WatchList, } from '../screens'
+import { ListMovieDetail, SearchMovieDetail, Trailer, WatchList, } from '../screens'
 
 export default StackNavigator(
   {
@@ -12,6 +12,9 @@ export default StackNavigator(
     },
     Trailer: {
       screen: Trailer
+    },
+    SimilarMovieDetail: {
+      screen: SearchMovieDetail
     },
   },
   {

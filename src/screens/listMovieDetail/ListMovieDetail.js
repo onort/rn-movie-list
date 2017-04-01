@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+// import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { fetchWatched, fetchList, getMovieDetails, resetSelected, saveList, saveWatched } from '../../actions'
+import { fetchWatched, fetchList, resetSelected, saveList, saveWatched, setSelected } from '../../actions'
 import { BackButton, LoadingScreen, MovieDetail } from '../common'
 
 import ListDetailActions from './ListDetailActions'
@@ -13,6 +13,7 @@ class ListMovieDetail extends Component {
   constructor(props) {
     super(props)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleSimilarPress = this.handleSimilarPress.bind(this)
     this.handleTrailer = this.handleTrailer.bind(this)
     this.handleWatched = this.handleWatched.bind(this)
   }
@@ -77,12 +78,18 @@ class ListMovieDetail extends Component {
     this.props.navigation.navigate('Trailer')
   }
 
+  handleSimilarPress(movie) {
+    this.props.setSelected(movie)
+    this.props.navigation.navigate('SimilarMovieDetail')
+  }
+
   render() {
+    // console.info('props', this.props)
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
-        <MovieDetail movie={this.props.selectedMovie}>
+        <MovieDetail movie={this.props.selectedMovie} handleSimilarPress={this.handleSimilarPress}>
           <ListDetailActions
             onDelete={this.handleDelete}
             onTrailer={this.handleTrailer}
@@ -104,4 +111,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchList, fetchWatched, getMovieDetails, resetSelected, saveList, saveWatched })(ListMovieDetail)
+export default connect(mapStateToProps, { fetchList, fetchWatched, resetSelected, saveList, saveWatched, setSelected })(ListMovieDetail)

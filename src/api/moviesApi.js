@@ -18,7 +18,7 @@ class moviesApi {
       const { data } = await axios.get('/search/movie', { params })
       return data.results
     } catch (e) {
-      console.log(e)
+      console.error('Error on searchMovie', e)
     }
   }
 
@@ -30,7 +30,7 @@ class moviesApi {
       const { data } = await axios.get(`/movie/${id}`, { params })
       return data
     } catch (e) {
-      console.log('Error on fetchMovieDetails', e)
+      console.error('Error on fetchMovieDetails', e)
     }
   }
 
@@ -47,7 +47,7 @@ class moviesApi {
       // credits = { cast: data.cast.slice(0,10), crew: data.crew.slice(0, 10) }
       return credits
     } catch (e) {
-      console.log('Error on fetchMovieCredits'. e)
+      console.error('Error on fetchMovieCredits'. e)
     }
   }
 
@@ -55,12 +55,24 @@ class moviesApi {
     const params = {
       api_key: config.TMDbApiKey
     }
-
     try {
       const { data } = await axios.get(`/movie/${id}/videos`, { params })
       return data.results
     } catch (e) {
-      console.log('Error on fetchMovieVids', e)
+      console.error('Error on fetchMovieVids', e)
+    }
+  }
+
+  static async fetchSimilar(id) {
+    const params = {
+      api_key: config.TMDbApiKey
+    }
+    try {
+      const { data } = await axios.get(`/movie/${id}/similar`, { params })
+      console.table('fetchSimilar got data', data)
+      return data.results
+    } catch (e) {
+      console.error('Error on fetchSimilar', e)
     }
   }
 
@@ -70,7 +82,6 @@ class moviesApi {
     }
     try {
       const { data } = await axios.get('/movie/popular', { params })
-      console.log('FetchPopular results', data.results)
       return data.results
     } catch (e) {
       console.error('Error on fetchPopular', e)
@@ -83,7 +94,6 @@ class moviesApi {
     }
     try {
       const { data } = await axios.get('/movie/now_playing', { params })
-      console.log('Fetch Now Playing results', data.results)
       return data.results
     } catch (e) {
       console.error('Error on fetchNowPlaying', e)

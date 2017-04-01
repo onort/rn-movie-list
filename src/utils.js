@@ -6,3 +6,16 @@ export function colorize(rating) {
   else if (rating >= 5.5) return '#c9691a'
   else return '#ad1313'
 }
+
+export function noDuplicateMovie(list, compare) {
+  const idsInList = compare.map(movie => movie.id)
+  const noDuplicates = list.filter(movie => !idsInList.includes(movie.id))
+  return noDuplicates
+}
+
+export function resetRouteName(screen) {
+  // Needed to get proper screen name for resetAction in SearchMovieDetail
+  // Different resetRoutes for different DetailScreens
+  if (screen === 'SearchMovieDetail')  return 'SearchMovie'
+  else if (screen === 'HomeMovieDetail') return 'Home'
+}

@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react'
-import { ScrollView, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 
 import styles from './styles'
 
+import { PosterRoll } from '../../common'
 import { CastList, Crew, Genres, Header, MovieMeta, Overview } from './components'
 
-const MovieDetail = ({ children, movie }) => {
+const MovieDetail = ({ children, handleSimilarPress, movie }) => {
   const { genres, overview } = movie.details
   const { cast,crew } = movie.credits
 
@@ -30,6 +31,12 @@ const MovieDetail = ({ children, movie }) => {
           <Crew crew={crew} />
           { cast &&
             <CastList cast={cast.slice(0, 11)} />
+          }
+          { movie.similar && 
+            <View style={{ flex: 1, marginVertical: 5 }}>
+              <Text style={styles.sectionHeading}>Similar Movies</Text>
+              <PosterRoll movies={movie.similar} handlePress={handleSimilarPress} />
+            </View>
           }
         </View>
         }

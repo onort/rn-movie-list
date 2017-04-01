@@ -1,5 +1,6 @@
 import * as types from './types'
 import moviesApi from '../api/moviesApi'
+import { noDuplicateMovie } from '../utils'
 
 export const discardMovie = (movie) => {
   return { 
@@ -27,12 +28,13 @@ export const getMovieDetails = (id) => {
   return async dispatch => {
     dispatch({ type: types.FETCH_MOVIE_DETAILS })
     try {
-      const [details, credits, videos] = await Promise.all([
+      const [details, credits, videos, similar] = await Promise.all([
         moviesApi.fetchMovieDetails(id),
         moviesApi.fetchMovieCredits(id),
         moviesApi.fetchMovieVids(id),
+        moviesApi.fetchSimilar(id),
       ])
-      dispatch({ type: types.FETCH_MOVIE_DETAILS_SUCCESS, details, credits, videos })
+      dispatch({ type: types.FETCH_MOVIE_DETAILS_SUCCESS, details, credits, videos, similar })
     } catch (e) {
       dispatch({ type: types.FETCH_MOVIE_DETAILS_ERROR, error: e })
     }
@@ -43,10 +45,11 @@ export const getPopularAndNowPlaying = () => {
   return async dispatch => {
     dispatch({ type: types.FETCH_MOVIES_FOR_HOME })
     try {
-      const [ popular, now ] = await Promise.all([
+      let [ popular, now ] = await Promise.all([
         moviesApi.fetchPopular(),
         moviesApi.fetchNowPlaying(),
       ])
+      popular = noDuplicateMovie(popular, now)
       dispatch({ type: types.FETCH_MOVIES_FOR_HOME_SUCCESS, popular, now })
     } catch (error) {
       dispatch({ type: types.FETCH_MOVIES_FOR_HOME_ERROR, error})

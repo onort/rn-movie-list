@@ -1,6 +1,6 @@
 import * as types from '../actions/types'
 
-const INITIAL_STATE = { id: '', details: {}, credits: [], videos: [] }
+const INITIAL_STATE = { id: '', details: {}, credits: [], videos: [], similar: [] }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -10,7 +10,14 @@ export default (state = INITIAL_STATE, action) => {
     case types.RESET_SELECTED_MOVIE:
       return INITIAL_STATE
     case types.FETCH_MOVIE_DETAILS_SUCCESS:
-      return Object.assign({}, state, { details: action.details, credits: action.credits, videos: action.videos })
+      const { details, credits, videos, similar } = action
+      return {
+        ...state,
+        details,
+        credits,
+        videos,
+        similar,
+      }
     default:
       return state
   }
