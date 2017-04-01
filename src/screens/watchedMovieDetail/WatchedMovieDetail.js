@@ -3,11 +3,11 @@ import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-// import Share, {ShareSheet, Button} from 'react-native-share'
 
 import { fetchWatched, getMovieDetails, resetSelected, setSelected, saveWatched } from '../../actions'
 import Actions from './WatchedMovieActions'
 import { colors, fontSize } from '../../theme'
+import { routeNames } from '../../constants'
 
 import { BackButton, LoadingScreen, MovieDetail, RatingModal, ShareModal } from '../common'
 
@@ -101,7 +101,7 @@ class WatchedMovieDetail extends Component {
   handleSimilarPress(movie) {
     this.props.setSelected(movie)
     this.props.getMovieDetails(movie.id)
-    this.props.navigation.navigate('WatchedSimilarMovieDetail')
+    this.props.navigation.navigate(routeNames.watched.similar)
   }
 
   render() {

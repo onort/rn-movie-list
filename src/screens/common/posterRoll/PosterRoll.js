@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 
 const PosterRoll = ({ movies, handlePress }) => {
   return (
@@ -12,12 +12,12 @@ const PosterRoll = ({ movies, handlePress }) => {
 }
 
 const Movie = (movie, handlePress) => {
-  const { id, poster_path, title } = movie
+  const { id, poster_path } = movie
   const posterUrl = poster_path ? 'http://image.tmdb.org/t/p/w154' + poster_path : 'http://placehold.it/154x231'
   return (
     <View key={id} style={styles.movieContainer}>
       <TouchableOpacity onPress={() => handlePress(movie)}>
-        <Image
+         <Image
           source={{ uri: posterUrl }}
           style={styles.poster}
         />

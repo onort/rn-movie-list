@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-// import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { clearSearchResults, fetchList, getMovieDetails, resetSelected, saveList, setSelected } from '../../actions'
 import { resetRouteName } from '../../utils'
+import { routeNames } from '../../constants'
 
 import { BackButton, LoadingScreen, MovieDetail } from '../common'
 import SearchDetailActions from './SearchDetailActions'
@@ -26,7 +26,6 @@ class SearchMovieDetail extends Component {
       left: <BackButton onBack={() => goBack()} />
     }),
     tabBar: {
-      // icon: ({ tintColor }) => <Icon name="add" size={25} color={tintColor} />,
       visible: false,
     }
   }
@@ -59,11 +58,11 @@ class SearchMovieDetail extends Component {
           resetSelected()
           clearSearchResults()
           if (navigation.state.routeName === 'WatchlistSimilarMovieDetail') {
-            navigation.navigate('Watchlist')
+            navigation.navigate(routeNames.watchlist.root)
             return
           }
           navigation.dispatch(resetAction)
-          navigation.navigate('Watchlist')
+          navigation.navigate(routeNames.watchlist.root)
         })
         .catch((err) => console.log('Error', err))
     } else {
@@ -81,7 +80,7 @@ class SearchMovieDetail extends Component {
       alert(`No trailer info for the movie "${this.props.selectedMovie.details.title}"`)
       return
     }
-    this.props.navigation.navigate('Trailer')
+    this.props.navigation.navigate(routeNames.search.trailer)
   }
 
   handleSimilarPress(movie) {

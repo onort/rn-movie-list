@@ -10,7 +10,7 @@ const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
       <View style={styles.actionContainer}>
         <TouchableOpacity onPress={onAdd}>
           <View style={styles.actionContainer}>
-            <Icon name="add" color={colors.gray50} size={30} />
+            <Icon name="add" color={colors.gray70} size={30} />
             <Text style={styles.text}>Add To Watchlist</Text>
           </View>
         </TouchableOpacity>
@@ -18,7 +18,7 @@ const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
       <View style={[styles.actionContainer, styles.border]}>
         <TouchableOpacity onPress={onTrailer}>
           <View style={styles.actionContainer}>
-            <Icon name="play-circle-outline" color={colors.gray50} size={30} />
+            <Icon name="play-circle-outline" color={colors.gray70} size={30} />
             <Text style={styles.text}>Watch Trailer</Text>
           </View>
         </TouchableOpacity>
@@ -26,7 +26,7 @@ const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
       <View style={styles.actionContainer}>
         <TouchableOpacity onPress={onCancel}>
           <View style={styles.actionContainer}>
-            <Icon name="close" color={colors.gray50} size={30} />
+            <Icon name="close" color={colors.gray70} size={30} />
             <Text style={styles.text}>Cancel</Text>
           </View>
         </TouchableOpacity>
@@ -46,7 +46,7 @@ const styles = {
   },
   actionContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center', // no effect
     alignItems: 'center',
     paddingVertical: 10,
   },
@@ -59,6 +59,7 @@ const styles = {
   text: {
     marginTop: 10,
     paddingHorizontal: 10,
+    color: colors.gray60,
     textAlign: 'center',
   }
 }

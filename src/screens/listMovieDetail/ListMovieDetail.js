@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-// import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { fetchWatched, fetchList, resetSelected, saveList, saveWatched, setSelected } from '../../actions'
 import { BackButton, LoadingScreen, MovieDetail } from '../common'
 
 import ListDetailActions from './ListDetailActions'
+import { routeNames } from '../../constants'
 
 class ListMovieDetail extends Component {
 
@@ -25,7 +25,6 @@ class ListMovieDetail extends Component {
     }),
     tabBar: {
       visible: false,
-      // icon: ({ tintColor }) => <Icon name="format-list-bulleted" size={25} color={tintColor} />
     }
   }
 
@@ -75,12 +74,12 @@ class ListMovieDetail extends Component {
       alert(`No trailer info for the movie "${this.props.selectedMovie.details.title}"`)
       return
     }
-    this.props.navigation.navigate('Trailer')
+    this.props.navigation.navigate(routeNames.watchlist.trailer)
   }
 
   handleSimilarPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('WatchlistSimilarMovieDetail')
+    this.props.navigation.navigate(routeNames.watchlist.similar)
   }
 
   render() {

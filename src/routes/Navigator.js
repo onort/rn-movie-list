@@ -6,8 +6,6 @@ import HomeNav from './HomeNav'
 import SearchNav from './SearchNav'
 import WatchedNav from './WatchedNav'
 import WatchlistNav from './WatchlistNav'
-import { Watched } from '../screens'
-
 
 export default TabNavigator(
   {

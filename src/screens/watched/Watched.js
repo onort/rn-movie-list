@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { fetchWatched, setSelected } from '../../actions'
 import { colors, fontSize } from '../../theme'
+import { routeNames } from '../../constants'
 
 import { ListItem } from '../common'
 import ItemInfo from './components/ItemInfo'
@@ -37,7 +38,7 @@ class Watched extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('WatchedMovieDetail')
+    this.props.navigation.navigate(routeNames.watched.detail)
   }
 
   handlePres(movie) {

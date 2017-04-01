@@ -10,6 +10,7 @@ import {
   setSelected
 } from '../../actions'
 import styles from './styles'
+import { routeNames } from '../../constants'
 
 import { ListItem } from '../common'
 import ItemInfo from './components/ItemInfo'
@@ -56,7 +57,7 @@ class WatchList extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('MovieDetail', { title: movie.details.title })
+    this.props.navigation.navigate(routeNames.watchlist.detail)
   }
 
   onDiscard(movie) {

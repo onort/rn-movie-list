@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { clearSearchResults, searchMovie, setSelected } from '../../actions'
 import { colors } from '../../theme'
 import styles from './styles'
+import { routeNames } from '../../constants'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { IconButton, LoadingScreen } from '../common'
@@ -56,7 +57,7 @@ class SearchMovie extends Component {
 
   handleItemPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('SearchMovieDetail')
+    this.props.navigation.navigate(routeNames.search.detail)
   }
 
   renderRow(movie) {

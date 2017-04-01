@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { getPopularAndNowPlaying, setSelected } from '../../actions'
 import * as types from '../../actions/types'
 import { colors, font, fontSize } from '../../theme'
+import { routeNames } from '../../constants'
 
 import { PosterRoll } from '../common'
 import Info from './components/Info'
@@ -37,15 +38,15 @@ class HomeScreen extends Component {
 
   handlePosterPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('HomeMovieDetail')
+    this.props.navigation.navigate(routeNames.home.detail)
   }
 
   handleWatchlistPress() {
-    this.props.navigation.navigate('Watchlist')
+    this.props.navigation.navigate(routeNames.watched.root)
   }
 
   handleAddPress() {
-    this.props.navigation.navigate('SearchMovie')
+    this.props.navigation.navigate(routeNames.search.root)
   }
 
   render() {
