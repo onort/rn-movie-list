@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, Image, View, Text} from 'react-native'
+import { ActivityIndicator, Image, View} from 'react-native'
 
 
-// Failed!
+// [FAILED COMPONENT] onLoadStart/onLoad/onLoadEnd not firing
 class ImageWithIndicator extends Component {
   constructor(props) {
     super(props)
@@ -11,9 +11,9 @@ class ImageWithIndicator extends Component {
   }
 
   handleLoadEnd() {
-    console.log('handleloadEnd firing', this.state)
-    this.setState({ loading: false })
     console.log('handleloadEnd fired', this.state)
+    this.setState({ loading: false })
+    console.log('handleloadEnd updated state', this.state)
   }
 
   render() {

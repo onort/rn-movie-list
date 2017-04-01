@@ -7,6 +7,7 @@ import { BackButton, LoadingScreen, MovieDetail } from '../common'
 
 import ListDetailActions from './ListDetailActions'
 import { routeNames } from '../../constants'
+import { colors } from '../../theme'
 
 class ListMovieDetail extends Component {
 
@@ -86,8 +87,8 @@ class ListMovieDetail extends Component {
     // console.info('props', this.props)
     return (
     <View style={{ flex: 1 }}>
-      {this.props.loading ?
-        <LoadingScreen /> :
+      {this.props.loading.screen ?
+        <LoadingScreen color={colors.gray20} size={50} backgroundColor={colors.gray90} /> :
         <MovieDetail movie={this.props.selectedMovie} handleSimilarPress={this.handleSimilarPress}>
           <ListDetailActions
             onDelete={this.handleDelete}

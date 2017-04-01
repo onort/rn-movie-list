@@ -81,11 +81,11 @@ class SearchMovie extends Component {
   renderResults() {
     const { loading, searchResults } = this.props
     const { searchedFor } = this.state
-    if (loading) return <LoadingScreen />
-    else if (!loading && searchedFor.length > 1 && searchResults.length === 0) {
+    if (loading.screen) return <LoadingScreen color={colors.gray20} size={50} backgroundColor={colors.gray90} />
+    else if (!loading.screen && searchedFor.length > 1 && searchResults.length === 0) {
       return (<Text style={styles.resultsText}>No results found for "{searchedFor}"</Text>)
     }
-    else if (!loading && searchResults.length) {
+    else if (!loading.screen && searchResults.length) {
       return (
         <ListView
           enableEmptySections

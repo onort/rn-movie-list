@@ -1,27 +1,21 @@
-import React, { Component } from 'react'
-import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import React from 'react'
+import { ActivityIndicator, View } from 'react-native'
 
-import { colors } from '../../../theme'
-
-class LoadingScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator
-          size={50}
-        />
-      </View>
-    )
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
+const LoadingScreen = ({ color, size, backgroundColor }) => {
+  const container = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.gray15,
-  },
-})
+    backgroundColor,
+  }
+  return (
+    <View style={container}>
+      <ActivityIndicator
+        size={size}
+        color={color}
+      />
+    </View>
+  )
+}
 
 export default LoadingScreen

@@ -8,7 +8,7 @@ import * as types from '../../actions/types'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
 
-import { PosterRoll } from '../common'
+import { LoadingScreen, PosterRoll } from '../common'
 import Info from './components/Info'
 
 class HomeScreen extends Component {
@@ -50,7 +50,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { home, list, watched } = this.props
+    const { home, list, loading, watched } = this.props
     return (
       <ScrollView style={styles.container}>
         <View style={{ alignItems: 'flex-end', paddingHorizontal: 40, paddingVertical: 20 }}>
@@ -70,13 +70,19 @@ class HomeScreen extends Component {
             watched={watched.length}
           />
         </View>
-        <View style={{ flex: 1, marginVertical: 5 }}>
+        <View style={{ flex: 1, marginVertical: 5, minHeight: 180 }}>
           <Text style={styles.sectionHeading}>In Theaters</Text>
-          <PosterRoll movies={home.now} handlePress={this.handlePosterPress} />
+          { loading.similar ?
+            <LoadingScreen color={colors.gray20} size={30} backgroundColor={colors.gray90} /> :
+            <PosterRoll movies={home.now} handlePress={this.handlePosterPress} />
+          }
         </View>
-        <View style={{ flex: 1, marginVertical: 5 }}>
+        <View style={{ flex: 1, marginVertical: 5, minHeight: 180 }}>
           <Text style={styles.sectionHeading}>Popular</Text>
-          <PosterRoll movies={home.popular} handlePress={this.handlePosterPress} />
+          { loading.similar ?
+            <LoadingScreen color={colors.gray20} size={30} backgroundColor={colors.gray90} /> :
+            <PosterRoll movies={home.popular} handlePress={this.handlePosterPress} />
+          }
         </View>
         <Button
           onPress={() => this.props.clear(types.WATCHLIST)}
@@ -126,6 +132,7 @@ function mapStateToProps(state) {
   return {
     home: state.home,
     list: state.list,
+    loading: state.loading,
     watched: state.watched,
   }
 }

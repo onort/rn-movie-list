@@ -13,11 +13,13 @@ export function noDuplicateMovie(list, compare) {
   return noDuplicates
 }
 
+import { routeNames} from './constants'
+
 export function resetRouteName(screen) {
   // Needed to get proper screen name for resetAction in SearchMovieDetail
   // Different resetRoutes for different DetailScreens
-  if (screen === 'SearchMovieDetail')  return 'SearchMovie'
-  else if (screen === 'HomeMovieDetail') return 'Home'
-  else if (screen === 'WatchlistSimilarMovieDetail') return 'Watchlist'
-  else if (screen === 'WatchedSimilarMovieDetail') return 'Watched'
+  if (screen === routeNames.search.detail)  return routeNames.search.root
+  else if (screen === routeNames.home.detail) return routeNames.home.root
+  else if (screen === routeNames.watchlist.similar) return routeNames.watchlist.root
+  else if (screen === routeNames.watched.similar) return routeNames.watched.root
 }

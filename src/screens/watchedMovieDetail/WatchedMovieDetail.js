@@ -109,8 +109,8 @@ class WatchedMovieDetail extends Component {
     const { rated, ratingModalOpen, socialModalOpen } = this.state
     return (
     <View style={{ flex: 1 }}>
-      {this.props.loading ?
-        <LoadingScreen /> :
+      {this.props.loading.screen ?
+        <LoadingScreen color={colors.gray20} size={50} backgroundColor={colors.gray90} /> :
         <MovieDetail movie={movie} handleSimilarPress={this.handleSimilarPress}>
           <Actions
             handleDelete={this.handleDelete}
