@@ -32,8 +32,8 @@ const MovieDetail = ({ children, handleSimilarPress, movie }) => {
           { cast &&
             <CastList cast={cast.slice(0, 11)} />
           }
-          { movie.similar && 
-            <View style={{ flex: 1, marginVertical: 5 }}>
+          { movie.similar &&
+            <View style={{ flex: 1, marginVertical: 10 }}>
               <Text style={styles.sectionHeading}>Similar Movies</Text>
               <PosterRoll movies={movie.similar} handlePress={handleSimilarPress} />
             </View>

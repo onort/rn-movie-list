@@ -18,4 +18,6 @@ export function resetRouteName(screen) {
   // Different resetRoutes for different DetailScreens
   if (screen === 'SearchMovieDetail')  return 'SearchMovie'
   else if (screen === 'HomeMovieDetail') return 'Home'
+  else if (screen === 'WatchlistSimilarMovieDetail') return 'Watchlist'
+  else if (screen === 'WatchedSimilarMovieDetail') return 'Watched'
 }

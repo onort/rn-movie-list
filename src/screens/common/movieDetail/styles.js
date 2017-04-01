@@ -8,6 +8,7 @@ export default StyleSheet.create({
     backgroundColor: colors.gray15,
   },
   sectionHeading: {
+    marginVertical: 10,
     fontSize: fontSize.medium,
     fontFamily: font.title,
     color: colors.black

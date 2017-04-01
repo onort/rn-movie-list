@@ -80,7 +80,7 @@ class ListMovieDetail extends Component {
 
   handleSimilarPress(movie) {
     this.props.setSelected(movie)
-    this.props.navigation.navigate('SimilarMovieDetail')
+    this.props.navigation.navigate('WatchlistSimilarMovieDetail')
   }
 
   render() {

@@ -5,7 +5,7 @@ import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 // import Share, {ShareSheet, Button} from 'react-native-share'
 
-import { fetchWatched, resetSelected, saveWatched } from '../../actions'
+import { fetchWatched, getMovieDetails, resetSelected, setSelected, saveWatched } from '../../actions'
 import Actions from './WatchedMovieActions'
 import { colors, fontSize } from '../../theme'
 
@@ -25,6 +25,7 @@ class WatchedMovieDetail extends Component {
     this.handleRate = this.handleRate.bind(this)
     this.handleShare = this.handleShare.bind(this)
     this.handleShareCancel = this.handleShareCancel.bind(this)
+    this.handleSimilarPress = this.handleSimilarPress.bind(this)
     this.openRateModal = this.openRateModal.bind(this)
     this.openSocialModal = this.openSocialModal.bind(this)
   }
@@ -94,8 +95,13 @@ class WatchedMovieDetail extends Component {
   }
 
   handleShare() {
-    console.log('Share clicked!')
     this.openSocialModal()
+  }
+
+  handleSimilarPress(movie) {
+    this.props.setSelected(movie)
+    this.props.getMovieDetails(movie.id)
+    this.props.navigation.navigate('WatchedSimilarMovieDetail')
   }
 
   render() {
@@ -105,7 +111,7 @@ class WatchedMovieDetail extends Component {
     <View style={{ flex: 1 }}>
       {this.props.loading ?
         <LoadingScreen /> :
-        <MovieDetail movie={movie}>
+        <MovieDetail movie={movie} handleSimilarPress={this.handleSimilarPress}>
           <Actions
             handleDelete={this.handleDelete}
             handleRate={this.openRateModal}
@@ -160,4 +166,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchWatched, resetSelected, saveWatched })(WatchedMovieDetail)
+export default connect(mapStateToProps, { fetchWatched, getMovieDetails, resetSelected, saveWatched, setSelected })(WatchedMovieDetail)

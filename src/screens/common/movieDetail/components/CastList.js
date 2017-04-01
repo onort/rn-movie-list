@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     elevation: 1,
-    marginBottom: 50,
     // borderTopColor: colors.gray20,
     // borderTopWidth: 1,
     // borderBottomColor: colors.gray20,

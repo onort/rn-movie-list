@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation'
-import { Watched, WatchedMovieDetail } from '../screens'
+import { SearchMovieDetail, Watched, WatchedMovieDetail } from '../screens'
 
 export default StackNavigator({
   Watched: {
@@ -8,4 +8,7 @@ export default StackNavigator({
   WatchedMovieDetail: {
     screen: WatchedMovieDetail
   },
+  WatchedSimilarMovieDetail :{
+    screen: SearchMovieDetail
+  }
 })

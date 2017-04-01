@@ -29,6 +29,7 @@ const Movie = (movie, handlePress) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    minHeight: 180,
   },
   movieContainer: {
     marginHorizontal: 5,

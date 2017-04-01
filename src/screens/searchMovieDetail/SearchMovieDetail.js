@@ -58,6 +58,10 @@ class SearchMovieDetail extends Component {
           fetchList()
           resetSelected()
           clearSearchResults()
+          if (navigation.state.routeName === 'WatchlistSimilarMovieDetail') {
+            navigation.navigate('Watchlist')
+            return
+          }
           navigation.dispatch(resetAction)
           navigation.navigate('Watchlist')
         })
