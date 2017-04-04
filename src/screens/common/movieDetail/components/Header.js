@@ -40,7 +40,7 @@ const styles = {
   backdrop: {
     height: 200,
     opacity: 0.8,
-    backgroundColor: colors.black,
+    backgroundColor: colors.gray90,
     resizeMode: 'cover',
   },
   header: {
@@ -82,6 +82,7 @@ const styles = {
   tagline: {
     fontSize: fontSize.default,
     color: colors.gray70,
+    fontFamily: font.roboReg,
   },
 }
 

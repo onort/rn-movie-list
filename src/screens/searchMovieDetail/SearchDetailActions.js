@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { colors } from '../../theme'
+import { colors, font, fontSize } from '../../theme'
 
 const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
   return (
@@ -59,8 +59,9 @@ const styles = {
   text: {
     marginTop: 10,
     paddingHorizontal: 10,
-    color: colors.gray60,
     textAlign: 'center',
+    fontFamily: font.roboReg,
+    fontSize: fontSize.small,
   }
 }
 

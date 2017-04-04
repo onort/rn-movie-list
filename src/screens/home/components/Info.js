@@ -5,7 +5,7 @@ import { colors, font, fontSize } from '../../../theme'
 
 const Info = ({ onAdd, onWatchlist, toWatch, watched }) => {
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1 }}>
         <ListInfo title="Movies to watch" count={toWatch} />
         <ListInfo title="Watched this month" count={watched} />
       <View style={[styles.item, styles.buttonGroup]}>
@@ -41,9 +41,9 @@ const BigButton = ({ color, handlePress, title }) => {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  // container: {
+  //   flex: 1,
+  // },
   item: {
     flex: 1,
     flexDirection: 'row',

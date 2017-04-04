@@ -7,6 +7,7 @@ import { getPopularAndNowPlaying, setSelected } from '../../actions'
 import * as types from '../../actions/types'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
+import styles from './styles'
 
 import { LoadingScreen, PosterRoll } from '../common'
 import Info from './components/Info'
@@ -106,27 +107,6 @@ class HomeScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.gray90,
-    // justifyContent: 'center',
-    // alignItems: 'center'
-  },
-  homeText: {
-    color: colors.black,
-    fontSize: fontSize.default,
-    fontFamily: font.ubuntu,
-  },
-  sectionHeading: {
-    // paddingVertical: 20,
-    // paddingHorizontal: 10,
-    padding: 10,
-    color: colors.white,
-    fontSize: fontSize.medium,
-    fontFamily: font.openSansBold,
-  }
-})
 
 function mapStateToProps(state) {
   return {

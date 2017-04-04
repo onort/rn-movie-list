@@ -67,11 +67,13 @@ const styles = {
     marginTop: 10,
     paddingHorizontal: 10,
     textAlign: 'center',
+    fontFamily: font.roboReg,
+    fontSize: fontSize.small,
   },
   rating: {
     color: colors.gray50,
     fontSize: fontSize.large,
-    fontFamily: font.openSansBold,
+    fontFamily: font.title,
   }
 }
 

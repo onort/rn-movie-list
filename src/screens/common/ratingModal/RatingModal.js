@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: fontSize.medium,
     color: colors.gray70,
-    fontFamily: font.openSans,
+    fontFamily: font.roboReg,
     textAlign: 'center'
   },
   starsContainer: {

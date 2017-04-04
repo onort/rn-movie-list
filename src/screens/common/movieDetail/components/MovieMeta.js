@@ -64,7 +64,7 @@ const styles = {
   score: {
     color: colors.white,
     fontSize: fontSize.default,
-    fontFamily: font.openSansBold,
+    fontFamily: font.title,
   },
   count: {
     marginTop: 10,
@@ -81,6 +81,7 @@ const styles = {
   detailText: {
     fontSize: fontSize.xsmall,
     color: colors.gray50,
+    fontFamily: font.roboReg,
   }
 }
 

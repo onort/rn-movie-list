@@ -28,15 +28,20 @@ const MovieDetail = ({ children, handleSimilarPress, movie }) => {
             </View>
           </View>
           <Genres genres={genres} />
-          <Crew crew={crew} />
-          { cast &&
-            <CastList cast={cast.slice(0, 11)} />
+          { crew.length ?
+            <Crew crew={crew} /> :
+            null
           }
-          { movie.similar &&
+          { cast.length ?
+            <CastList cast={cast.slice(0, 11)} /> :
+            null
+          }
+          { movie.similar && movie.similar.length ?
             <View style={{ flex: 1, marginVertical: 10 }}>
               <Text style={styles.sectionHeading}>Similar Movies</Text>
               <PosterRoll movies={movie.similar} handlePress={handleSimilarPress} />
-            </View>
+            </View> :
+            null
           }
         </View>
         }
@@ -51,9 +56,3 @@ MovieDetail.propTypes = {
 }
 
 export default MovieDetail
-
-/*{crew &&
-            <View style={{ flex: 2 }}>
-              <Crew crew={crew} />
-            </View>
-            }*/

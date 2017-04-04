@@ -6,12 +6,14 @@ export default StyleSheet.create({
     flex: 1,
     flexGrow: 1,
     backgroundColor: colors.gray15,
+    paddingBottom: 20,
   },
   sectionHeading: {
-    marginVertical: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
     fontSize: fontSize.medium,
     fontFamily: font.title,
-    color: colors.black
+    color: colors.gray70,
   },
   actionsContainer: {
     height: 60,

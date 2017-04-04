@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollView, Text, View } from 'react-native'
 
-import { colors, fontSize } from '../../../../theme'
+import { colors, font, fontSize } from '../../../../theme'
 
 const Crew = ({ crew }) => {
   return (
@@ -53,13 +53,15 @@ const styles = {
   crewJob: {
     textAlign: 'center',
     marginBottom: 5,
-    color: colors.black,
+    color: colors.gray70,
     fontSize: fontSize.default,
+    fontFamily: font.roboReg,
   },
   crewName: {
     textAlign: 'center',
     color: colors.gray50,
     fontSize: fontSize.small,
+    fontFamily: font.roboReg,
   },
 }
 

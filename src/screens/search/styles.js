@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colors, fontSize } from '../../theme'
+import { colors, font, fontSize } from '../../theme'
 
 export default StyleSheet.create({
   container: {
@@ -16,6 +16,7 @@ export default StyleSheet.create({
   inputField: {
     color: colors.gray70,
     fontSize: fontSize.default,
+    fontFamily: font.roboReg,
     height: 42,
     padding: 10,
     flex: 1,
@@ -34,8 +35,9 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   resultsText: {
-    fontSize: fontSize.default,
     color: colors.gray10,
+    fontSize: fontSize.default,
+    fontFamily: font.roboReg,
     padding: 20,
     textAlign: 'center',
   }

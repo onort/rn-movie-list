@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { colors } from '../../theme'
+import { colors, font, fontSize } from '../../theme'
 
 const ListDetailActions = ({ onDelete, onTrailer, onWatched }) => {
   return (
@@ -60,6 +60,8 @@ const styles = {
     marginTop: 10,
     paddingHorizontal: 10,
     textAlign: 'center',
+    fontFamily: font.roboReg,
+    fontSize: fontSize.small,
   }
 }
 

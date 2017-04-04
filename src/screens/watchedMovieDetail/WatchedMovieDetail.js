@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { fetchWatched, getMovieDetails, resetSelected, setSelected, saveWatched } from '../../actions'
 import Actions from './WatchedMovieActions'
-import { colors, fontSize } from '../../theme'
+import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
 
 import { BackButton, LoadingScreen, MovieDetail, RatingModal, ShareModal } from '../common'
@@ -155,6 +155,7 @@ const styles = {
     marginLeft: 10,
     color: colors.gray70,
     fontSize: fontSize.default,
+    fontFamily: font.roboReg,
   }
 }
 

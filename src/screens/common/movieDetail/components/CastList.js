@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize.medium,
     fontFamily: font.title,
-    color: colors.black
+    color: colors.gray70,
   },
   castContainer: {
     flex: 1,
@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
   name: {
     textAlign: 'center',
     fontSize: fontSize.small,
-    color: colors.black,
-    fontFamily: font.openSans
+    color: colors.gray70,
+    fontFamily: font.roboReg,
   },
   charContainer: {
     flex: 1,
@@ -102,7 +102,9 @@ const styles = StyleSheet.create({
   },
   char: {
     textAlign: 'center',
-    fontSize: fontSize.xsmall
+    color: colors.gray50,
+    fontSize: fontSize.xsmall,
+    fontFamily: font.roboReg,
   }
 })
 

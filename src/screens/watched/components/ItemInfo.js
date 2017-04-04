@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   time: {
     color: colors.white,
     fontSize: fontSize.xsmall,
+    fontFamily: font.roboReg,
   },
   scoreBadge: {
     paddingVertical: 3,
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   score: {
     color: colors.white,
     fontSize: fontSize.xsmall,
-    fontFamily: font.openSansBold,
+    fontFamily: font.title,
   },
 })
 

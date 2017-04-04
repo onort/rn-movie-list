@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { fetchWatched, setSelected } from '../../actions'
-import { colors, fontSize } from '../../theme'
+import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
 
 import { ListItem } from '../common'
@@ -90,6 +90,7 @@ const styles = {
   text: {
     color: colors.white,
     fontSize: fontSize.medium,
+    fontFamily: font.roboReg,
     textAlign: 'center',
     paddingVertical: 100,
     paddingHorizontal: 20,
