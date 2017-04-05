@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Alert, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -26,6 +26,7 @@ class WatchedMovieDetail extends Component {
     this.handleShare = this.handleShare.bind(this)
     this.handleShareCancel = this.handleShareCancel.bind(this)
     this.handleSimilarPress = this.handleSimilarPress.bind(this)
+    this.onDelete = this.onDelete.bind(this)
     this.openRateModal = this.openRateModal.bind(this)
     this.openSocialModal = this.openSocialModal.bind(this)
   }
@@ -50,9 +51,14 @@ class WatchedMovieDetail extends Component {
     this.props.resetSelected()
   }
 
+  onDelete() {
+    const title = 'Removing Movie'
+    const message = `Are you sure you want to remove the movie "${this.props.selectedMovie.details.title}" from your watched movies?`
+    const buttons = [ { text: 'Remove', onPress: this.handleDelete }, { text: 'Cancel' }]
+    Alert.alert(title, message, buttons)
+  }
+
   async handleDelete() {
-    console.log('Deleting movie')
-    // Confirm
     const { navigation, selectedMovie, watched } = this.props
     const newWatched = watched.filter(movie => movie.id !== selectedMovie.id)
     await this.props.saveWatched(newWatched)
@@ -113,7 +119,7 @@ class WatchedMovieDetail extends Component {
         <LoadingScreen color={colors.gray20} size={50} backgroundColor={colors.gray90} /> :
         <MovieDetail movie={movie} handleSimilarPress={this.handleSimilarPress}>
           <Actions
-            handleDelete={this.handleDelete}
+            handleDelete={this.onDelete}
             handleRate={this.openRateModal}
             handleShare={this.handleShare}
             rated={rated}

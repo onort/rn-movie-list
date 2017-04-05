@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { fetchWatched, fetchList, resetSelected, saveList, saveWatched, setSelected } from '../../actions'
@@ -17,6 +17,7 @@ class ListMovieDetail extends Component {
     this.handleSimilarPress = this.handleSimilarPress.bind(this)
     this.handleTrailer = this.handleTrailer.bind(this)
     this.handleWatched = this.handleWatched.bind(this)
+    this.onDelete = this.onDelete.bind(this)
   }
 
   static navigationOptions = {
@@ -33,9 +34,14 @@ class ListMovieDetail extends Component {
     this.props.resetSelected()
   }
 
+  onDelete() {
+    const title = 'Removing Movie'
+    const message = `Are you sure you want to remove the movie "${this.props.selectedMovie.details.title}" from your watchlist?`
+    const buttons = [ { text: 'Remove', onPress: this.handleDelete }, { text: 'Cancel' }]
+    Alert.alert(title, message, buttons)
+  }
+
   async handleDelete() {
-    console.log('Deleting movie')
-    // TODO: prompt a confirm
     const { list, navigation, selectedMovie } = this.props
     const newList = list.filter(movie => movie.id !== selectedMovie.id)
     await this.props.saveList(newList)
@@ -91,7 +97,7 @@ class ListMovieDetail extends Component {
         <LoadingScreen color={colors.gray20} size={50} backgroundColor={colors.gray90} /> :
         <MovieDetail movie={this.props.selectedMovie} handleSimilarPress={this.handleSimilarPress}>
           <ListDetailActions
-            onDelete={this.handleDelete}
+            onDelete={this.onDelete}
             onTrailer={this.handleTrailer}
             onWatched={this.handleWatched}
           />

@@ -48,7 +48,6 @@ class HomeScreen extends Component {
 
   handleClear(list) {
     if (list === types.WATCHED || list === types.WATCHLIST) {
-      // const clear = this.props.clear
       const title = list === types.WATCHED ? 'Clearing Watched Movies' : 'Clearing Watchlist'
       const message =
         list === types.WATCHED ?
