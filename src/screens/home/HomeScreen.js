@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native'
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { getPopularAndNowPlaying, setSelected } from '../../actions'
+import { clear, getPopularAndNowPlaying, setSelected } from '../../actions'
 import * as types from '../../actions/types'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
@@ -17,8 +17,8 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props)
     this.handleAddPress = this.handleAddPress.bind(this)
+    this.handleClear = this.handleClear.bind(this)
     this.handlePosterPress = this.handlePosterPress.bind(this)
-    this.handleWatchlistPress = this.handleWatchlistPress.bind(this)
   }
 
   // PropTypes
@@ -42,30 +42,41 @@ class HomeScreen extends Component {
     this.props.navigation.navigate(routeNames.home.detail)
   }
 
-  handleWatchlistPress() {
-    this.props.navigation.navigate(routeNames.watched.root)
-  }
-
   handleAddPress() {
     this.props.navigation.navigate(routeNames.search.root)
+  }
+
+  handleClear(list) {
+    if (list === types.WATCHED || list === types.WATCHLIST) {
+      // const clear = this.props.clear
+      const title = list === types.WATCHED ? 'Clearing Watched Movies' : 'Clearing Watchlist'
+      const message =
+        list === types.WATCHED ?
+        'Are you sure that you want to clear all movies marked as watched?' :
+        'Are you sure that you want to clear all movies in your watchlist?';
+      const buttons = [ 
+        { text: 'Do It!', onPress: () => this.props.clear(list) },
+        { text: 'Cancel' }
+      ]
+      Alert.alert(title, message, buttons)
+    }
   }
 
   render() {
     const { home, list, loading, watched } = this.props
     return (
       <ScrollView style={styles.container}>
-        <View style={{ alignItems: 'flex-end', paddingHorizontal: 40, paddingVertical: 20 }}>
+        <View style={{ alignItems: 'flex-end', paddingHorizontal: 20, paddingVertical: 10 }}>
           <TouchableOpacity>
             <Icon
               name="info-outline"
-              color="#fff"
+              color={colors.gray20}
               size={30}
             />
           </TouchableOpacity>
         </View>
         <View>
           <Info
-            onWatchlist={this.handleWatchlistPress}
             onAdd={this.handleAddPress}
             toWatch={list.length}
             watched={watched.length}
@@ -86,21 +97,16 @@ class HomeScreen extends Component {
           }
         </View>
         <Button
-          onPress={() => this.props.clear(types.WATCHLIST)}
+          onPress={() => this.handleClear(types.WATCHLIST)}
           title="Clear Movie List"
           color="#61b2a7"
           accessibilityLabel="Clear Movie List"
         />
         <Button
-          onPress={() => this.props.clear(types.WATCHED)}
+          onPress={() => this.handleClear(types.WATCHED)}
           title="Clear Watched Movies"
           color="#841584"
           accessibilityLabel="Clear Watched Movies"
-        />
-        <Button
-          onPress={() => this.props.navigation.navigate('Trailer')}
-          title="Watch A Video"
-          color="#bb0000"
         />
       </ScrollView>
     )
@@ -117,4 +123,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getPopularAndNowPlaying, setSelected })(HomeScreen)
+export default connect(mapStateToProps, { clear, getPopularAndNowPlaying, setSelected })(HomeScreen)

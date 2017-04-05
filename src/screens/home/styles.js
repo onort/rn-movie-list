@@ -9,7 +9,8 @@ export default StyleSheet.create({
     // alignItems: 'center'
   },
   sectionHeading: {
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     color: colors.white,
     fontSize: fontSize.medium,
     fontFamily: font.title,
