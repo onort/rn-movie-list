@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native'
+import { Alert, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -48,17 +48,31 @@ class HomeScreen extends Component {
 
   handleClear(list) {
     if (list === types.WATCHED || list === types.WATCHLIST) {
+      // check if there movies in list?
+      const clearList = () => {
+        this.props.clear(list)
+        const toastMsg =
+          list === types.WATCHED ?
+          'All movies marked as watched has been cleared' :
+          'All movies in your watchlist has been cleared'
+        ToastAndroid.showWithGravity(toastMsg, ToastAndroid.LONG, ToastAndroid.TOP)
+      }
       const title = list === types.WATCHED ? 'Clearing Watched Movies' : 'Clearing Watchlist'
       const message =
         list === types.WATCHED ?
         'Are you sure that you want to clear all movies marked as watched?' :
         'Are you sure that you want to clear all movies in your watchlist?';
       const buttons = [ 
-        { text: 'Do It!', onPress: () => this.props.clear(list) },
+        { text: 'Do It!', onPress: clearList },
         { text: 'Cancel' }
       ]
       Alert.alert(title, message, buttons)
     }
+  }
+
+  testToastr() {
+    console.log('Toast says hello')
+    ToastAndroid.showWithGravity('Watchlist cleared', ToastAndroid.LONG, ToastAndroid.TOP)
   }
 
   render() {
@@ -106,6 +120,11 @@ class HomeScreen extends Component {
           title="Clear Watched Movies"
           color="#841584"
           accessibilityLabel="Clear Watched Movies"
+        />
+        <Button
+          onPress={this.testToastr}
+          title="testToastr"
+          color="#e5621b"
         />
       </ScrollView>
     )

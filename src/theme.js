@@ -44,6 +44,7 @@ export const font = {
   lato: 'Lato-Regular',
   roboReg: 'Roboto-Regular',
   roboMed: 'Roboto-Medium',
+  roboIt: 'Roboto-Italic',
   roboCon: 'RobotoCondensed-Regular',
 
   title: 'Montserrat-Medium',

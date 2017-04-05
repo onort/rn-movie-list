@@ -14,5 +14,5 @@ export default StyleSheet.create({
     color: colors.white,
     fontSize: fontSize.medium,
     fontFamily: font.title,
-  }
+  },
 })

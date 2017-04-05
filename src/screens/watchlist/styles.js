@@ -9,7 +9,7 @@ export default StyleSheet.create({
   text: {
     color: colors.white,
     fontSize: fontSize.medium,
-    fontFamily: font.roboReg,
+    fontFamily: font.roboIt,
     textAlign: 'center',
     paddingVertical: 100,
     paddingHorizontal: 20,

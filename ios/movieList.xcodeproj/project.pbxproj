@@ -63,6 +63,7 @@
 		D75E5FF94046427AB5BE9194 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4336A91E1B714F8C8F2B2A4F /* Roboto-Regular.ttf */; };
 		C06DE859EFBC478A8B330648 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB1952629D36488CA3EDC83F /* RobotoCondensed-Regular.ttf */; };
 		0D7DCB4F51B64CAF8ABE5A5C /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C728054770A54A0EB6786D44 /* libRNShare.a */; };
+		DE66B786EF7743C0816A7920 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 460BA34080A54761AD356828 /* Roboto-Italic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,6 +313,7 @@
 		CB1952629D36488CA3EDC83F /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; name = "RobotoCondensed-Regular.ttf"; path = "../assets/fonts/RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9B113E233D994AFCA656E174 /* RNShare.xcodeproj */ = {isa = PBXFileReference; name = "RNShare.xcodeproj"; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		C728054770A54A0EB6786D44 /* libRNShare.a */ = {isa = PBXFileReference; name = "libRNShare.a"; path = "libRNShare.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		460BA34080A54761AD356828 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; name = "Roboto-Italic.ttf"; path = "../assets/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -574,6 +576,7 @@
 				DDB40684E057445BAE922C82 /* Roboto-Medium.ttf */,
 				4336A91E1B714F8C8F2B2A4F /* Roboto-Regular.ttf */,
 				CB1952629D36488CA3EDC83F /* RobotoCondensed-Regular.ttf */,
+				460BA34080A54761AD356828 /* Roboto-Italic.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -963,6 +966,7 @@
 				8573A8100A7D49AE83A9F9CA /* Roboto-Medium.ttf in Resources */,
 				D75E5FF94046427AB5BE9194 /* Roboto-Regular.ttf in Resources */,
 				C06DE859EFBC478A8B330648 /* RobotoCondensed-Regular.ttf in Resources */,
+				DE66B786EF7743C0816A7920 /* Roboto-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

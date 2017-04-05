@@ -9,8 +9,9 @@ export default StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     marginTop: 10,
-    marginHorizontal: 5,
+    marginHorizontal: 10,
     backgroundColor: colors.gray05,
+    borderRadius: 5,
     elevation: 4
   },
   inputField: {
@@ -28,6 +29,8 @@ export default StyleSheet.create({
     borderLeftColor: colors.gray50,
     borderLeftWidth: 1,
     backgroundColor: colors.gray70,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
   },
   resultsContainer: {
     flex: 1,
@@ -36,8 +39,8 @@ export default StyleSheet.create({
   },
   resultsText: {
     color: colors.gray10,
-    fontSize: fontSize.default,
-    fontFamily: font.roboReg,
+    fontSize: fontSize.medium,
+    fontFamily: font.roboIt,
     padding: 20,
     textAlign: 'center',
   }

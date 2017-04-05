@@ -82,7 +82,7 @@ const styles = {
   tagline: {
     fontSize: fontSize.default,
     color: colors.gray70,
-    fontFamily: font.roboReg,
+    fontFamily: font.roboIt,
   },
 }
 

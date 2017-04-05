@@ -64,7 +64,7 @@ class Watched extends Component {
     if (!this.props.watched.length) {
       return (
         <View style={styles.container}>
-          <Text style={styles.text}>You haven't marked any movie watched.</Text>
+          <Text style={styles.text}>You haven't yet marked any movie as watched.</Text>
         </View>
       )
     }
@@ -90,7 +90,7 @@ const styles = {
   text: {
     color: colors.white,
     fontSize: fontSize.medium,
-    fontFamily: font.roboReg,
+    fontFamily: font.roboIt,
     textAlign: 'center',
     paddingVertical: 100,
     paddingHorizontal: 20,

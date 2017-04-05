@@ -80,7 +80,7 @@ class WatchList extends Component {
     if (!this.props.list.length) {
       return (
         <View style={styles.container}>
-          <Text style={styles.text}>You have no movies in your watchlist.</Text>
+          <Text style={styles.text}>You have no movie in your watchlist.</Text>
         </View>
       )
     }
