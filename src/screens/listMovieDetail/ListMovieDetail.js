@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Alert, View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchWatched, fetchList, resetSelected, saveList, saveWatched, setSelected } from '../../actions'
+import { fetchWatched, fetchList, resetInList, saveList, saveWatched, setInList, setNotListed } from '../../actions'
 import { BackButton, LoadingScreen, MovieDetail } from '../common'
 
 import ListDetailActions from './ListDetailActions'
@@ -31,19 +31,19 @@ class ListMovieDetail extends Component {
   }
 
   componentWillUnmount() {
-    this.props.resetSelected()
+    this.props.resetInList()
   }
 
   onDelete() {
     const title = 'Removing Movie'
-    const message = `Are you sure you want to remove the movie "${this.props.selectedMovie.details.title}" from your watchlist?`
+    const message = `Are you sure you want to remove the movie "${this.props.inList.details.title}" from your watchlist?`
     const buttons = [ { text: 'Remove', onPress: this.handleDelete }, { text: 'Cancel' }]
     Alert.alert(title, message, buttons)
   }
 
   async handleDelete() {
-    const { list, navigation, selectedMovie } = this.props
-    const newList = list.filter(movie => movie.id !== selectedMovie.id)
+    const { list, navigation, inList } = this.props
+    const newList = list.filter(movie => movie.id !== inList.id)
     await this.props.saveList(newList)
       .then(() => {
         this.props.fetchList()
@@ -59,7 +59,7 @@ class ListMovieDetail extends Component {
       fetchWatched,
       list,
       navigation,
-      selectedMovie: movie,
+      inList: movie,
       saveList,
       saveWatched,
       watched } = this.props
@@ -77,15 +77,15 @@ class ListMovieDetail extends Component {
   }
 
   handleTrailer() {
-    if (!this.props.selectedMovie.videos.length) {
-      alert(`No trailer info for the movie "${this.props.selectedMovie.details.title}"`)
+    if (!this.props.inList.videos.length) {
+      alert(`No trailer info for the movie "${this.props.inList.details.title}"`)
       return
     }
     this.props.navigation.navigate(routeNames.watchlist.trailer)
   }
 
   handleSimilarPress(movie) {
-    this.props.setSelected(movie)
+    this.props.setNotListed(movie)
     this.props.navigation.navigate(routeNames.watchlist.similar)
   }
 
@@ -95,7 +95,7 @@ class ListMovieDetail extends Component {
     <View style={{ flex: 1 }}>
       {this.props.loading.screen ?
         <LoadingScreen color={colors.gray20} size={50} backgroundColor={colors.gray90} /> :
-        <MovieDetail movie={this.props.selectedMovie} handleSimilarPress={this.handleSimilarPress}>
+        <MovieDetail movie={this.props.inList} handleSimilarPress={this.handleSimilarPress}>
           <ListDetailActions
             onDelete={this.onDelete}
             onTrailer={this.handleTrailer}
@@ -110,11 +110,11 @@ class ListMovieDetail extends Component {
 
 function mapStateToProps(state) {
   return {
+    inList: state.inList,
     list: state.list,
     loading: state.loading,
-    selectedMovie: state.selectedMovie,
     watched: state.watched
   }
 }
 
-export default connect(mapStateToProps, { fetchList, fetchWatched, resetSelected, saveList, saveWatched, setSelected })(ListMovieDetail)
+export default connect(mapStateToProps, { fetchList, fetchWatched, resetInList, saveList, saveWatched, setInList, setNotListed })(ListMovieDetail)

@@ -3,7 +3,7 @@ import { ListView, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { fetchWatched, setSelected } from '../../actions'
+import { fetchWatched, setInList } from '../../actions'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
 
@@ -37,7 +37,7 @@ class Watched extends Component {
   }
 
   handleItemPress(movie) {
-    this.props.setSelected(movie)
+    this.props.setInList(movie)
     this.props.navigation.navigate(routeNames.watched.detail)
   }
 
@@ -103,4 +103,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchWatched, setSelected })(Watched)
+export default connect(mapStateToProps, { fetchWatched, setInList })(Watched)

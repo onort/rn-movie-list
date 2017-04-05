@@ -35,7 +35,7 @@ class Trailer extends Component {
 
 function mapStateToProps(state) {
   return {
-    movie: state.selectedMovie
+    movie: state.notListed
   }
 }
 

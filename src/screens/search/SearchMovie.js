@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Keyboard, ListView, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { clearSearchResults, searchMovie, setSelected } from '../../actions'
+import { clearSearchResults, searchMovie, setNotListed } from '../../actions'
 import { colors } from '../../theme'
 import styles from './styles'
 import { routeNames } from '../../constants'
@@ -56,7 +56,7 @@ class SearchMovie extends Component {
   }
 
   handleItemPress(movie) {
-    this.props.setSelected(movie)
+    this.props.setNotListed(movie)
     this.props.navigation.navigate(routeNames.search.detail)
   }
 
@@ -137,4 +137,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { clearSearchResults, searchMovie, setSelected })(SearchMovie)
+export default connect(mapStateToProps, { clearSearchResults, searchMovie, setNotListed })(SearchMovie)

@@ -4,7 +4,14 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { fetchWatched, getMovieDetails, resetSelected, setSelected, saveWatched } from '../../actions'
+import {
+  fetchWatched,
+  getMovieDetails,
+  resetInList,
+  setInList,
+  setNotListed,
+  saveWatched
+} from '../../actions'
 import Actions from './WatchedMovieActions'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
@@ -42,25 +49,25 @@ class WatchedMovieDetail extends Component {
   }
 
   componentWillMount() {
-    if (this.props.selectedMovie.user_rating) {
-      this.setState({ rated: this.props.selectedMovie.user_rating })
+    if (this.props.inList.user_rating) {
+      this.setState({ rated: this.props.inList.user_rating })
     }
   }
 
   componentWillUnmount() {
-    this.props.resetSelected()
+    this.props.resetInList()
   }
 
   onDelete() {
     const title = 'Removing Movie'
-    const message = `Are you sure you want to remove the movie "${this.props.selectedMovie.details.title}" from your watched movies?`
+    const message = `Are you sure you want to remove the movie "${this.props.inList.details.title}" from your watched movies?`
     const buttons = [ { text: 'Remove', onPress: this.handleDelete }, { text: 'Cancel' }]
     Alert.alert(title, message, buttons)
   }
 
   async handleDelete() {
-    const { navigation, selectedMovie, watched } = this.props
-    const newWatched = watched.filter(movie => movie.id !== selectedMovie.id)
+    const { navigation, inList, watched } = this.props
+    const newWatched = watched.filter(movie => movie.id !== inList.id)
     await this.props.saveWatched(newWatched)
       .then(() => {
         this.props.fetchWatched()
@@ -76,7 +83,7 @@ class WatchedMovieDetail extends Component {
 
   async handleRate(rating) {
     this.setState({ rated: rating })
-    const { selectedMovie: ratedMovie, watched } = this.props
+    const { inList: ratedMovie, watched } = this.props
     ratedMovie.user_rating = rating
     const updatedWatched = watched.map(movie => {
       if (movie.id === ratedMovie.id) return ratedMovie
@@ -105,13 +112,13 @@ class WatchedMovieDetail extends Component {
   }
 
   handleSimilarPress(movie) {
-    this.props.setSelected(movie)
+    this.props.setNotListed(movie)
     this.props.getMovieDetails(movie.id)
     this.props.navigation.navigate(routeNames.watched.similar)
   }
 
   render() {
-    const movie = this.props.selectedMovie
+    const movie = this.props.inList
     const { rated, ratingModalOpen, socialModalOpen } = this.state
     return (
     <View style={{ flex: 1 }}>
@@ -167,10 +174,17 @@ const styles = {
 
 function mapStateToProps(state) {
   return {
+    inList: state.inList,
     loading: state.loading,
-    selectedMovie: state.selectedMovie,
     watched: state.watched
   }
 }
 
-export default connect(mapStateToProps, { fetchWatched, getMovieDetails, resetSelected, saveWatched, setSelected })(WatchedMovieDetail)
+export default connect(mapStateToProps, {
+  fetchWatched,
+  getMovieDetails,
+  resetInList,
+  saveWatched,
+  setInList,
+  setNotListed
+})(WatchedMovieDetail)

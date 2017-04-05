@@ -2,19 +2,21 @@ import { combineReducers } from 'redux'
 
 import errorReducer from './errorReducer'
 import homeReducer from './homeReducer'
+import inListReducer from './inListReducer'
 import listReducer from './listReducer'
 import loadingReducer from './loadingReducer'
+import notListedReducer from './notListedReducer'
 import searchReducer from './searchReducer'
-import selectedReducer from './selectedReducer'
 import watchedReducer from './watchedReducer'
 
 const rootReducer =  combineReducers({
   errors: errorReducer,
   home: homeReducer,
+  inList: inListReducer,
   list: listReducer,
   loading: loadingReducer,
+  notListed: notListedReducer,
   searchResults: searchReducer,
-  selectedMovie: selectedReducer,
   watched: watchedReducer,
 })
 

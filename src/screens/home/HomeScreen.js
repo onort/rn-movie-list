@@ -3,7 +3,7 @@ import { Alert, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, Vi
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { clear, getPopularAndNowPlaying, setSelected } from '../../actions'
+import { clear, getPopularAndNowPlaying, setNotListed } from '../../actions'
 import * as types from '../../actions/types'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
@@ -38,7 +38,7 @@ class HomeScreen extends Component {
   }
 
   handlePosterPress(movie) {
-    this.props.setSelected(movie)
+    this.props.setNotListed(movie)
     this.props.navigation.navigate(routeNames.home.detail)
   }
 
@@ -141,4 +141,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { clear, getPopularAndNowPlaying, setSelected })(HomeScreen)
+export default connect(mapStateToProps, { clear, getPopularAndNowPlaying, setNotListed })(HomeScreen)

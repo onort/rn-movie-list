@@ -4,10 +4,9 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { 
-  discardMovie,
   fetchList,
   markWatched,
-  setSelected
+  setInList,
 } from '../../actions'
 import styles from './styles'
 import { routeNames } from '../../constants'
@@ -20,7 +19,6 @@ class WatchList extends Component {
   constructor(props) {
     super(props)
     this.handleItemPress = this.handleItemPress.bind(this)
-    this.onDiscard = this.onDiscard.bind(this)
     this.onWatched = this.onWatched.bind(this)
     this.renderRow = this.renderRow.bind(this)
   }
@@ -56,12 +54,8 @@ class WatchList extends Component {
   }
 
   handleItemPress(movie) {
-    this.props.setSelected(movie)
+    this.props.setInList(movie)
     this.props.navigation.navigate(routeNames.watchlist.detail)
-  }
-
-  onDiscard(movie) {
-    this.props.discardMovie(movie)
   }
 
   onWatched(movie) {
@@ -104,4 +98,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { discardMovie, fetchList, markWatched, setSelected })(WatchList)
+export default connect(mapStateToProps, { fetchList, markWatched, setInList })(WatchList)

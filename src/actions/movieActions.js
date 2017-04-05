@@ -2,25 +2,29 @@ import * as types from './types'
 import moviesApi from '../api/moviesApi'
 import { noDuplicateMovie } from '../utils'
 
-export const discardMovie = (movie) => {
-  return { 
-    type: types.DISCARD_MOVIE,
+export const setInList = (movie) => {
+  return {
+    type: types.SET_SELECTED_INLIST,
     movie
   }
 }
 
-// Selected
-
-export const setSelected = (movie) => {
+export const setNotListed = (movie) => {
   return {
-    type: types.SET_SELECTED_MOVIE,
+    type: types.SET_SELECTED_NOTLISTED,
     movie
   }
 }
 
-export const resetSelected = () => {
+export const resetInList = () => {
   return {
-    type: types.RESET_SELECTED_MOVIE
+    type: types.RESET_SELECTED_INLIST
+  }
+}
+
+export const resetNotListed = () => {
+  return {
+    type: types.RESET_SELECTED_NOTLISTED
   }
 }
 
