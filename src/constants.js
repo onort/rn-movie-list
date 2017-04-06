@@ -2,6 +2,7 @@ export const routeNames = {
   home: {
     root: 'Home',
     detail: 'HomeMovieDetail',
+    about: 'About',
   },
   search: {
     root: 'SearchMovie',

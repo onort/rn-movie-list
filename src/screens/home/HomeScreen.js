@@ -11,14 +11,19 @@ import styles from './styles'
 
 import { LoadingScreen, PosterRoll } from '../common'
 import Info from './components/Info'
+import AboutModal from './components/AboutModal'
 
 class HomeScreen extends Component {
 
   constructor(props) {
     super(props)
+    this.state = { aboutModalOpen: false }
+    this.handleAbout = this.handleAbout.bind(this)
     this.handleAddPress = this.handleAddPress.bind(this)
     this.handleClear = this.handleClear.bind(this)
     this.handlePosterPress = this.handlePosterPress.bind(this)
+    this.openAboutModal = this.openAboutModal.bind(this)
+    this.closeAboutModal = this.closeAboutModal.bind(this)
   }
 
   // PropTypes
@@ -35,6 +40,18 @@ class HomeScreen extends Component {
   componentWillMount() {
     const { popular, now } = this.props.home
     if (!popular.length && !now.length) this.props.getPopularAndNowPlaying()
+  }
+
+  handleAbout() {
+    this.props.navigation.navigate(routeNames.home.about)
+  }
+
+  openAboutModal() {
+    this.setState({ aboutModalOpen: true })
+  }
+
+  closeAboutModal() {
+    this.setState({ aboutModalOpen: false })
   }
 
   handlePosterPress(movie) {
@@ -72,15 +89,16 @@ class HomeScreen extends Component {
 
   testToastr() {
     console.log('Toast says hello')
-    ToastAndroid.showWithGravity('Watchlist cleared', ToastAndroid.LONG, ToastAndroid.TOP)
+    ToastAndroid.showWithGravity('Toast Test', ToastAndroid.LONG, ToastAndroid.TOP)
   }
 
   render() {
     const { home, list, loading, watched } = this.props
     return (
       <ScrollView style={styles.container}>
+        <AboutModal onClose={this.closeAboutModal} visible={this.state.aboutModalOpen} />
         <View style={{ alignItems: 'flex-end', paddingHorizontal: 20, paddingVertical: 10 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.openAboutModal}>
             <Icon
               name="info-outline"
               color={colors.gray20}

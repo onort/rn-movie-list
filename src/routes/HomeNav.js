@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation'
-import { HomeScreen, SearchMovieDetail } from '../screens'
+import { About, HomeScreen, SearchMovieDetail } from '../screens'
 
 export default StackNavigator({
   Home: {
@@ -8,4 +8,7 @@ export default StackNavigator({
   HomeMovieDetail: {
     screen: SearchMovieDetail,
   },
+  About: {
+    screen: About
+  }
 })
