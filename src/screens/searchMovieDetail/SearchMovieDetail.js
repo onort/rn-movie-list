@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Alert, ToastAndroid, View } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 
@@ -50,7 +50,7 @@ class SearchMovieDetail extends Component {
   }
 
   async handleAdd() {
-    const { clearSearchResults, fetchList, list, navigation, resetSelected, resetNotListed, saveList, notListed, watched } = this.props
+    const { clearSearchResults, fetchList, list, navigation, resetNotListed, saveList, notListed, watched } = this.props
     const inList = list.filter(movie => movie.id === notListed.id)
     const inWatched = watched.filter(movie => movie.id === notListed.id)
     const resetAction = NavigationActions.reset({
@@ -62,8 +62,8 @@ class SearchMovieDetail extends Component {
       const watchlist = list.concat(newMovie)
       await saveList(watchlist)
         .then(() => {
+          ToastAndroid.showWithGravity('Movie added to your watchlist', ToastAndroid.LONG, ToastAndroid.TOP)
           fetchList()
-          // resetSelected()
           resetNotListed()
           clearSearchResults()
           if (navigation.state.routeName === 'WatchlistSimilarMovieDetail') {
@@ -73,10 +73,14 @@ class SearchMovieDetail extends Component {
           navigation.dispatch(resetAction)
           navigation.navigate(routeNames.watchlist.root)
         })
-        .catch((err) => console.log('Error', err))
-    } else {
-      // TODO: alert user
-      console.log('Movie Already in list/watched')
+        .catch(err => {
+        console.log('Error on handleWatched', err)
+        ToastAndroid.showWithGravity('An error has occured while adding', ToastAndroid.LONG, ToastAndroid.TOP)
+      })
+    } else if (inList.length > 0) {
+      ToastAndroid.showWithGravity('Movie already in watchlist', ToastAndroid.LONG, ToastAndroid.TOP)
+    } else if (inWatched.length > 0) {
+      ToastAndroid.showWithGravity('Movie already marked as watched', ToastAndroid.LONG, ToastAndroid.TOP)
     }
   }
 
@@ -86,7 +90,7 @@ class SearchMovieDetail extends Component {
 
   handleTrailer() {
     if (!this.props.notListed.videos.length) {
-      alert(`No trailer info for the movie "${this.props.notListed.details.title}"`)
+      Alert.alert('No Trailer' ,`Sorry, no trailer info for the movie "${this.props.notListed.details.title}"`)
       return
     }
     this.props.navigation.navigate(routeNames.search.trailer)

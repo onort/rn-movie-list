@@ -69,7 +69,6 @@ class moviesApi {
     }
     try {
       const { data } = await axios.get(`/movie/${id}/similar`, { params })
-      console.table('fetchSimilar got data', data)
       return data.results
     } catch (e) {
       console.error('Error on fetchSimilar', e)

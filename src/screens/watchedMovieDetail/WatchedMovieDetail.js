@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Text, View } from 'react-native'
+import { Alert, Text, ToastAndroid, View } from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -70,11 +70,14 @@ class WatchedMovieDetail extends Component {
     const newWatched = watched.filter(movie => movie.id !== inList.id)
     await this.props.saveWatched(newWatched)
       .then(() => {
+        ToastAndroid.showWithGravity('Movie deleted from watched movies', ToastAndroid.LONG, ToastAndroid.TOP)
         this.props.fetchWatched()
         navigation.goBack()
       })
-      .catch(err => console.error('Error on handleDelete / WatchedMovieDetail component', err))
-    // Toastr
+      .catch((err) => {
+        console.log('Error on handleDelete', err)
+        ToastAndroid.showWithGravity('An error has occured while deleting', ToastAndroid.LONG, ToastAndroid.TOP)
+      })
   }
 
   openRateModal() {
@@ -92,7 +95,7 @@ class WatchedMovieDetail extends Component {
     await this.props.saveWatched(updatedWatched)
       .then(() => this.props.fetchWatched())
       .catch(err => console.error('Error on handleRate', err))
-    setTimeout(this.handleRateModalClose, 2000)
+    setTimeout(this.handleRateModalClose, 300)
   }
 
   handleRateModalClose() {

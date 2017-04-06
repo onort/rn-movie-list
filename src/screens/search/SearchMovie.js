@@ -20,6 +20,7 @@ class SearchMovie extends Component {
       searchedFor: ''
     }
     this.handleItemPress = this.handleItemPress.bind(this)
+    this.onTextChange = this.onTextChange.bind(this)
     this.renderRow = this.renderRow.bind(this)
     this.searchMovie = this.searchMovie.bind(this)
   }
@@ -78,6 +79,10 @@ class SearchMovie extends Component {
     // else show toastr?
   }
 
+  onTextChange(input) {
+    this.setState({ input })
+  }
+
   renderResults() {
     const { loading, searchResults } = this.props
     const { searchedFor } = this.state
@@ -102,7 +107,7 @@ class SearchMovie extends Component {
       <View style={styles.container}>
         <View style={styles.searchContainer}>
           <TextInput
-            onChangeText={input => this.setState({ input })}
+            onChangeText={this.onTextChange}
             value={this.state.input}
             style={styles.inputField}
             underlineColorAndroid={colors.gray40}

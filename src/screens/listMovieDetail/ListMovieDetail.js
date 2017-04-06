@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
-import { Alert, View } from 'react-native'
+import { Alert, ToastAndroid, View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { fetchWatched, fetchList, resetInList, saveList, saveWatched, setInList, setNotListed } from '../../actions'
-import { BackButton, LoadingScreen, MovieDetail } from '../common'
-
-import ListDetailActions from './ListDetailActions'
+import {
+  fetchWatched,
+  fetchList,
+  resetInList,
+  saveList,
+  saveWatched,
+  setInList,
+  setNotListed
+} from '../../actions'
 import { routeNames } from '../../constants'
 import { colors } from '../../theme'
+
+import { BackButton, LoadingScreen, MovieDetail } from '../common'
+import ListDetailActions from './ListDetailActions'
 
 class ListMovieDetail extends Component {
 
@@ -47,10 +55,13 @@ class ListMovieDetail extends Component {
     await this.props.saveList(newList)
       .then(() => {
         this.props.fetchList()
+        ToastAndroid.showWithGravity('Movie deleted from watchlist', ToastAndroid.LONG, ToastAndroid.TOP)
         navigation.goBack()
       })
-      .catch((err) => console.log('Error on handleDelete', err))
-    // TODO: show toastr? !! Show it on watchlist? or global toastr?
+      .catch((err) => {
+        console.log('Error on handleDelete', err)
+        ToastAndroid.showWithGravity('An error has occured while deleting', ToastAndroid.LONG, ToastAndroid.TOP)
+      })
   }
 
   async handleWatched() {
@@ -68,17 +79,20 @@ class ListMovieDetail extends Component {
     const newWatched = watched.concat(movie)
     Promise.all([await saveWatched(newWatched), await saveList(newList)])
       .then(() => {
+        ToastAndroid.showWithGravity('Movie added to your watchlist', ToastAndroid.LONG, ToastAndroid.TOP)
         fetchList()
         fetchWatched()
         navigation.goBack()
       })
-      .catch(err => console.log('Error on handleWatched', err))
-    // show toastr
+      .catch(err => {
+        console.log('Error on handleWatched', err)
+        ToastAndroid.showWithGravity('An error has occured while adding', ToastAndroid.LONG, ToastAndroid.TOP)
+      })
   }
 
   handleTrailer() {
     if (!this.props.inList.videos.length) {
-      alert(`No trailer info for the movie "${this.props.inList.details.title}"`)
+      Alert.alert('No Trailer' ,`No trailer info for the movie "${this.props.inList.details.title}"`)
       return
     }
     this.props.navigation.navigate(routeNames.watchlist.trailer)
