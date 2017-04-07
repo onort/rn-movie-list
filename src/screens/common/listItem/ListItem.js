@@ -5,23 +5,26 @@ import styles from './styles'
 
 const ListItem = ({ children, movie, handlePress }) => {
   const { poster_path, backdrop_path } = movie
-  const posterUrl = poster_path ? 'http://image.tmdb.org/t/p/w92' + poster_path : 'http://placehold.it/92x168'
-  const backdropUrl =
+  const posterSrc =
+    poster_path ?
+      { uri: `http://image.tmdb.org/t/p/w92${poster_path}` } :
+      require('../../_assets/noPoster.png');
+  const backdropSrc =
     backdrop_path ?
-      'http://image.tmdb.org/t/p/w300' + backdrop_path :
-      'http://placehold.it/300x169'
+      { uri :`http://image.tmdb.org/t/p/w300${backdrop_path}` } :
+      require('../../_assets/noBackdrop.png');
 
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.root}>
         <Image
-          source={{ uri: backdropUrl }}
+          source={backdropSrc}
           style={styles.backdrop}
         />
         <View style={styles.container}>
           <View style={styles.posterContainer}>
             <Image
-              source={{ uri: posterUrl }}
+              source={posterSrc}
               style={styles.poster}
               onPress={handlePress}
             />

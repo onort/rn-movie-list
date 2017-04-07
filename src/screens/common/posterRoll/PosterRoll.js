@@ -13,12 +13,15 @@ const PosterRoll = ({ movies, handlePress }) => {
 
 const Movie = (movie, handlePress) => {
   const { id, poster_path } = movie
-  const posterUrl = poster_path ? 'http://image.tmdb.org/t/p/w154' + poster_path : 'http://placehold.it/154x231'
+  const posterSrc =
+    poster_path ?
+      { uri: `http://image.tmdb.org/t/p/w154${poster_path}` } :
+      require('../../_assets/noPoster.png');
   return (
     <View key={id} style={styles.movieContainer}>
       <TouchableOpacity onPress={() => handlePress(movie)}>
          <Image
-          source={{ uri: posterUrl }}
+          source={posterSrc}
           style={styles.poster}
         />
       </TouchableOpacity>

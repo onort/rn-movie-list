@@ -3,19 +3,21 @@ import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-n
 
 import { colors, font, fontSize } from '../../../theme'
 import { colorize } from '../../../utils'
-// import Icon from 'react-native-vector-icons/MaterialIcons'
 
 
 const ResultItem = ({ movie, handlePress }) => {
   const { title, poster_path, release_date, vote_average } = movie
-  const imageUrl = poster_path ? 'http://image.tmdb.org/t/p/w92/' + poster_path : 'http://placehold.it/90x60'
+  const posterSrc =
+    poster_path ?
+      { uri: `http://image.tmdb.org/t/p/w92${poster_path}` } :
+      require('../../_assets/noPoster.png');
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.resultContainer}>
         <View style={styles.posterContainer}>
           <Image
             style={styles.poster}
-            source={{ uri: imageUrl }}
+            source={posterSrc}
           />
         </View>
         <View style={styles.titleContainer}>

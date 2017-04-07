@@ -20,12 +20,15 @@ const CastList = ({ cast }) => {
 
 const Person = (person) => {
   const { cast_id, character, name, profile_path } = person
-  const imageUrl = profile_path ? 'http://image.tmdb.org/t/p/w185' + profile_path : 'http://placehold.it/80x80'
+  const imageSrc =
+    profile_path ?
+    { uri: `http://image.tmdb.org/t/p/w185${profile_path}` } :
+    require('../../../_assets/person.png');
   return (
     <View key={cast_id} style={styles.personContainer}>
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: imageUrl }}
+          source={imageSrc}
           style={styles.image}
         />
       </View>

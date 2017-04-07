@@ -5,21 +5,24 @@ import { colors, font, fontSize } from '../../../../theme'
 
 const Header = ({ details }) => {
     const { backdrop_path, poster_path, tagline, title } = details
-    const backdropUrl =
+    const backdropSrc =
       backdrop_path ?
-        'http://image.tmdb.org/t/p/w780' + backdrop_path :
-        'http://placehold.it/300x169';
-    const posterUrl = poster_path ? 'http://image.tmdb.org/t/p/w92' + poster_path : 'http://placehold.it/154x231'
+        { uri :`http://image.tmdb.org/t/p/w780${backdrop_path}` } :
+        require('../../../_assets/noBackdropDetail.png');
+    const posterSrc =
+      poster_path ?
+      { uri: `http://image.tmdb.org/t/p/w92${poster_path}` } :
+      require('../../../_assets/noPoster.png');
   return (
     <View>
       <Image
-        source={{ uri: backdropUrl }}
+        source={backdropSrc}
         style={styles.backdrop}
       />
       <View style={styles.header}>
         <View style={styles.posterContainer}>
           <Image
-            source={{ uri: posterUrl }}
+            source={posterSrc}
             style={styles.poster}
           />
         </View>
