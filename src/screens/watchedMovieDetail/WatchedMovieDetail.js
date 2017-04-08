@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Text, ToastAndroid, View } from 'react-native'
+import { Alert, Share, Text, ToastAndroid, View } from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -16,7 +16,7 @@ import Actions from './WatchedMovieActions'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
 
-import { BackButton, LoadingScreen, MovieDetail, RatingModal, ShareModal } from '../common'
+import { BackButton, LoadingScreen, MovieDetail, RatingModal } from '../common'
 
 class WatchedMovieDetail extends Component {
 
@@ -25,17 +25,14 @@ class WatchedMovieDetail extends Component {
     this.state = {
       ratingModalOpen: false,
       rated: -1,
-      socialModalOpen: false,
     }
     this.handleDelete = this.handleDelete.bind(this)
     this.handleRateModalClose = this.handleRateModalClose.bind(this)
     this.handleRate = this.handleRate.bind(this)
     this.handleShare = this.handleShare.bind(this)
-    this.handleShareCancel = this.handleShareCancel.bind(this)
     this.handleSimilarPress = this.handleSimilarPress.bind(this)
     this.onDelete = this.onDelete.bind(this)
     this.openRateModal = this.openRateModal.bind(this)
-    this.openSocialModal = this.openSocialModal.bind(this)
   }
 
   static navigationOptions = {
@@ -102,16 +99,22 @@ class WatchedMovieDetail extends Component {
     this.setState({ ratingModalOpen: false })
   }
 
-  openSocialModal() {
-    this.setState({ socialModalOpen: true })
-  }
-
-  handleShareCancel() {
-    this.setState({ socialModalOpen: false })
-  }
-
   handleShare() {
-    this.openSocialModal()
+    const { details: movie } = this.props.inList
+    Share.share(
+      {
+        message: `I have just watched ${movie.title}`,
+        title: `Just Watched ${movie.title}`,
+      },
+      {
+        // dialogTitle: '',
+      })
+    .then(result => {
+      if (result.action === Share.sharedAction) {
+        ToastAndroid.showWithGravity('Sharing...', ToastAndroid.SHORT, ToastAndroid.TOP)
+      }
+    })
+    .catch(() => ToastAndroid.showWithGravity('An error occured while sharing.', ToastAndroid.LONG, ToastAndroid.TOP))
   }
 
   handleSimilarPress(movie) {
@@ -122,7 +125,7 @@ class WatchedMovieDetail extends Component {
 
   render() {
     const movie = this.props.inList
-    const { rated, ratingModalOpen, socialModalOpen } = this.state
+    const { rated, ratingModalOpen } = this.state
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading.screen ?
@@ -144,10 +147,6 @@ class WatchedMovieDetail extends Component {
             onClose={this.handleRateModalClose}
             title={movie.details.title}
             visible={ratingModalOpen}
-          />
-          <ShareModal
-            visible={socialModalOpen}
-            cancelShare={this.handleShareCancel}
           />
         </MovieDetail>
       }

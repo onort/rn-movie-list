@@ -4,6 +4,7 @@ import { Image, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedb
 import { colors, font, fontSize } from '../../../theme'
 
 const AboutModal = ({ onClose, visible }) => {
+  const TMDbLogo = require('../../_assets/tmdb.png')
   return (
     <Modal
       animationType={'fade'}
@@ -29,18 +30,16 @@ const AboutModal = ({ onClose, visible }) => {
               <View style={styles.sectionContainer}>
                 <View style={styles.copyContainer}>
                   <Text style={styles.copyText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
-                  <Text style={styles.copyText}>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</Text>
+                  <Text style={styles.copyText}>This product uses the TMDb API but is not endorsed or certified by TMDb.</Text>
+                  <View style={[styles.tmdbContainer, styles.center]}>
+                    <Image source={TMDbLogo} style={styles.tmdbLogo} />
+                  </View>
                 </View>
               </View>
                 <View style={styles.actionsContainer}>
                   <TouchableOpacity>
                     <View style={styles.bigButton}>
                       <Text style={styles.buttonText}>Rate This App</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.bigButton}>
-                      <Text style={styles.buttonText}>Feedback</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -115,20 +114,29 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     textAlign: 'center',
   },
+  tmdbContainer: {
+    // height: 40,
+  },
+  tmdbLogo: {
+    height: 30,
+    width: 75,
+    resizeMode: 'contain',
+
+  },
   actionsContainer: {
     // flex: 1,
     paddingHorizontal: 20,
   },
   bigButton: {
     // flex: 1,
-    backgroundColor: colors.gray10,
+    backgroundColor: colors.white,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    elevation: 2,
-    // borderColor: colors.gray70,
-    // borderWidth: 1,
+    // elevation: 2,
+    borderColor: colors.gray70,
+    borderWidth: 1,
     // borderRadius: 5,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   buttonText: {
     color: colors.gray70,

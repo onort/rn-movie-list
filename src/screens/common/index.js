@@ -6,7 +6,6 @@ import LoadingScreen from './loading/LoadingScreen'
 import MovieDetail from './movieDetail/MovieDetail'
 import PosterRoll from './posterRoll/PosterRoll'
 import RatingModal from './ratingModal/RatingModal'
-import ShareModal from './shareModal/ShareModal'
 
 export {
   BackButton,
@@ -17,5 +16,4 @@ export {
   MovieDetail,
   PosterRoll,
   RatingModal,
-  ShareModal,
 }

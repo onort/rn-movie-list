@@ -11,7 +11,7 @@ const Header = ({ details }) => {
         require('../../../_assets/noBackdropDetail.png');
     const posterSrc =
       poster_path ?
-      { uri: `http://image.tmdb.org/t/p/w92${poster_path}` } :
+      { uri: `http://image.tmdb.org/t/p/w154${poster_path}` } :
       require('../../../_assets/noPoster.png');
   return (
     <View>
