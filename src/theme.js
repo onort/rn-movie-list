@@ -1,8 +1,8 @@
 export const colors = {
   white: '#fff',
   black: '#333',
-  grey: '#919191',
   green: '#5d9964',
+  star: '#FFD700',
 
   // neutrals react-conf-app
   gray90: '#1A1A1A',

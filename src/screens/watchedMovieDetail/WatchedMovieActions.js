@@ -12,7 +12,7 @@ const WatchedMovieActions = ({ handleDelete, handleRate, handleShare, rated }) =
         <TouchableOpacity onPress={handleRate}>
           { rated < 0 ?
           <View style={styles.actionContainer}>
-            <Icon name="star" color={colors.gray50} size={30} />
+            <Icon name="star-border" color={colors.gray50} size={30} />
             <Text style={styles.text}>Rate</Text>
           </View> :
           <View style={styles.actionContainer}>

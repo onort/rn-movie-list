@@ -62,7 +62,7 @@ class SearchMovieDetail extends Component {
       const watchlist = list.concat(newMovie)
       await saveList(watchlist)
         .then(() => {
-          ToastAndroid.showWithGravity('Movie added to your watchlist', ToastAndroid.LONG, ToastAndroid.TOP)
+          ToastAndroid.showWithGravity('Movie Added', ToastAndroid.LONG, ToastAndroid.TOP)
           fetchList()
           resetNotListed()
           clearSearchResults()
@@ -75,12 +75,12 @@ class SearchMovieDetail extends Component {
         })
         .catch(err => {
         console.log('Error on handleWatched', err)
-        ToastAndroid.showWithGravity('An error has occured while adding', ToastAndroid.LONG, ToastAndroid.TOP)
+        ToastAndroid.showWithGravity('An Error Has Occured While Adding', ToastAndroid.LONG, ToastAndroid.TOP)
       })
     } else if (inList.length > 0) {
-      ToastAndroid.showWithGravity('Movie already in watchlist', ToastAndroid.LONG, ToastAndroid.TOP)
+      ToastAndroid.showWithGravity('Movie Already in List', ToastAndroid.LONG, ToastAndroid.TOP)
     } else if (inWatched.length > 0) {
-      ToastAndroid.showWithGravity('Movie already marked as watched', ToastAndroid.LONG, ToastAndroid.TOP)
+      ToastAndroid.showWithGravity('Movie Already Marked As Watched', ToastAndroid.LONG, ToastAndroid.TOP)
     }
   }
 

@@ -67,13 +67,13 @@ class WatchedMovieDetail extends Component {
     const newWatched = watched.filter(movie => movie.id !== inList.id)
     await this.props.saveWatched(newWatched)
       .then(() => {
-        ToastAndroid.showWithGravity('Movie deleted from watched movies', ToastAndroid.LONG, ToastAndroid.TOP)
+        ToastAndroid.showWithGravity('Movie Deleted', ToastAndroid.LONG, ToastAndroid.TOP)
         this.props.fetchWatched()
         navigation.goBack()
       })
       .catch((err) => {
         console.log('Error on handleDelete', err)
-        ToastAndroid.showWithGravity('An error has occured while deleting', ToastAndroid.LONG, ToastAndroid.TOP)
+        ToastAndroid.showWithGravity('An Error Has Occured', ToastAndroid.LONG, ToastAndroid.TOP)
       })
   }
 
@@ -83,6 +83,7 @@ class WatchedMovieDetail extends Component {
 
   async handleRate(rating) {
     this.setState({ rated: rating })
+    ToastAndroid.showWithGravity('Rating Saved', ToastAndroid.LONG, ToastAndroid.TOP)
     const { inList: ratedMovie, watched } = this.props
     ratedMovie.user_rating = rating
     const updatedWatched = watched.map(movie => {
@@ -114,7 +115,7 @@ class WatchedMovieDetail extends Component {
         ToastAndroid.showWithGravity('Sharing...', ToastAndroid.SHORT, ToastAndroid.TOP)
       }
     })
-    .catch(() => ToastAndroid.showWithGravity('An error occured while sharing.', ToastAndroid.LONG, ToastAndroid.TOP))
+    .catch(() => ToastAndroid.showWithGravity('An Error Occured While Sharing.', ToastAndroid.LONG, ToastAndroid.TOP))
   }
 
   handleSimilarPress(movie) {

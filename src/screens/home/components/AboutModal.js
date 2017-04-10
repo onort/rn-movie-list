@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
     // paddingVertical: 40,
-    paddingHorizontal: 50,
+    paddingHorizontal: 60,
   },
   center: {
     justifyContent: 'center',
@@ -65,15 +65,15 @@ const styles = StyleSheet.create({
   aboutContainer: {
     backgroundColor: colors.white,
     elevation: 2,
-    paddingVertical: 15,
+    paddingVertical: 10,
+    borderRadius: 4,
     // borderColor: 'blue',
     // borderWidth: 1,
   },
   sectionContainer: {
     // elevation: 1,
     // marginVertical: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 5,
+    padding: 5,
     // borderColor: 'red',
     // borderWidth: 1,
   },
@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
     borderColor: colors.gray05,
     borderWidth: 1,
     borderRadius: 4,
-    height: 128,
-    width: 128,
+    height: 100,
+    width: 100,
   },
   brandingContainer: {
-    // borderColor: 'red',
+    // borderColor: 'blue',
     // borderWidth: 1,
   },
   brandingText: {
@@ -103,15 +103,15 @@ const styles = StyleSheet.create({
   },
   copyContainer: {
     paddingHorizontal: 20,
-    // borderColor: 'red',
+    // borderColor: 'green',
     // borderWidth: 1,
   },
   copyText: {
     fontFamily: font.roboReg,
-    fontSize: fontSize.small,
+    fontSize: fontSize.xsmall,
     color: colors.gray70,
     lineHeight: 18,
-    paddingVertical: 10,
+    paddingBottom: 10,
     textAlign: 'center',
   },
   tmdbContainer: {
@@ -126,19 +126,22 @@ const styles = StyleSheet.create({
   actionsContainer: {
     // flex: 1,
     paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   bigButton: {
     // flex: 1,
     backgroundColor: colors.white,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
     // elevation: 2,
     borderColor: colors.gray70,
     borderWidth: 1,
     // borderRadius: 5,
-    marginVertical: 5,
+    // marginVertical: 5,
   },
   buttonText: {
+    fontSize: fontSize.small,
+    fontFamily: font.title,
     color: colors.gray70,
     textAlign: 'center',
   }
