@@ -1,4 +1,3 @@
-import About from './about/About'
 import HomeScreen from './home/HomeScreen'
 import ListMovieDetail from './listMovieDetail/ListMovieDetail'
 import SearchMovie from './search/SearchMovie'
@@ -8,8 +7,7 @@ import Watched from './watched/Watched'
 import WatchList from './watchlist/WatchList'
 import WatchedMovieDetail from './watchedMovieDetail/WatchedMovieDetail'
 
-export { 
-  About,
+export {
   HomeScreen,
   ListMovieDetail,
   SearchMovie,

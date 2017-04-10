@@ -79,9 +79,9 @@ class ListMovieDetail extends Component {
     const newWatched = watched.concat(movie)
     Promise.all([await saveWatched(newWatched), await saveList(newList)])
       .then(() => {
-        ToastAndroid.showWithGravity('Movie Marked Watched', ToastAndroid.LONG, ToastAndroid.TOP)
         fetchList()
         fetchWatched()
+        ToastAndroid.showWithGravity('Movie Marked Watched', ToastAndroid.LONG, ToastAndroid.TOP)
         navigation.goBack()
       })
       .catch(err => {
@@ -104,7 +104,6 @@ class ListMovieDetail extends Component {
   }
 
   render() {
-    // console.info('props', this.props)
     return (
     <View style={{ flex: 1 }}>
       {this.props.loading.screen ?

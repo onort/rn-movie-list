@@ -7,7 +7,6 @@ import { clear, getPopularAndNowPlaying, setNotListed } from '../../actions'
 import * as types from '../../actions/types'
 import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
-import styles from './styles'
 
 import { LoadingScreen, PosterRoll } from '../common'
 import Info from './components/Info'
@@ -18,7 +17,6 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props)
     this.state = { aboutModalOpen: false }
-    this.handleAbout = this.handleAbout.bind(this)
     this.handleAddPress = this.handleAddPress.bind(this)
     this.handleClear = this.handleClear.bind(this)
     this.handlePosterPress = this.handlePosterPress.bind(this)
@@ -40,10 +38,6 @@ class HomeScreen extends Component {
   componentWillMount() {
     const { popular, now } = this.props.home
     if (!popular.length && !now.length) this.props.getPopularAndNowPlaying()
-  }
-
-  handleAbout() {
-    this.props.navigation.navigate(routeNames.home.about)
   }
 
   openAboutModal() {
@@ -92,62 +86,83 @@ class HomeScreen extends Component {
     ToastAndroid.showWithGravity('Toast Test', ToastAndroid.LONG, ToastAndroid.TOP)
   }
 
+  watchedInLast30(watched) {
+    const msIn30Days = 1000 * 60 * 60 * 24 * 30
+    return watched.filter(movie => (new Date().getTime() - movie.watched_on) < msIn30Days ).length
+  }
+
   render() {
     const { home, list, loading, watched } = this.props
     return (
-      <ScrollView style={styles.container}>
-        <AboutModal onClose={this.closeAboutModal} visible={this.state.aboutModalOpen} />
-        <View style={{ alignItems: 'flex-end', paddingHorizontal: 20, paddingVertical: 10 }}>
-          <TouchableOpacity onPress={this.openAboutModal}>
-            <Icon
-              name="info-outline"
-              color={colors.gray20}
-              size={30}
+      <View style={{ flex: 1}}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <AboutModal onClose={this.closeAboutModal} visible={this.state.aboutModalOpen} />
+          <View style={{ alignItems: 'flex-end', paddingHorizontal: 20, paddingVertical: 10 }}>
+            <TouchableOpacity onPress={this.openAboutModal}>
+              <Icon
+                name="info-outline"
+                color={colors.gray20}
+                size={30}
+              />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Info
+              onAdd={this.handleAddPress}
+              toWatch={list.length}
+              watched30={this.watchedInLast30(watched)}
             />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Info
-            onAdd={this.handleAddPress}
-            toWatch={list.length}
-            watched={watched.length}
+          </View>
+          <View style={{ flex: 1, marginVertical: 5, minHeight: 180 }}>
+            <Text style={styles.sectionHeading}>In Theaters</Text>
+            { loading.similar ?
+              <LoadingScreen color={colors.gray20} size={30} backgroundColor={colors.gray90} /> :
+              <PosterRoll movies={home.now} handlePress={this.handlePosterPress} />
+            }
+          </View>
+          <View style={{ flex: 1, marginVertical: 5, minHeight: 180 }}>
+            <Text style={styles.sectionHeading}>Popular</Text>
+            { loading.similar ?
+              <LoadingScreen color={colors.gray20} size={30} backgroundColor={colors.gray90} /> :
+              <PosterRoll movies={home.popular} handlePress={this.handlePosterPress} />
+            }
+          </View>
+          <Button
+            onPress={() => this.handleClear(types.WATCHLIST)}
+            title="Clear Movie List"
+            color="#61b2a7"
+            accessibilityLabel="Clear Movie List"
           />
-        </View>
-        <View style={{ flex: 1, marginVertical: 5, minHeight: 180 }}>
-          <Text style={styles.sectionHeading}>In Theaters</Text>
-          { loading.similar ?
-            <LoadingScreen color={colors.gray20} size={30} backgroundColor={colors.gray90} /> :
-            <PosterRoll movies={home.now} handlePress={this.handlePosterPress} />
-          }
-        </View>
-        <View style={{ flex: 1, marginVertical: 5, minHeight: 180 }}>
-          <Text style={styles.sectionHeading}>Popular</Text>
-          { loading.similar ?
-            <LoadingScreen color={colors.gray20} size={30} backgroundColor={colors.gray90} /> :
-            <PosterRoll movies={home.popular} handlePress={this.handlePosterPress} />
-          }
-        </View>
-        <Button
-          onPress={() => this.handleClear(types.WATCHLIST)}
-          title="Clear Movie List"
-          color="#61b2a7"
-          accessibilityLabel="Clear Movie List"
-        />
-        <Button
-          onPress={() => this.handleClear(types.WATCHED)}
-          title="Clear Watched Movies"
-          color="#841584"
-          accessibilityLabel="Clear Watched Movies"
-        />
-        <Button
-          onPress={this.testToastr}
-          title="testToastr"
-          color="#e5621b"
-        />
-      </ScrollView>
+          <Button
+            onPress={() => this.handleClear(types.WATCHED)}
+            title="Clear Watched Movies"
+            color="#841584"
+            accessibilityLabel="Clear Watched Movies"
+          />
+          <Button
+            onPress={this.testToastr}
+            title="testToastr"
+            color="#e5621b"
+          />
+        </ScrollView>
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.gray90,
+    paddingBottom: 30,
+  },
+  sectionHeading: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    color: colors.white,
+    fontSize: fontSize.medium,
+    fontFamily: font.title,
+  },
+})
 
 
 function mapStateToProps(state) {

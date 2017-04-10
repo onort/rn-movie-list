@@ -4,17 +4,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { colors, font, fontSize } from '../../../theme'
 
-const Info = ({ onAdd, toWatch, watched }) => {
-  // Watched this month logic (in utils or HomeScreen)?
+const Info = ({ onAdd, toWatch, watched30 }) => {
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.statsContainer}>
-        <ListInfo title="Movies in watchlist" count={toWatch} />
-        <ListInfo title="Watched this month" count={watched} />
+        <ListInfo title="Movies To Watch" count={toWatch} />
+        <ListInfo title="Watched In Last 30 Days" count={watched30} />
       </View>
       <View style={[styles.item, styles.buttonGroup]}>
-        <BigButton title="Add to list" color={colors.gray60} handlePress={onAdd} />
+        <AddButton color={colors.gray90} handlePress={onAdd} />
       </View>
     </View>
   )
@@ -24,7 +23,7 @@ const ListInfo = ({ title, count }) => {
   return (
     <View style={styles.item}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{title}:</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
       <View style={styles.countContainer}>
         <View style={styles.badge}>
@@ -35,13 +34,13 @@ const ListInfo = ({ title, count }) => {
   )
 }
 
-const BigButton = ({ color, handlePress, title }) => {
+const AddButton = ({ color, handlePress }) => {
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.buttonContainer, { backgroundColor: color }]}>
         <Icon
           name="add"
-          color="#fff"
+          color={colors.gray15}
           size={30}
         />
       </View>
@@ -114,20 +113,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 40,
     paddingVertical: 10,
     borderRadius: 4,
-    // borderColor: 'red',
-    // borderWidth: 1,
+    borderColor: colors.gray15,
+    borderWidth: 1,
     // height: 30,
     // width: 140, // calculate with Dimension?
   },
-  buttonText: {
-    color: colors.white,
-    fontSize: fontSize.default,
-    fontFamily: font.title,
-    textAlign: 'center',
-  }
+  // buttonText: {
+  //   color: colors.white,
+  //   fontSize: fontSize.default,
+  //   fontFamily: font.title,
+  //   textAlign: 'center',
+  // }
 })
 
 export default Info

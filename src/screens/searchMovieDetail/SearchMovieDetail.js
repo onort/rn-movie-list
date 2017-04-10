@@ -64,14 +64,10 @@ class SearchMovieDetail extends Component {
         .then(() => {
           ToastAndroid.showWithGravity('Movie Added', ToastAndroid.LONG, ToastAndroid.TOP)
           fetchList()
-          resetNotListed()
           clearSearchResults()
-          if (navigation.state.routeName === 'WatchlistSimilarMovieDetail') {
-            navigation.navigate(routeNames.watchlist.root)
-            return
-          }
-          navigation.dispatch(resetAction)
-          navigation.navigate(routeNames.watchlist.root)
+          // resetNotListed()
+          // navigation.dispatch(resetAction)
+          // navigation.navigate(routeNames.search.root)
         })
         .catch(err => {
         console.log('Error on handleWatched', err)

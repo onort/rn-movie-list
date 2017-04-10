@@ -67,8 +67,8 @@ class WatchedMovieDetail extends Component {
     const newWatched = watched.filter(movie => movie.id !== inList.id)
     await this.props.saveWatched(newWatched)
       .then(() => {
-        ToastAndroid.showWithGravity('Movie Deleted', ToastAndroid.LONG, ToastAndroid.TOP)
         this.props.fetchWatched()
+        ToastAndroid.showWithGravity('Movie Deleted', ToastAndroid.LONG, ToastAndroid.TOP)
         navigation.goBack()
       })
       .catch((err) => {

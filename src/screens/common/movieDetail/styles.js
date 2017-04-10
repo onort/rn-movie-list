@@ -3,10 +3,8 @@ import { colors, font, fontSize } from '../../../theme'
 
 export default StyleSheet.create({
   scrollContainer: {
-    flex: 1,
-    flexGrow: 1,
     backgroundColor: colors.gray15,
-    paddingBottom: 20,
+    paddingBottom: 30,
   },
   sectionHeading: {
     paddingVertical: 10,
