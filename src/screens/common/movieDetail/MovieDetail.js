@@ -15,7 +15,7 @@ const MovieDetail = ({ children, handleSimilarPress, movie }) => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         { movie.details &&
         <View style={{ flex: 1 }}>
-          <Header details={movie.details} />
+          <Header movie={movie} />
           <View>
             { children }
           </View>

@@ -20,7 +20,7 @@ const styles = {
   marginLeft: 10,
   textShadowColor: colors.black,
   textShadowOffset: {width: 2, height: 2},
-  textShadowRadius: 20
+  textShadowRadius: 20,
 }
 
 export default BackButton

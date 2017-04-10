@@ -64,7 +64,7 @@ class SearchMovieDetail extends Component {
         .then(() => {
           ToastAndroid.showWithGravity('Movie Added', ToastAndroid.LONG, ToastAndroid.TOP)
           fetchList()
-          clearSearchResults()
+          // clearSearchResults()
           // resetNotListed()
           // navigation.dispatch(resetAction)
           // navigation.navigate(routeNames.search.root)

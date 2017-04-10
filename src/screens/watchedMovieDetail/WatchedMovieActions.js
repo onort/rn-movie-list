@@ -72,7 +72,8 @@ const styles = {
   },
   rating: {
     color: colors.gray50,
-    fontSize: fontSize.large,
+    fontSize: 30,
+    lineHeight: 30,
     fontFamily: font.title,
   }
 }

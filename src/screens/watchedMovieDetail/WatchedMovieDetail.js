@@ -138,10 +138,6 @@ class WatchedMovieDetail extends Component {
             handleShare={this.handleShare}
             rated={rated}
           />
-          <View style={styles.timeContainer}>
-            <Icon name="done-all" color={colors.gray70} size={25} style={styles.icon} />
-            <Text style={styles.timeText}>{moment(movie.watched_on).format('DD MMMM YYYY')}</Text>
-          </View>
           <RatingModal
             handleRate={this.handleRate}
             rated={rated}
@@ -153,25 +149,6 @@ class WatchedMovieDetail extends Component {
       }
     </View>
     )
-  }
-}
-
-const styles = {
-  timeContainer: {
-    marginTop: 10,
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  icon: {
-
-  },
-  timeText: {
-    marginLeft: 10,
-    color: colors.gray70,
-    fontSize: fontSize.default,
-    fontFamily: font.roboReg,
   }
 }
 
