@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Alert, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View, Button } from 'react-native'
+import { Alert, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -9,8 +9,7 @@ import { colors, font, fontSize } from '../../theme'
 import { routeNames } from '../../constants'
 
 import { LoadingScreen, PosterRoll } from '../common'
-import Info from './components/Info'
-import AboutModal from './components/AboutModal'
+import { AboutModal, Clear, Info } from './components'
 
 class HomeScreen extends Component {
 
@@ -58,8 +57,8 @@ class HomeScreen extends Component {
   }
 
   handleClear(list) {
-    if (list === types.WATCHED || list === types.WATCHLIST) {
-      // check if there movies in list?
+    const gotMoviesInList = list === types.WATCHED ? this.props.watched.length : this.props.list.length
+    if (!!gotMoviesInList && list === types.WATCHED || list === types.WATCHLIST) {
       const clearList = () => {
         this.props.clear(list)
         const toastMsg =
@@ -79,11 +78,6 @@ class HomeScreen extends Component {
       ]
       Alert.alert(title, message, buttons)
     }
-  }
-
-  testToastr() {
-    console.log('Toast says hello')
-    ToastAndroid.showWithGravity('Toast Test', ToastAndroid.LONG, ToastAndroid.TOP)
   }
 
   watchedInLast30(watched) {
@@ -127,23 +121,12 @@ class HomeScreen extends Component {
               <PosterRoll movies={home.popular} handlePress={this.handlePosterPress} />
             }
           </View>
-          <Button
-            onPress={() => this.handleClear(types.WATCHLIST)}
-            title="Clear Movie List"
-            color="#61b2a7"
-            accessibilityLabel="Clear Movie List"
-          />
-          <Button
-            onPress={() => this.handleClear(types.WATCHED)}
-            title="Clear Watched Movies"
-            color="#841584"
-            accessibilityLabel="Clear Watched Movies"
-          />
-          <Button
-            onPress={this.testToastr}
-            title="testToastr"
-            color="#e5621b"
-          />
+          <View style={{ flex: 1, marginVertical: 5 }}>
+            <Clear
+              handleWatched={() => this.handleClear(types.WATCHED)}
+              handleWatchlist={() => this.handleClear(types.WATCHLIST)}
+            />
+          </View>
         </ScrollView>
       </View>
     )
@@ -153,7 +136,7 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.gray90,
-    paddingBottom: 30,
+    paddingBottom: 10,
   },
   sectionHeading: {
     paddingVertical: 10,

@@ -22,6 +22,7 @@ class SearchMovieDetail extends Component {
 
   constructor(props) {
     super(props)
+    this.state = { added: false }
     this.handleAdd = this.handleAdd.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.handleSimilarPress = this.handleSimilarPress.bind(this)
@@ -62,6 +63,7 @@ class SearchMovieDetail extends Component {
       const watchlist = list.concat(newMovie)
       await saveList(watchlist)
         .then(() => {
+          this.setState({ added: true })
           ToastAndroid.showWithGravity('Movie Added', ToastAndroid.LONG, ToastAndroid.TOP)
           fetchList()
           // clearSearchResults()
@@ -104,6 +106,7 @@ class SearchMovieDetail extends Component {
         <LoadingScreen color={colors.gray20} size={50} backgroundColor={colors.gray90} /> :
         <MovieDetail movie={this.props.notListed} handleSimilarPress={this.handleSimilarPress}>
           <SearchDetailActions
+            added={this.state.added}
             onAdd={this.handleAdd}
             onCancel={this.handleCancel}
             onTrailer={this.handleTrailer}

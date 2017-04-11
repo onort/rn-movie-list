@@ -4,16 +4,22 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { colors, font, fontSize } from '../../theme'
 
-const SearchDetailActions = ({ onAdd, onCancel, onTrailer }) => {
+const SearchDetailActions = ({ added, onAdd, onCancel, onTrailer }) => {
   return (
     <View style={styles.container}>
       <View style={styles.actionContainer}>
+        { added ?
+        <View style={styles.actionContainer}>
+          <Icon name="playlist-add-check" color={colors.green} size={30} />
+          <Text style={[styles.text, { color: colors.green }]}>Added</Text>
+        </View> :
         <TouchableOpacity onPress={onAdd}>
           <View style={styles.actionContainer}>
             <Icon name="add" color={colors.gray70} size={30} />
             <Text style={styles.text}>Add To Watchlist</Text>
           </View>
         </TouchableOpacity>
+        }
       </View>
       <View style={[styles.actionContainer, styles.border]}>
         <TouchableOpacity onPress={onTrailer}>
