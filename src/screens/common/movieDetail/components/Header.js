@@ -5,13 +5,13 @@ import moment from 'moment'
 import { colors, font, fontSize } from '../../../../theme'
 
 const Header = ({ movie }) => {
-    const { backdrop_path, poster_path, tagline, title } = movie.details
-    const titleFontSize = title && title.length < 50 ? fontSize.large : fontSize.medium
+    const { backdrop_path, original_title, poster_path, tagline } = movie.details
+    const titleFontSize = original_title && original_title.length < 50 ? fontSize.large : fontSize.medium
     const taglineFontSize = tagline && tagline.length < 150 ? fontSize.default : fontSize.small
     const backdropSrc =
       backdrop_path ?
         { uri :`http://image.tmdb.org/t/p/w780${backdrop_path}` } :
-        require('../../../_assets/noBackdropDetail.png');
+        require('../../../_assets/noBackdropDetail4.png');
     const posterSrc =
       poster_path ?
       { uri: `http://image.tmdb.org/t/p/w154${poster_path}` } :
@@ -37,7 +37,7 @@ const Header = ({ movie }) => {
         </View>
         <View style={styles.titleContainer}>
           <View style={styles.titleItem}>
-            <Text style={[styles.title, { fontSize: titleFontSize }]}>{title}</Text>
+            <Text style={[styles.title, { fontSize: titleFontSize }]}>{original_title}</Text>
           </View>
           <View style={styles.titleItem}>
             {tagline ? <Text style={[styles.tagline, { fontSize : taglineFontSize }]}>{tagline}</Text> : null}

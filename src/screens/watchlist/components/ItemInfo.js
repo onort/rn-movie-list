@@ -7,16 +7,17 @@ import { colors, font, fontSize } from '../../../theme'
 import { colorize } from '../../../utils'
 
 const ItemInfo = ({ movie, handlePress }) => {
-  const { title, vote_average } = movie.details
+  const { original_title, vote_average } = movie.details
+  const score = vote_average > 0 ? (vote_average).toFixed(1) : '?'
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{original_title}</Text>
         </View>
         <View style={styles.timeContainer}>
           <View style={[styles.scoreBadge, { backgroundColor: colorize(vote_average) }]}>
-            <Text style={styles.score}>{(vote_average).toFixed(1) || '?'}</Text>
+            <Text style={styles.score}>{score}</Text>
           </View>
           { movie.date_added ?
             <Text style={styles.time}>Added {moment(movie.date_added).fromNow()}</Text> :
